@@ -1,7 +1,3 @@
-//
-// Created by bendetta on 05/06/15.
-//
-
 #ifndef PROGETTOSISTEMI_DEBUGMACRO_H
 #define PROGETTOSISTEMI_DEBUGMACRO_H
 
