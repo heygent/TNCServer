@@ -1,0 +1,1 @@
+void elaboraRichiesta(int socketConnessione);

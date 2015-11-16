@@ -1,7 +1,10 @@
-cmake_minimum_required(VERSION 3.2)
+cmake_minimum_required(VERSION 3.0.2)
+
+set(CMAKE_C_COMPILER "gcc")
+set(CMAKE_CXX_COMPILER "g++")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=gnu11")
+
 project(ProgettoSistemi)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-
-set(SOURCE_FILES main.c)
-add_executable(ProgettoSistemi ${SOURCE_FILES} httpheaders.h debugmacro.h)
+set(SOURCE_FILES elaboraRichiesta.c inviaMessaggio.c httpheaders.c main.c )
+add_executable(ProgettoSistemi ${SOURCE_FILES})

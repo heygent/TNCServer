@@ -1,5 +1,7 @@
 #ifndef PROGETTOSISTEMI_DEBUGMACRO_H
 #define PROGETTOSISTEMI_DEBUGMACRO_H
+#include <stdlib.h>
+#include <errno.h>
 
 #ifdef DEBUG
 #define DBGPRINT(str) printf(str);
@@ -9,7 +11,7 @@
 
 #define CONTROLLAERRORI(codice, messaggio) { 	\
 	if(codice < 0) { 								\
-		perror(messaggio); 						\
+		fprintf(stderr, "%s [%i]: %s", messaggio, errno, strerror(errno)); 						\
 		exit(1); 									\
 	} }
 
