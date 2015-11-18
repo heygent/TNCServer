@@ -19,8 +19,6 @@ bool inviaMessaggio(int socketConnessione, const char *path)
     char * header;
     bool ret;
 
-    puts("In inviamessaggio");
-
     fileDaLeggere = fopen(path, "rt");
 
     CONTROLLAERRORI(fileDaLeggere, "ERRORE Lettura file");
@@ -57,8 +55,10 @@ bool inviaMessaggio(int socketConnessione, const char *path)
     // Mando l'header attraverso il socket
     send(socketConnessione, header, dimensioneHeader + cSize, 0);
 
+    free(header);
+
     // Mando il file html, in pacchetti da 1 byte
-    while(fread(buffer, 1, BUFSIZE, fileDaLeggere) > BUFSIZE ) {
+    while(fread(buffer, 1, BUFSIZE, fileDaLeggere)) {
         send(socketConnessione, buffer, strlen(buffer), 0);
     }
 

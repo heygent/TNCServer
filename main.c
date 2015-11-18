@@ -14,11 +14,13 @@
 
 #define PORTA "80"
 
-static volatile bool continua = true;
+static int to_close[10];
 
 void SIGINTHandler(int ignore) {
-    continua = false;
-    puts("\n");
+    for(int i = 0; i < 10 && to_close[i] != 0; ++i)
+    {
+        close(to_close[i]);
+    }
 }
 
 
@@ -38,6 +40,9 @@ int main(int argc, char *argv[]) {
     socklen_t lunghezzaIndirizzoClient;
     int codiceErrore;
 
+    memset(to_close, 10, sizeof(int));
+
+
     // Inizializzo il socket
     memset(&parametriIndirizzo, 0, sizeof(parametriIndirizzo));
     parametriIndirizzo.ai_family = AF_UNSPEC;
@@ -54,6 +59,8 @@ int main(int argc, char *argv[]) {
     socketAscolto = socket(indirizzoServer->ai_family,
                            indirizzoServer->ai_socktype,
                            indirizzoServer->ai_protocol);
+
+    to_close[0] = socketAscolto;
 
     CONTROLLAERRORI(socketAscolto, "ERRORE su socket()");
 
@@ -75,11 +82,13 @@ int main(int argc, char *argv[]) {
                                    (struct sockaddr *) &indirizzoClient,
                                    &lunghezzaIndirizzoClient);
 
-        if(!continua) break;
+        to_close[1] = socketConnessione;
 
         CONTROLLAERRORI(socketConnessione, "ERRORE su accept()");
 
         elaboraRichiesta(socketConnessione);
+
+        close(socketConnessione);
 
     }
 
