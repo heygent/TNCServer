@@ -10,41 +10,53 @@
 #include <arpa/inet.h>
 #include <netinet/in.h>
 #include "debugmacro.h"
-#include "elaboraRichiesta.h"
+#include "processRequest.h"
+#include "paths.h"
+#include "paths.h"
+#include "sendResponse.h"
 
 #define PORTA "80"
 
 static int to_close[10];
 
-void SIGINTHandler(int ignore) {
-    for(int i = 0; i < 10 && to_close[i] != 0; ++i)
-    {
-        close(to_close[i]);
-    }
-}
-
-
-/*****
- * Funzione di prova, prende in input un socket
- * e manda gli header del server e una pagina di default al client.
- *
- *
- */
-
+void cleanup(int);
 
 int main(int argc, char *argv[]) {
 
-    int socketAscolto, socketConnessione;
+    int listenSocket, socketConnessione;
     struct addrinfo parametriIndirizzo, *indirizzoServer = NULL;
     struct sockaddr_storage indirizzoClient;
     socklen_t lunghezzaIndirizzoClient;
     int codiceErrore;
 
-    memset(to_close, 10, sizeof(int));
+    bzero(&to_close, 10 * sizeof(int));
 
+    if(argc > 1)
+    {
+        size_t pathSize = strlen(argv[1]);
+
+        while(argv[1][pathSize] == '/')
+        {
+            argv[1][pathSize--] = '\0';
+        }
+
+        localPathToServe = strdup(argv[1]);
+
+    }
+    else
+    {
+        localPathToServe = strdup(".");
+    }
+
+    if(access(localPathToServe, R_OK) != 0)
+    {
+        printf("Server: path %s not accessible.", localPathToServe);
+        exit(0);
+    }
 
     // Inizializzo il socket
-    memset(&parametriIndirizzo, 0, sizeof(parametriIndirizzo));
+    bzero(&parametriIndirizzo, sizeof(parametriIndirizzo));
+
     parametriIndirizzo.ai_family = AF_UNSPEC;
     parametriIndirizzo.ai_socktype = SOCK_STREAM;
     parametriIndirizzo.ai_flags = AI_PASSIVE;
@@ -52,33 +64,39 @@ int main(int argc, char *argv[]) {
     // Ottiene informazioni sull'indirizzo del server
     codiceErrore = getaddrinfo(NULL, PORTA, &parametriIndirizzo, &indirizzoServer);
 
-
     CONTROLLAERRORI(codiceErrore, "ERRORE su getaddrinfo()");
 
     // Crea il socket di ascolto
-    socketAscolto = socket(indirizzoServer->ai_family,
-                           indirizzoServer->ai_socktype,
-                           indirizzoServer->ai_protocol);
+    listenSocket = socket(indirizzoServer->ai_family,
+                          indirizzoServer->ai_socktype,
+                          indirizzoServer->ai_protocol);
 
-    to_close[0] = socketAscolto;
+    to_close[0] = listenSocket;
 
-    CONTROLLAERRORI(socketAscolto, "ERRORE su socket()");
+    CONTROLLAERRORI(listenSocket, "ERRORE su socket()");
+
+    int optval = 1;
+    codiceErrore = setsockopt(listenSocket, SOL_SOCKET, SO_REUSEADDR, &optval, sizeof optval);
+
+    CONTROLLAERRORI(codiceErrore, "ERRORE su setsockopt()");
 
     // Lega il socket di ascolto alle informazioni sull'indirizzo messe prima
-    codiceErrore = bind(socketAscolto, indirizzoServer->ai_addr, indirizzoServer->ai_addrlen);
+    codiceErrore = bind(listenSocket, indirizzoServer->ai_addr, indirizzoServer->ai_addrlen);
 
     CONTROLLAERRORI(codiceErrore, "ERRORE su bind()");
 
     puts("Server in ascolto, vai su http://localhost per inviare una richiesta\n");
-    listen(socketAscolto, 5);
+    listen(listenSocket, 5);
 
-    signal(SIGINT, SIGINTHandler);
+    signal(SIGINT, cleanup);
+    // Ignora broken pipe
+    signal(SIGPIPE, SIG_IGN);
 
     while(true)
     {
         lunghezzaIndirizzoClient = sizeof(indirizzoClient);
 
-        socketConnessione = accept(socketAscolto,
+        socketConnessione = accept(listenSocket,
                                    (struct sockaddr *) &indirizzoClient,
                                    &lunghezzaIndirizzoClient);
 
@@ -86,15 +104,31 @@ int main(int argc, char *argv[]) {
 
         CONTROLLAERRORI(socketConnessione, "ERRORE su accept()");
 
-        elaboraRichiesta(socketConnessione);
+        /*
+        if(!fork()) {
 
-        close(socketConnessione);
+            close(listenSocket);
+            // */
+            requestInfo *info;
 
+            info = processRequest(socketConnessione);
+            sendResponse(socketConnessione, info);
+            close(socketConnessione);
+
+            freeRequestInfo(info);
+         /*
+            exit(0);
+        }
+
+        close(listenSocket);
+        // */
     }
 
+}
 
-    close(socketAscolto);
-    close(socketConnessione);
-
-    return 0;
+void cleanup(int ignore) {
+    for(int i = 0; i < 10 && to_close[i] != 0; ++i)
+    {
+        close(to_close[i]);
+    }
 }

@@ -1,68 +1,65 @@
 #ifndef PROGETTOSISTEMI_HTTPHEADERS_H
 #define PROGETTOSISTEMI_HTTPHEADERS_H
 
+#include <stdbool.h>
+
 #define HEADERSIZE 8096
 
-#define OK 0
-#define UNAUTHORIZED 1
-#define BADREQUEST 2
-#define FORBIDDEN 3
-#define NOTFOUND 4
-#define METHODNOTALLOWED 5
+// https://tools.ietf.org/html/rfc7231#section-7.1.1.1
+#define HTTPDATE "%a, %d %b %Y %T GMT"
 
-#define SIZEOFHEADERS 6
+#define HTTP10 "HTTP/1.0 "
+#define HTTP11 "HTTP/1.1 "
 
 
-#define CODA "Connection: close\nContent-Type: text/html\nContent-Length: %ld\n\n"
+// Response Header
+#define RHDR_MAIN_OK                "200 OK\n"
+#define RHDR_MAIN_BADREQUEST        "400 Bad Request\n"
+#define RHDR_MAIN_NOTFOUND          "404 Not Found\n"
+#define RHDR_MAIN_NOTIMPLEMENTED    "501 Not Implemented\n"
 
-#define ISGET(str) strncmp(str, "GET ", 4) == 0 || strncmp(str, "get ", 4) == 0
-#define ISHEAD(str) strncmp(str, "HEAD ", 5) == 0 || strncmp(str, "head ", 5) == 0
-#define ISPOST(str) strncmp(str, "POST ", 5) == 0 || strncmp(str, "post ", 5) == 0
 
-/***
- * Il browser manda una richiesta al server.
- * Il server risponde sempre con un header (del testo contenente informazioni),
- * e, a seconda dei casi, con un contenuto (es. pagina html).
- * Se il server può soddisfare la richiesta del browser, il server risponde inviando
- * un header di cui la prima riga è "HTTP/1.1 200 OK".
- * Un esempio di risposta completa del server è:
- *
- * HTTP/1.1 200 OK
- * Connection: close
- * Content-type: text/html
- * Content-length: 176
- *
- * <html>
- *     <head>
- *         ...
- *
- * L'header è separato dal contenuto da una riga vuota.
- * I parametri di quest'header sono:
- * - Connection, che stabilisce se la connessione deve continuare o deve essere chiusa
- * - Content-type, che indica il tipo di contenuto inviato dal server
- * - Content-length, che deve contenere la lunghezza del contenuto
- *
- * L'array HEADERS[], qua sotto, contiene gli header con i rispettivi codici di errore.
- * Se il server non può soddisfare la richiesta, la prima riga dell'header indica il codice di errore.
- * Ad esempio, se il file richiesto dal client non esiste, il server manda un header con codice 404,
- * o se la richiesta del client non è leggibile, il server manda un errore 402.
- *
- * CODA, per ora, contiene i parametri comuni a tutte le risposte che può dare il server, mentre l'array
- * HEADERS[] contiene la testa, cioè prima riga e i parametri contestuali al codice di errore.
- *
- */
+#define RHDR_CONNECTION             "Connection: %s\n"
+#define RHDR_CONTENT_TYPE           "Content-Type: %s; charset=%s\n"
+#define RHDR_CONTENT_LENGTH         "Content-Length: %s\n"
+#define RHDR_LAST_MODIFIED          "Last-Modified: " HTTPDATE "\n"
+#define RHDR_DATE                   "Date: " HTTPDATE "\n"
 
-typedef struct {
-    int codice;
-    char *stringa;
-} contenitoreHeader;
+#define GETSTR "GET"
+#define HEADSTR "HEAD"
+#define POSTSTR "POST"
 
-extern const contenitoreHeader HEADERS[6];
-/*
-struct headerClient {
-    int codice;
-    char metodo[5];
-    char percorso[];
+#define M_GET 0
+#define M_HEAD 1
+#define M_POST 2
+#define M_BAD 255
+
+#define COMMAND_MIMETYPE "mimetype -b %s | tr '\\n' '\\0'"
+#define COMMAND_ENCODING "file -b --mime-encoding %s | tr '\\n' '\\0'"
+
+typedef struct headerLine headerLine;
+struct headerLine
+{
+    char *string;
+    headerLine *nextLine;
 };
-*/
+
+typedef struct requestInfo requestInfo;
+struct requestInfo
+{
+    FILE *toSend;
+    headerLine *firstHeaderLine;
+    struct stat *fileinfo;
+    char *requestedPath;
+    char *servedPath;
+    unsigned char methodCode;
+    bool closeConnection;
+};
+
+headerLine *makeContentHeaders(headerLine *, requestInfo *info);
+headerLine *makeDateHeader(headerLine *toChain);
+
+void freeRequestInfo(requestInfo *tofree);
+
+
 #endif //PROGETTOSISTEMI_HTTPHEADERS_H
