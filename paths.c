@@ -7,14 +7,14 @@
 #include <string.h>
 #include <unistd.h>
 
-char *localPathToServe = NULL;
+const char *local_path_to_serve;
 
-char *getIndexPath()
+char *get_index_path()
 {
-    size_t localPathLen = strlen(localPathToServe);
+    size_t localPathLen = strlen(local_path_to_serve);
     char *indexPath = calloc(localPathLen + strlen(PATH_INDEXHTML), 1);
 
-    strcpy(indexPath, localPathToServe);
+    strcpy(indexPath, local_path_to_serve);
     strcat(indexPath, PATH_INDEXHTM);
 
     if(access(indexPath, R_OK) == 0)

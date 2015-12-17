@@ -10,9 +10,9 @@
 #define PATH_ROOT "/"
 #define PATH_INDEXHTM "/index.htm"
 #define PATH_INDEXHTML "/index.html"
-#define PATH_DEFAULT_404 "./pages/404.html"
+#define PATH_DEFAULT_ERROR "./pages/%.3s.html"
 
-extern char *localPathToServe;
-char *getIndexPath();
+extern const char *local_path_to_serve;
+char *get_index_path();
 
 #endif //PROGETTOSISTEMI_PATHTOSERVE_H

@@ -3,17 +3,9 @@
 #include <stdlib.h>
 #include <errno.h>
 
-#ifdef DEBUG
-#define DBGPRINT(str) printf(str);
-#else
-#define DBGPRINT(str)
-#endif
 
-#define CONTROLLAERRORI(codice, messaggio) { 	\
-	if(codice < 0) { 								\
-		fprintf(stderr, "%s [%i]: %s", messaggio, errno, strerror(errno)); 						\
-		exit(1); 									\
-	} }
-
+#define RUNTIME_ERROR(message) { \
+    fprintf(stderr, "%s [%i]: %s", message, errno, strerror(errno)); \
+    exit(EXIT_FAILURE); }
 
 #endif //PROGETTOSISTEMI_DEBUGMACRO_H
