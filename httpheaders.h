@@ -1,5 +1,5 @@
-#ifndef PROGETTOSISTEMI_HTTPHEADERS_H
-#define PROGETTOSISTEMI_HTTPHEADERS_H
+#ifndef TNC_HTTPHEADERS_H
+#define TNC_HTTPHEADERS_H
 
 #define HEADERSIZE 8096
 
@@ -40,4 +40,4 @@ enum HTTPMethod {
 #define COMMAND_ENCODING "file -b --mime-encoding %s | tr '\\n' '\\0'"
 
 
-#endif //PROGETTOSISTEMI_HTTPHEADERS_H
+#endif //TNC_HTTPHEADERS_H

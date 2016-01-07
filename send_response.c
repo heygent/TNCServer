@@ -3,8 +3,8 @@
 #include <sys/socket.h>
 #include <sys/sendfile.h>
 #include <sys/stat.h>
+#include <stdlib.h>
 #include "send_response.h"
-#include "debugmacro.h"
 
 bool send_response(int connection_socket, HTTPResponseData *response_data)
 {
@@ -15,21 +15,25 @@ bool send_response(int connection_socket, HTTPResponseData *response_data)
 
     int fd = fileno(request_data->file_to_serve);
     off_t filesize = request_data->file_to_serve_stat->st_size;
-    TNCList_Node it = TNCList_begin(response_data->headers);
+    TNCList headers = response_data->headers;
 
-    while(it != NULL)
+    while (TNCList_length(headers))
     {
-        const char *str = TNCList_get_value(it);
-
-        send(connection_socket, str, strlen(str), 0 || MSG_NOSIGNAL || MSG_MORE);
-
-        it = TNCList_next(it);
+        char *str = TNCList_pop_front(headers);
+        send(connection_socket, str, strlen(str), 0 | MSG_NOSIGNAL | MSG_MORE);
+        free(str);
     }
 
-    send(connection_socket, "\n\n", 2, 0);
+    TNCList_destroy(headers);
+
+    send(connection_socket, "\n", 1, 0);
 
     if(request_data->method == HTTP_METHOD_GET) {
+
+        #ifdef linux
         sendfile(connection_socket, fd, 0, (size_t) filesize);
+        #endif
+
         ret = ferror(request_data->file_to_serve) != 0;
     }
     else ret = true;

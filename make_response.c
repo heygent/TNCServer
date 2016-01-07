@@ -10,11 +10,14 @@
 #include <sys/stat.h>
 #include "make_response.h"
 
-char *make_main_header(const HTTPRequestData *data);
-char *make_content_type_header(const HTTPRequestData *data);
-char *make_content_length_header(const HTTPRequestData *data);
-char *make_last_modified_header(const HTTPRequestData *data);
-char *make_date_header();
+typedef char *header_producer (const HTTPRequestData *data);
+
+header_producer make_main_header;
+header_producer make_content_type_header;
+header_producer make_content_length_header;
+header_producer make_last_modified_header;
+header_producer make_date_header;
+
 
 HTTPResponseData make_response(const HTTPRequestData *request_data)
 {
@@ -27,11 +30,11 @@ HTTPResponseData make_response(const HTTPRequestData *request_data)
     response_data.headers = response_headers;
     response_data.request_data = request_data;
 
-    TNCList_add(response_headers, make_main_header(request_data));
-    TNCList_add(response_headers, make_content_type_header(request_data));
-    TNCList_add(response_headers, make_content_length_header(request_data));
-    TNCList_add(response_headers, make_last_modified_header(request_data));
-    TNCList_add(response_headers, make_date_header());
+    TNCList_push_back(response_headers, make_main_header(request_data));
+    TNCList_push_back(response_headers, make_content_type_header(request_data));
+    TNCList_push_back(response_headers, make_content_length_header(request_data));
+    TNCList_push_back(response_headers, make_last_modified_header(request_data));
+    TNCList_push_back(response_headers, make_date_header(request_data));
 
     return response_data;
 }
@@ -41,7 +44,7 @@ char *make_main_header(const HTTPRequestData *data)
     char *ret;
     char *second_part;
     const char *http_version = data->http_version;
-    const char *status_code = data->current_status_code;
+    const char *status_code = data->status_code;
 
     if(strcmp(status_code, "200") == 0)
     {
@@ -137,7 +140,7 @@ char *make_last_modified_header(const HTTPRequestData *data)
     return ret;
 }
 
-char *make_date_header()
+char *make_date_header(const HTTPRequestData *ignore)
 {
     char *ret;
     size_t ret_len;

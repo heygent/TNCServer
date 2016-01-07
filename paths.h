@@ -2,8 +2,8 @@
 // Created by root on 18/11/15.
 //
 
-#ifndef PROGETTOSISTEMI_PATHTOSERVE_H
-#define PROGETTOSISTEMI_PATHTOSERVE_H
+#ifndef TNC_PATHTOSERVE_H
+#define TNC_PATHTOSERVE_H
 
 #include <stdio.h>
 
@@ -15,4 +15,4 @@
 extern const char *local_path_to_serve;
 char *get_index_path();
 
-#endif //PROGETTOSISTEMI_PATHTOSERVE_H
+#endif //TNC_PATHTOSERVE_H

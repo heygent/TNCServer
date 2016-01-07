@@ -2,7 +2,7 @@
 // Created by root on 12/12/15.
 //
 
-#include "debugmacro.h"
+#include "tnc_adt/runtime_error.h"
 #include "paths.h"
 #include "httpdata.h"
 #include "memzero.h"
@@ -27,10 +27,10 @@ HTTPRequestData parse_request(char *request) {
     parse_main_header(&request_data, request_line);
 
 
-    if(strncmp(request_data.current_status_code, "200", 3) != 0)
+    if(strncmp(request_data.status_code, "200", 3) != 0)
     {
         request_data.path_to_serve = malloc(strlen(PATH_DEFAULT_ERROR) + 1);
-        sprintf(request_data.path_to_serve, PATH_DEFAULT_ERROR, request_data.current_status_code);
+        sprintf(request_data.path_to_serve, PATH_DEFAULT_ERROR, request_data.status_code);
         request_data.file_to_serve = fopen(request_data.path_to_serve, "rb");
     }
 
@@ -53,13 +53,13 @@ void parse_main_header(HTTPRequestData *request_data, char *header)
     enum HTTPMethod method;
     HTTPRequestFlags *flags = &request_data->flags;
 
-    MEMZERO(flags, sizeof(HTTPRequestFlags));
+    MEMZERO(flags);
 
     current_token = strtok_r(header, " ", &saveptr_space);
 
     // Leggi il metodo HTTP
 
-    if (NULL == current_token) goto bad_request;
+    if (!current_token) goto bad_request;
     else if (strcasecmp(current_token, GETSTR) == 0) method = HTTP_METHOD_GET;
     else if (strcasecmp(current_token, HEADSTR) == 0) method = HTTP_METHOD_HEAD;
     else if (strcasecmp(current_token, POSTSTR) == 0) method = HTTP_METHOD_POST;
@@ -71,14 +71,14 @@ void parse_main_header(HTTPRequestData *request_data, char *header)
 
     current_token = strtok_r(NULL, " ", &saveptr_space);
 
-    if (NULL == current_token) goto bad_request;
+    if (!current_token) goto bad_request;
     request_data->path_requested = strdup(current_token);
 
     // Leggi versione HTTP
 
     current_token = strtok_r(NULL, " ", &saveptr_space);
 
-    if (NULL == current_token || strncmp(HTTP10, current_token, strlen(HTTP10)) == 0)
+    if (!current_token || strncmp(HTTP10, current_token, strlen(HTTP10)) == 0)
     {
         strcpy(request_data->http_version, "1.0");
     }
@@ -89,8 +89,8 @@ void parse_main_header(HTTPRequestData *request_data, char *header)
     }
     else goto bad_request;
 
-    if (NULL != current_token) current_token = strtok_r(NULL, " ", &saveptr_space);
-    if (NULL != current_token) goto bad_request;
+    if (current_token) current_token = strtok_r(NULL, " ", &saveptr_space);
+    if (current_token) goto bad_request;
 
     // Ottieni informazioni sul file richiesto
 
@@ -101,7 +101,7 @@ void parse_main_header(HTTPRequestData *request_data, char *header)
             break;
 
         case HTTP_METHOD_POST:
-            strcpy(request_data->current_status_code, "405");
+            strcpy(request_data->status_code, "405");
             return;
 
     }
@@ -118,14 +118,14 @@ void parse_main_header(HTTPRequestData *request_data, char *header)
     request_data->path_to_serve = path_to_serve;
     request_data->file_to_serve = fopen(path_to_serve, "rb");
 
-    if (NULL == request_data->file_to_serve) strcpy(request_data->current_status_code, "404");
-    else strcpy(request_data->current_status_code, "200");
+    if (NULL == request_data->file_to_serve) strcpy(request_data->status_code, "404");
+    else strcpy(request_data->status_code, "200");
 
     return;
 
 bad_request:
 
-    strcpy(request_data->current_status_code, "400");
+    strcpy(request_data->status_code, "400");
     strcpy(request_data->http_version, "1.0");
     return;
 }

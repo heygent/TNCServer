@@ -10,8 +10,10 @@
       <sourceFolder url="file://$MODULE_DIR$/make_response.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/paths.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/parse_request.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tnc_adt/threadpool.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/tnc_adt/list.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/tnc_adt/list.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tnc_adt/threadpool.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/paths.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/send_response.c" isTestSource="false" />
