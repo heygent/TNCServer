@@ -6,16 +6,19 @@
 #include <assert.h>
 #include "httpdata.h"
 
-void HTTPRequestData_init(HTTPRequestData *this)
+void HTTPRequestData_init(HTTPRequestData *data)
 {
-    assert(NULL != this && "HTTPRequestData: Attempting to initialize null pointer");
+    assert(NULL != data && "HTTPRequestData: Attempting to initialize null pointer");
 
-    this->path_requested = NULL;
-    this->path_to_serve = NULL;
-    this->file_to_serve_stat = NULL;
+    data->file_to_serve = NULL;
+    data->remote_path = NULL;
+    data->path_to_serve = NULL;
+    data->file_to_serve_stat = NULL;
+    data->flags = 0;
 }
 
-HTTPRequestData *HTTPRequestData_new() {
+HTTPRequestData *HTTPRequestData_new()
+{
 
     HTTPRequestData *ret;
     ret = malloc(sizeof *ret);
@@ -25,14 +28,57 @@ HTTPRequestData *HTTPRequestData_new() {
     return ret;
 }
 
-void HTTPRequestData_delete(HTTPRequestData **this) {
+void HTTPRequestData_destroy_members(HTTPRequestData *data)
+{
 
-    if(NULL != *this) {
+    assert(data);
 
-        free((**this).path_requested);
-        free((**this).path_to_serve);
-        free((**this).file_to_serve_stat);
+    if(data->file_to_serve) fclose(data->file_to_serve);
+    free(data->remote_path);
+    free(data->path_to_serve);
+    free(data->file_to_serve_stat);
 
-        *this = NULL;
-    }
+}
+
+void HTTPRequestData_destroy(HTTPRequestData *data)
+{
+
+    HTTPRequestData_destroy_members(data);
+    free(data);
+}
+
+void HTTPResponseData_init(HTTPResponseData *data, const HTTPRequestData *rd)
+{
+    assert(NULL != data && "HTTPRequestData: Attempting to initialize null pointer");
+
+    data->headers = NULL;
+    data->request_data = rd;
+
+}
+
+HTTPResponseData *HTTPResponseData_new(const HTTPRequestData *rd)
+{
+
+    HTTPResponseData *ret;
+    ret = malloc(sizeof *ret);
+
+    if(NULL != ret) HTTPResponseData_init(ret, rd);
+
+    return ret;
+}
+
+void HTTPResponseData_destroy_members(HTTPResponseData *data)
+{
+
+    assert(data);
+
+    if(data->headers) TNCList_destroy_and_free(data->headers, free);
+
+}
+
+void HTTPResponseData_destroy(HTTPResponseData *data)
+{
+
+    HTTPResponseData_destroy_members(data);
+    free(data);
 }

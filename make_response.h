@@ -7,6 +7,6 @@
 
 #include "httpdata.h"
 
-HTTPResponseData make_response(const HTTPRequestData *request_data);
+HTTPResponseData *make_response(const HTTPRequestData *request_data);
 
 #endif //TNC_MAKERESPONSE_H

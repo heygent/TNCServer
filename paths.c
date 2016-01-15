@@ -7,29 +7,22 @@
 #include <string.h>
 #include <unistd.h>
 
-const char *local_path_to_serve;
-
-char *get_index_path()
+char *get_index_path(TNCServer self)
 {
-    size_t localPathLen = strlen(local_path_to_serve);
-    char *indexPath = calloc(localPathLen + strlen(PATH_INDEXHTML), 1);
+    size_t local_path_len = strlen(self->local_path);
+    char *index_path = malloc(local_path_len + strlen(PATH_INDEXHTML));
 
-    strcpy(indexPath, local_path_to_serve);
-    strcat(indexPath, PATH_INDEXHTM);
+    strcpy(index_path, self->local_path);
+    strcat(index_path, PATH_INDEXHTM);
 
-    if(access(indexPath, R_OK) == 0)
+    if(access(index_path, R_OK) == 0)
     {
-        return indexPath;
+        return index_path;
     }
 
-    indexPath[localPathLen] = '\0';
-    strcat(indexPath, PATH_INDEXHTML);
+    index_path[local_path_len] = '\0';
+    strcat(index_path, PATH_INDEXHTML);
 
-    if(access(indexPath, R_OK) == 0)
-    {
-        return indexPath;
-    }
-    
-    return NULL;
+    return access(index_path, R_OK) == 0 ? index_path : NULL;
 
 }

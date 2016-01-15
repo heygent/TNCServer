@@ -1,9 +1,7 @@
 #ifndef TNC_STRINGLIST_H
 #define TNC_STRINGLIST_H
 
-#include "functiondefs.h"
-
-
+#include "typedefs.h"
 
 /**
  * @file
@@ -112,7 +110,11 @@ TNCListNode TNCList_previous(TNCListNode current);
  *
  * @param val Il nuovo elemento da inserire nella lista.
  *
+ * @return 0 se l'operazione va a buon fine, altrimenti uno dei seguenti codici di errore:
+ *   - TNCError_failed_alloc se non è stato possibile allocare memoria per eseguire l'operazione.
+ *
  * @see TNCListNode
+ * @see error.h
  */
 int TNCList_push_front(TNCList restrict self, void *restrict val);
 
@@ -123,6 +125,9 @@ int TNCList_push_front(TNCList restrict self, void *restrict val);
  *             Il comportamento della funzione non è definito se questo parametro è NULL.
  *
  * @param val Elemento da inserire nella lista.
+ *
+ *  @return 0 se l'operazione va a buon fine, altrimenti uno dei seguenti codici di errore:
+ *   - TNCError_failed_alloc se non è stato possibile allocare memoria per eseguire l'operazione.
  */
 int TNCList_push_back(TNCList restrict self, void *restrict val);
 
@@ -134,7 +139,8 @@ int TNCList_push_back(TNCList restrict self, void *restrict val);
  *
  * @param val Elemento da inserire nella lista
  *
- * @return 1 se l'operazione va a buon fine, 0 altrimenti
+ * @return 0 se l'operazione va a buon fine, altrimenti uno dei seguenti codici di errore:
+ *   - TNCError_failed_alloc se non è stato possibile allocare memoria per eseguire l'operazione.
  *
  */
 
@@ -148,18 +154,21 @@ int TNCList_insert_before(TNCListNode restrict ref, void *restrict val);
  *
  * @param val Elemento da inserire nella lista
  *
- * @return 1 se l'operazione va a buon fine, 0 altrimenti
+ * @return 0 se l'operazione va a buon fine, altrimenti uno dei seguenti codici di errore:
+ *   - TNCError_failed_alloc se non è stato possibile allocare memoria per eseguire l'operazione.
  *
  */
 int TNCList_insert_after(TNCListNode restrict ref, void *restrict val);
 
 /**
  * Toglie il primo elemento dalla lista, e lo restituisce.
- * Il comportamento della funzione è indefinito se chiamata su una lista vuota.
  *
  * @param self La lista su cui si vuole operare
  *             Il comportamento della funzione non è definito se questo parametro è NULL o se la lista a cui si
  *             riferisce è vuota.
+ *
+ * @return 0 se l'operazione va a buon fine, altrimenti uno dei seguenti codici di errore:
+ *   - TNCError_failed_alloc se non è stato possibile allocare memoria per eseguire l'operazione.
  */
 void *TNCList_pop_front(TNCList self);
 
@@ -186,7 +195,7 @@ void *TNCList_pop_back(TNCList self);
 void *TNCList_remove(TNCListNode node);
 
 /**
- * Dato un nodo, ne restituisce il valore
+ * Dato un nodo, restituisce un puntatore costante al suo valore.
  *
  * @param node Il nodo di cui si richiede il valore.
  *             Il comportamento della funzione è indefinito se questo parametro è NULL.
@@ -228,7 +237,7 @@ void TNCList_destroy_and_free(TNCList self, TNCConsumer freefn);
 void TNCList_chain(TNCList restrict list, TNCList restrict to_chain);
 
 /**
- * Restituisce un valore diverso da zero se la lista `self` è vuota, 0 altrimenti.
+ * Restituisce un valore diverso da zero se la lista è vuota, altrimenti 0.
  */
 int TNCList_empty(TNCList self);
 

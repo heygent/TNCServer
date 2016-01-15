@@ -7,6 +7,6 @@
 
 #include "httpdata.h"
 
-HTTPRequestData parse_request(char *request);
+HTTPRequestData *parse_request(TNCServer self, char *request);
 
 #endif //TNC_PROCESSRESPONSE_H

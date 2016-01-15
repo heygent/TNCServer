@@ -2,22 +2,27 @@
 <module type="CPP_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/httpdata.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/make_response.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/httpdata.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/make_response.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/server.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/httpheaders.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/server.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/parse_request.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/send_response.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/main.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/send_response.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/make_response.c" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/paths.c" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/parse_request.c" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/tnc_adt/threadpool.c" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/tnc_adt/list.c" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/tnc_adt/list.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/tnc_adt/threadpool.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/parse_request.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/paths.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/send_response.c" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/parse_request.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/paths.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/libtnc/list.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/libtnc/fixedthreadpool.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/libtnc/list.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/libtnc/fixedthreadpool.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/httpdate.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/httpdata.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/httpdata.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/httpdate.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/make_response.h" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">

@@ -1,10 +1,7 @@
-//
-// Created by root on 11/12/15.
-//
-
 #include <assert.h>
 #include <stdlib.h>
 #include "list.h"
+#include "error.h"
 
 struct _TNCList
 {
@@ -79,13 +76,13 @@ void TNCList_destroy(TNCList self)
 static int _TNCList_insert_first(TNCList restrict self, void *restrict val)
 {
     TNCListNode node = _TNCListNode_new(val, self);
-    if(!node) return 0;
+    if(!node) return TNCError_failed_alloc;
 
     node->prev = node->next = NULL;
     self->first = self->last = node;
     self->num_of_elements = 1;
 
-    return 1;
+    return TNCError_good;
 }
 
 int TNCList_insert_before(TNCListNode restrict ref, void *restrict val)
@@ -96,15 +93,18 @@ int TNCList_insert_before(TNCListNode restrict ref, void *restrict val)
 
     TNCListNode node = _TNCListNode_new(val, ref->owner);
 
-    if(!node) return 0;
+    if(!node) return TNCError_failed_alloc;
 
     node->prev = ref->prev;
     node->next = ref;
     ref->prev = node;
 
+    if(ref->owner->first == ref)
+        ref->owner->first = node;
+
     ++ref->owner->num_of_elements;
 
-    return 1;
+    return TNCError_good;
 }
 
 int TNCList_insert_after(TNCListNode restrict ref, void *restrict val)
@@ -115,15 +115,18 @@ int TNCList_insert_after(TNCListNode restrict ref, void *restrict val)
 
     TNCListNode node = _TNCListNode_new(val, ref->owner);
 
-    if(!node) return 0;
+    if(!node) return TNCError_failed_alloc;
 
     node->next = ref->next;
     node->prev = ref;
     ref->next = node;
 
+    if(ref->owner->last == ref)
+        ref->owner->last = node;
+
     ++ref->owner->num_of_elements;
 
-    return 1;
+    return TNCError_good;
 
 }
 

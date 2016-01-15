@@ -6,13 +6,13 @@
 #define TNC_PATHTOSERVE_H
 
 #include <stdio.h>
+#include "server.h"
 
 #define PATH_ROOT "/"
 #define PATH_INDEXHTM "/index.htm"
 #define PATH_INDEXHTML "/index.html"
-#define PATH_DEFAULT_ERROR "./pages/%.3s.html"
+#define PATH_DEFAULT_ERROR "./pages/%i.html"
 
-extern const char *local_path_to_serve;
-char *get_index_path();
+char *get_index_path(TNCServer self);
 
 #endif //TNC_PATHTOSERVE_H
