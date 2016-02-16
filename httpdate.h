@@ -1,5 +1,5 @@
-#ifndef PROGETTOSISTEMI_HTTPDATE_H
-#define PROGETTOSISTEMI_HTTPDATE_H
+#ifndef TNC_HTTPDATE_H
+#define TNC_HTTPDATE_H
 
 
 /*     date1          = 2DIGIT SP month SP 4DIGIT
@@ -25,4 +25,4 @@
 
 char *strptime_httpdate(const char *date, struct tm *tm);
 
-#endif //PROGETTOSISTEMI_HTTPDATE_H
+#endif //TNC_HTTPDATE_H

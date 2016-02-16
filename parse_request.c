@@ -8,8 +8,17 @@
 
 #define HEADERSIZE 8096
 
-static void parse_request_line(TNCServer self, HTTPRequestData *request_data, char *header);
-static void parse_header(TNCServer self, HTTPRequestData *request_data, HTTPRequestHeader *header);
+static void parse_request_line(
+    TNCServer self,
+    HTTPRequestData *request_data,
+    char *header
+);
+
+static void parse_header(
+    TNCServer self,
+    HTTPRequestData *request_data,
+    HTTPRequestHeader *header
+);
 
 HTTPRequestData *parse_request(TNCServer self, char *request) {
 
@@ -26,7 +35,11 @@ HTTPRequestData *parse_request(TNCServer self, char *request) {
     if(request_data->flags & HTTPRequestData_flags_get_error_page)
     {
         request_data->path_to_serve = malloc(strlen(PATH_DEFAULT_ERROR) + 3);
-        sprintf(request_data->path_to_serve, PATH_DEFAULT_ERROR, request_data->status_code);
+        sprintf(
+            request_data->path_to_serve,
+            PATH_DEFAULT_ERROR,
+            request_data->status_code
+        );
         request_data->file_to_serve = fopen(request_data->path_to_serve, "rb");
     }
 
@@ -58,7 +71,11 @@ HTTPRequestData *parse_request(TNCServer self, char *request) {
 }
 
 
-static void parse_request_line(TNCServer self, HTTPRequestData *request_data, char *header)
+static void parse_request_line(
+    TNCServer self,
+    HTTPRequestData *request_data, 
+    char *header
+)
 {
 
     char *current_token, *saveptr_space;
@@ -138,7 +155,9 @@ static void parse_request_line(TNCServer self, HTTPRequestData *request_data, ch
     }
     else
     {
-        path_to_serve = malloc(strlen(self->local_path) + strlen(request_data->remote_path) + 1);
+        path_to_serve = malloc(strlen(self->local_path) + 
+            strlen(request_data->remote_path) + 1);
+        
         strcpy(path_to_serve, self->local_path);
         strcat(path_to_serve, request_data->remote_path);
     }
@@ -167,7 +186,11 @@ bad_request:
     return;
 }
 
-static void parse_header(TNCServer self, HTTPRequestData *request_data, HTTPRequestHeader *header)
+static void parse_header(
+    TNCServer self, 
+    HTTPRequestData *request_data, 
+    HTTPRequestHeader *header
+)
 {
     if(strcmp(header->field_name, "Connection") == 0)
     {
@@ -184,13 +207,14 @@ static void parse_header(TNCServer self, HTTPRequestData *request_data, HTTPRequ
 
         struct tm if_modified_since;
         char *date_parse_last_char;
-        date_parse_last_char = strptime_httpdate(header->field_content, &if_modified_since);
+        date_parse_last_char = strptime_httpdate(
+            header->field_content, &if_modified_since);
 
         if(date_parse_last_char != NULL && *date_parse_last_char == '\0')
         {
             time_t modified_since = mktime(&if_modified_since);
 
-            /* If the date provided is more or equal than the date of last edit */
+            /* If the date provided is more or equal than date of last edit */
             if(modified_since >= request_data->file_to_serve_stat->st_mtime)
             {
                 request_data->status_code = 304;

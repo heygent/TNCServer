@@ -1,9 +1,5 @@
-//
-// Created by jeff on 11/01/16.
-//
-
-#ifndef PROGETTOSISTEMI_ERROR_H
-#define PROGETTOSISTEMI_ERROR_H
+#ifndef TNC_ERROR_H
+#define TNC_ERROR_H
 
 #include "libtnc/error.h"
 
@@ -18,4 +14,4 @@ enum TNCServerError
     TNCServerError_fn_bind_failed
 };
 
-#endif //PROGETTOSISTEMI_ERROR_H
+#endif //TNC_ERROR_H

@@ -42,14 +42,20 @@ struct connection_handler_param
     int connection_socket;
 };
 
-TNCServer TNCServer_new(const char *localpath, uint16_t door, size_t max_threads)
+TNCServer TNCServer_new(
+    const char *localpath,
+    uint16_t door,
+    size_t max_threads
+)
 {
     TNCServer self = malloc(sizeof *self);
 
     if(self)
     {
         self->shutdown = ATOMIC_VAR_INIT(0);
-        self->max_threads = self->max_threads = max_threads > 2 ? max_threads : default_max_threads;
+        self->max_threads = self->max_threads = max_threads > 2 ?
+          max_threads : default_max_threads;
+
         self->local_path = strdup(localpath);
         self->door = door;
 
@@ -94,7 +100,11 @@ int TNCServer_start(TNCServer self)
     if(error_code != TNCError_good)
         return error_code;
 
-    TNC_dbgprint("Server in ascolto, vai su http://localhost:%" PRIu16 " per inviare una richiesta\n", self->door);
+    TNC_dbgprint(
+        "Server in ascolto, vai su http://localhost:%" PRIu16 
+        " per inviare una richiesta\n",
+        self->door
+    );
 
     listen(listen_socket, 5);
 
@@ -126,9 +136,7 @@ void TNCServer_shutdown(TNCServer self,
                         enum TNCServer_wait wait)
 {
     atomic_store(&self->shutdown, shutdown);
-    TNCFixedThreadPool_shutdown(self->threadpool,
-                                      (enum TNCFixedThreadPool_shutdown_flags) shutdown,
-                                      (enum TNCFixedThreadPool_wait) wait);
+    TNCFixedThreadPool_shutdown(self->threadpool, shutdown, wait);
 }
 
 static void connection_listener(TNCServer self, int listen_socket)
@@ -197,11 +205,17 @@ static int get_listen_socket(TNCServer self, int *listen_socket_ret)
     sprintf(door, "%" PRIu16, self->door);
 
     // Ottiene informazioni sull'indirizzo del server
-    error_code = getaddrinfo(NULL, door, &server_address_hints, &server_address);
+    error_code = getaddrinfo(
+        NULL,
+        door,
+        &server_address_hints,
+        &server_address
+    );
 
     if(error_code != 0)
     {
-        TNC_dbgprint("[TNCServer_start]: Error on getaddrinfo()\n\t:%s", gai_strerror(error_code));
+        TNC_dbgprint("[TNCServer_start]: Error on getaddrinfo()\n\t:%s",
+            gai_strerror(error_code));
         return TNCServerError_fn_getaddrinfo_failed;
     }
 
@@ -217,10 +231,21 @@ static int get_listen_socket(TNCServer self, int *listen_socket_ret)
 
         if (listen_socket == -1) continue;
 
-        error_code = setsockopt(listen_socket, SOL_SOCKET, SO_REUSEADDR, &optval, sizeof optval);
+        error_code = setsockopt(
+            listen_socket,
+            SOL_SOCKET,
+            SO_REUSEADDR,
+            &optval,
+            sizeof optval
+        );
+
         if(error_code != 0) continue;
 
-        error_code = bind(listen_socket, server_address->ai_addr, server_address->ai_addrlen);
+        error_code = bind(
+            listen_socket,
+            server_address->ai_addr,
+            server_address->ai_addrlen
+        );
 
         if (error_code == 0) break;
 
@@ -243,7 +268,9 @@ static int get_listen_socket(TNCServer self, int *listen_socket_ret)
 
 static void *connection_listener_tr(void *_param)
 {
-    struct connection_listener_param *param = (struct connection_listener_param *) _param;
+    struct connection_listener_param *param =
+      (struct connection_listener_param *) _param;
+
     connection_listener(param->self, param->listening_socket);
     free(param);
     return NULL;
@@ -251,7 +278,9 @@ static void *connection_listener_tr(void *_param)
 
 static void *connection_handler_tr(void *_param)
 {
-    struct connection_handler_param *param = (struct connection_handler_param *) _param;
+    struct connection_handler_param *param =
+      (struct connection_handler_param *) _param;
+    
     connection_handler(param->self, param->connection_socket);
     free(param);
     return NULL;
@@ -274,14 +303,23 @@ static int connection_handler(TNCServer self, int connection_socket)
 
         do
         {
-            recv_ret = recv(connection_socket, request + request_size, HEADERSIZE - request_size - 1, 0);
+            recv_ret = recv(
+                connection_socket,
+                request + request_size,
+                HEADERSIZE - request_size - 1, 0
+            );
+
             if (recv_ret == -1) goto connection_loop_end;
             request_size += recv_ret;
 
-            stop_receiving = strcmp((request + request_size - 2), "\n\n") == 0;
+            stop_receiving =
+              strcmp((request + request_size - 2), "\n\n") == 0;
+            
             if(stop_receiving) break;
 
-            stop_receiving = strcmp((request + request_size - 4), CRLF CRLF) == 0;
+            stop_receiving = 
+              strcmp((request + request_size - 4), CRLF CRLF) == 0;
+            
             if(stop_receiving) break;
         }
         while(1);

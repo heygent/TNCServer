@@ -2,8 +2,8 @@
 // Created by jeff on 10/01/16.
 //
 
-#ifndef PROGETTOSISTEMI_JOB_H
-#define PROGETTOSISTEMI_JOB_H
+#ifndef TNC_JOB_H
+#define TNC_JOB_H
 
 #include "typedefs.h"
 
@@ -16,4 +16,4 @@ struct TNCJob
 
 typedef struct TNCJob TNCJob;
 
-#endif //PROGETTOSISTEMI_JOB_H
+#endif //TNC_JOB_H

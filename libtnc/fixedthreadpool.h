@@ -1,5 +1,5 @@
-#ifndef PROGETTOSISTEMI_FIXEDTHREADPOOL_H
-#define PROGETTOSISTEMI_FIXEDTHREADPOOL_H
+#ifndef TNC_FIXEDTHREADPOOL_H
+#define TNC_FIXEDTHREADPOOL_H
 
 #include "job.h"
 
@@ -73,4 +73,4 @@ int TNCFixedThreadPool_do_next(TNCFixedThreadPool self, TNCJob *job);
 /** Distrugge (dealloca) un TNCFixedThreadPool. */
 void TNCFixedThreadPool_destroy(TNCFixedThreadPool self);
 
-#endif //PROGETTOSISTEMI_FIXEDTHREADPOOL_H
+#endif //TNC_FIXEDTHREADPOOL_H

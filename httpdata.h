@@ -1,5 +1,5 @@
-#ifndef TNC_HTTPREQUESTDATA_H
-#define TNC_HTTPREQUESTDATA_H
+#ifndef TNC_HTTPDATA_H
+#define TNC_HTTPDATA_H
 
 #include <stdbool.h>
 #include <stdio.h>
@@ -57,4 +57,4 @@ HTTPResponseData *HTTPResponseData_new(const HTTPRequestData *rd);
 void HTTPResponseData_destroy_members(HTTPResponseData *data);
 void HTTPResponseData_destroy(HTTPResponseData *data);
 
-#endif //TNC_HTTPREQUESTDATA_H
+#endif //TNC_HTTPDATA_H

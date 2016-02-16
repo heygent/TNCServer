@@ -1,7 +1,3 @@
-//
-// Created by root on 18/11/15.
-//
-
 #include "paths.h"
 #include <stdlib.h>
 #include <string.h>

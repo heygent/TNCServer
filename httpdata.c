@@ -8,7 +8,8 @@
 
 void HTTPRequestData_init(HTTPRequestData *data)
 {
-    assert(NULL != data && "HTTPRequestData: Attempting to initialize null pointer");
+    assert(NULL != data &&
+        "HTTPRequestData: Attempting to initialize null pointer");
 
     data->file_to_serve = NULL;
     data->remote_path = NULL;
@@ -49,7 +50,8 @@ void HTTPRequestData_destroy(HTTPRequestData *data)
 
 void HTTPResponseData_init(HTTPResponseData *data, const HTTPRequestData *rd)
 {
-    assert(NULL != data && "HTTPRequestData: Attempting to initialize null pointer");
+    assert(NULL != data &&
+        "HTTPRequestData: Attempting to initialize null pointer");
 
     data->headers = NULL;
     data->request_data = rd;

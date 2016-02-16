@@ -1,9 +1,5 @@
-//
-// Created by jeff on 10/01/16.
-//
-
-#ifndef PROGETTOSISTEMI_DEBUGUTILS_H
-#define PROGETTOSISTEMI_DEBUGUTILS_H
+#ifndef TNC_DEBUGUTILS_H
+#define TNC_DEBUGUTILS_H
 
 #include <stdio.h>
 
@@ -13,4 +9,4 @@
 #define TNC_dbgprint(...)
 #endif
 
-#endif //PROGETTOSISTEMI_DEBUGUTILS_H
+#endif //TNC_DEBUGUTILS_H

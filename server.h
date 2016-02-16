@@ -1,9 +1,5 @@
-//
-// Created by jeff on 11/01/16.
-//
-
-#ifndef PROGETTOSISTEMI_SERVER_H
-#define PROGETTOSISTEMI_SERVER_H
+#ifndef TNC_SERVER_H
+#define TNC_SERVER_H
 
 #include <inttypes.h>
 #include <pthread.h>
@@ -37,13 +33,22 @@ struct _TNCServer
 
 typedef struct _TNCServer *TNCServer;
 
-TNCServer TNCServer_new(const char *localpath, uint16_t door, size_t max_threads);
+TNCServer TNCServer_new(
+    const char *localpath, 
+    uint16_t door,
+    size_t max_threads
+);
+
 int TNCServer_start(TNCServer self);
-void TNCServer_shutdown(TNCServer self,
-                        enum TNCServer_shutdown shutdown,
-                        enum TNCServer_wait wait);
+
+void TNCServer_shutdown(
+    TNCServer self,
+    enum TNCServer_shutdown shutdown,
+    enum TNCServer_wait wait
+);
+
 void TNCServer_destroy(TNCServer self);
 
 #pragma clang diagnostic pop
 
-#endif //PROGETTOSISTEMI_SERVER_H
+#endif //TNC_SERVER_H

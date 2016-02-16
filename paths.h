@@ -1,9 +1,5 @@
-//
-// Created by root on 18/11/15.
-//
-
-#ifndef TNC_PATHTOSERVE_H
-#define TNC_PATHTOSERVE_H
+#ifndef TNC_PATHS_H
+#define TNC_PATHS_H
 
 #include <stdio.h>
 #include "server.h"
@@ -15,4 +11,4 @@
 
 char *get_index_path(TNCServer self);
 
-#endif //TNC_PATHTOSERVE_H
+#endif //TNC_PATHS_H

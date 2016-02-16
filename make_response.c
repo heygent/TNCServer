@@ -1,7 +1,3 @@
-//
-// Created by root on 13/12/15.
-//
-
 #include <time.h>
 #include <stdlib.h>
 #include <string.h>

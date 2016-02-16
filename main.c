@@ -40,7 +40,11 @@ int main(int argc, char **argv)
 
     if(signal_received)
     {
-        TNCServer_shutdown(srv, TNCServer_shutdown_finish_pending, TNCServer_wait_yes);
+        TNCServer_shutdown(
+            srv,
+            TNCServer_shutdown_finish_pending,
+            TNCServer_wait_yes
+        );
         TNCServer_destroy(srv);
 
         pthread_exit(EXIT_SUCCESS);

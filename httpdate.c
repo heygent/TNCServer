@@ -1,7 +1,3 @@
-//
-// Created by jeff on 13/01/16.
-//
-
 #define _XOPEN_SOURCE
 #include <time.h>
 #include <string.h>
