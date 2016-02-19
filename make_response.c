@@ -19,7 +19,6 @@ response_header_producer make_server_header;
 
 HTTPResponseData *make_response(const HTTPRequestData *request_data)
 {
-    // Make headers
     TNCList response_headers;
     
     HTTPResponseData *response_data = HTTPResponseData_new(request_data);
@@ -29,16 +28,44 @@ HTTPResponseData *make_response(const HTTPRequestData *request_data)
     response_data->request_data = request_data;
 
 
-    TNCList_push_back(response_headers, make_status_line(request_data));
-    TNCList_push_back(response_headers, make_content_type_header(request_data));
-    TNCList_push_back(response_headers, make_content_length_header(request_data));
-    TNCList_push_back(response_headers, make_last_modified_header(request_data));
-    TNCList_push_back(response_headers, make_date_header(request_data));
+    TNCList_push_back(
+				response_headers,
+				make_status_line(request_data)
+		);
+
+    TNCList_push_back(
+				response_headers,
+				make_content_type_header(request_data)
+		);
+
+    TNCList_push_back(
+				response_headers,
+				make_content_length_header(request_data)
+		);
+
+    TNCList_push_back(
+				response_headers,
+				make_last_modified_header(request_data)
+		);
+
+    TNCList_push_back(
+				response_headers,
+				make_date_header(request_data)
+		);
+
 
     if(request_data->flags & HTTPRequestData_flags_keep_alive)
-        TNCList_push_back(response_headers, make_connection_header(request_data));
+        TNCList_push_back(
+				response_headers,
+				make_connection_header(request_data)
+		);
 
-    TNCList_push_back(response_headers, make_server_header(request_data));
+
+    TNCList_push_back(
+				response_headers,
+				make_server_header(request_data)
+		);
+
     
     return response_data;
 }
@@ -46,29 +73,29 @@ HTTPResponseData *make_response(const HTTPRequestData *request_data)
 char *make_status_line(const HTTPRequestData *data)
 {
     char *ret;
-    char *second_part;
+    const char *second_part;
     int status_code = data->status_code;
 
     switch(status_code)
     {
         case 200:
-            second_part = strdup(" " RHDR_STATUSLINE_OK CRLF);
+            second_part = " " RHDR_STATUSLINE_OK CRLF;
             break;
 
         case 304:
-            second_part = strdup(" " RHDR_STATUSLINE_NOTMODIFIED CRLF);
+            second_part = " " RHDR_STATUSLINE_NOTMODIFIED CRLF;
             break;
 
         case 404:
-            second_part = strdup(" " RHDR_STATUSLINE_NOTFOUND CRLF);
+            second_part = " " RHDR_STATUSLINE_NOTFOUND CRLF;
             break;
 
         case 501:
-            second_part = strdup(" " RHDR_STATUSLINE_NOTIMPLEMENTED CRLF);
+            second_part = " " RHDR_STATUSLINE_NOTIMPLEMENTED CRLF;
             break;
 
         default:
-            second_part = strdup(" " RHDR_STATUSLINE_BADREQUEST CRLF);
+            second_part = " " RHDR_STATUSLINE_BADREQUEST CRLF;
             break;
     }
 
@@ -96,7 +123,9 @@ char *make_content_type_header(const HTTPRequestData *data)
 
     // get mimetype
 
-    command_to_exec = malloc(strlen(path_to_serve) + strlen(COMMAND_MIMETYPE) + 1);
+    command_to_exec = malloc(
+        strlen(path_to_serve) + strlen(COMMAND_MIMETYPE) + 1
+    );
 
     sprintf(command_to_exec, COMMAND_MIMETYPE, path_to_serve);
 
@@ -108,7 +137,10 @@ char *make_content_type_header(const HTTPRequestData *data)
 
     // get encoding
 
-    command_to_exec = malloc(strlen(path_to_serve) + strlen(COMMAND_ENCODING) + 1);
+    command_to_exec = malloc(
+        strlen(path_to_serve) + strlen(COMMAND_ENCODING) + 1
+    );
+
     sprintf(command_to_exec, COMMAND_ENCODING, path_to_serve);
 
     command_pipe = popen(command_to_exec, "r");
@@ -119,7 +151,9 @@ char *make_content_type_header(const HTTPRequestData *data)
 
     // print to header string
 
-    ret = malloc(strlen(RHDR_CONTENT_TYPE) + strlen(mimetype) + strlen(encoding) + 1);
+    ret = malloc(
+        strlen(RHDR_CONTENT_TYPE) + strlen(mimetype) + strlen(encoding) + 1
+    );
 
     snprintf(ret, 512, RHDR_CONTENT_TYPE CRLF, mimetype, encoding);
 

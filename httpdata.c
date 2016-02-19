@@ -1,7 +1,3 @@
-//
-// Created by root on 12/12/15.
-//
-
 #include <malloc.h>
 #include <assert.h>
 #include "httpdata.h"
@@ -38,6 +34,7 @@ void HTTPRequestData_destroy_members(HTTPRequestData *data)
     free(data->remote_path);
     free(data->path_to_serve);
     free(data->file_to_serve_stat);
+
 
 }
 
