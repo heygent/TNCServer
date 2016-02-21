@@ -4,7 +4,7 @@
 #include <inttypes.h>
 #include <pthread.h>
 #include <stdatomic.h>
-#include "libtnc/fixedthreadpool.h"
+#include "tnc/core/fixedthreadpool.h"
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "CannotResolve"

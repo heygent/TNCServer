@@ -11,7 +11,7 @@
 #include "send_response.h"
 #include "parse_request.h"
 #include "make_response.h"
-#include "libtnc/debugutils.h"
+#include "tnc/core/debugutils.h"
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "CannotResolve"

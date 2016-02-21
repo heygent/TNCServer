@@ -6,7 +6,7 @@
 #include <stdint.h>
 #include <time.h>
 #include "httpheaders.h"
-#include "libtnc/list.h"
+#include "tnc/core/list.h"
 
 typedef struct HTTPRequestData HTTPRequestData;
 

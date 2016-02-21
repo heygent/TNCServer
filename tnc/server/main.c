@@ -19,6 +19,13 @@ int main(int argc, char **argv)
     struct sigaction handler;
     sigset_t signals_to_block;
 
+
+    if(argc < 2)
+    {
+      printf("Usage: %s DIR\n", argv[0]);
+      pthread_exit(EXIT_SUCCESS);
+    }
+
     handler.sa_handler = sighandler;
 
     sigemptyset(&signals_to_block);

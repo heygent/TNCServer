@@ -103,7 +103,6 @@ char *make_status_line(const HTTPRequestData *data)
     strcpy(ret, "HTTP/1.0");
     strcat(ret, second_part);
 
-    free(second_part);
     return ret;
 
 }

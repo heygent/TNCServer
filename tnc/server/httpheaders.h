@@ -34,7 +34,8 @@ enum HTTPMethod {
 };
 
 #define COMMAND_MIMETYPE "xdg-mime query filetype %s | tr '\\n' '\\0'"
-#define COMMAND_ENCODING "file -b0 --mime-encoding %s" 
+#define COMMAND_ENCODING "file -b --mime-encoding %s | tr '\\n' '\\0'"
+
 
 
 #endif //TNC_HTTPHEADERS_H

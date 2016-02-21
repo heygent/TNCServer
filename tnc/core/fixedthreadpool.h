@@ -1,7 +1,16 @@
 #ifndef TNC_FIXEDTHREADPOOL_H
 #define TNC_FIXEDTHREADPOOL_H
 
-#include "job.h"
+#include "typedefs.h"
+
+struct TNCJob
+{
+    TNCFunction toexec;
+    void *arg;
+    TNCConsumer result_callback;
+};
+
+typedef struct TNCJob TNCJob;
 
 /**
  * @file

@@ -1,7 +1,7 @@
-#ifndef TNC_ERROR_H
-#define TNC_ERROR_H
+#ifndef TNCSERVER_ERROR_H
+#define TNCSERVER_ERROR_H
 
-#include "libtnc/error.h"
+#include "tnc/core/error.h"
 
 enum TNCServerError
 {
@@ -14,4 +14,4 @@ enum TNCServerError
     TNCServerError_fn_bind_failed
 };
 
-#endif //TNC_ERROR_H
+#endif //TNCSERVER_ERROR_H
