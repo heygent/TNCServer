@@ -1,0 +1,71 @@
+\hypertarget{struct__TNCFixedThreadPool}{}\section{Riferimenti per la struct \+\_\+\+T\+N\+C\+Fixed\+Thread\+Pool}
+\label{struct__TNCFixedThreadPool}\index{\+\_\+\+T\+N\+C\+Fixed\+Thread\+Pool@{\+\_\+\+T\+N\+C\+Fixed\+Thread\+Pool}}
+
+
+Diagramma di collaborazione per \+\_\+\+T\+N\+C\+Fixed\+Thread\+Pool\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=349pt]{struct__TNCFixedThreadPool__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Campi}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{struct__TNCFixedThreadPool_a2d9371d560acbf39c37842defa817178}{}pthread\+\_\+t $\ast$ {\bfseries threads}\label{struct__TNCFixedThreadPool_a2d9371d560acbf39c37842defa817178}
+
+\item 
+size\+\_\+t \hyperlink{struct__TNCFixedThreadPool_a228f1fcdc9d0d0fa0f8f895857fe18f2}{number\+\_\+of\+\_\+threads}
+\begin{DoxyCompactList}\small\item\em Un array contenente gli I\+D dei thread avviati. \end{DoxyCompactList}\item 
+pthread\+\_\+attr\+\_\+t \hyperlink{struct__TNCFixedThreadPool_afa711fbf4bf7739ba09bada86c75df88}{thread\+\_\+attr}
+\begin{DoxyCompactList}\small\item\em Il numero di thread per il threadpool di riferimento. \end{DoxyCompactList}\item 
+\hypertarget{struct__TNCFixedThreadPool_a658ed0040a2eadcd9166a363258850b0}{}\hyperlink{list_8h_a6234acd44af21902b91273ccdd278bf6}{T\+N\+C\+List} \hyperlink{struct__TNCFixedThreadPool_a658ed0040a2eadcd9166a363258850b0}{jobqueue}\label{struct__TNCFixedThreadPool_a658ed0040a2eadcd9166a363258850b0}
+
+\begin{DoxyCompactList}\small\item\em Attributi di creazione dei thread. \end{DoxyCompactList}\item 
+pthread\+\_\+mutex\+\_\+t \hyperlink{struct__TNCFixedThreadPool_a7b2f13485101e6bdacc4894adcce9c33}{jobqueue\+\_\+mutex}
+\begin{DoxyCompactList}\small\item\em La coda dei job per i worker. \end{DoxyCompactList}\item 
+\hypertarget{struct__TNCFixedThreadPool_a1a6a5d19c4d70a10c89928b46451b772}{}atomic\+\_\+int \hyperlink{struct__TNCFixedThreadPool_a1a6a5d19c4d70a10c89928b46451b772}{shutdown}\label{struct__TNCFixedThreadPool_a1a6a5d19c4d70a10c89928b46451b772}
+
+\begin{DoxyCompactList}\small\item\em mutex per jobqueue \end{DoxyCompactList}\item 
+pthread\+\_\+cond\+\_\+t \hyperlink{struct__TNCFixedThreadPool_a7eea3eb946adb606f4859199b2c6fff5}{wake\+\_\+thread}
+\begin{DoxyCompactList}\small\item\em Intero che indica se il threadpool attuale è in fase di shutdown. \end{DoxyCompactList}\item 
+\hypertarget{struct__TNCFixedThreadPool_af3febf077b7ff59d11922423d9efe9a9}{}pthread\+\_\+mutex\+\_\+t \hyperlink{struct__TNCFixedThreadPool_af3febf077b7ff59d11922423d9efe9a9}{wake\+\_\+thread\+\_\+mutex}\label{struct__TNCFixedThreadPool_af3febf077b7ff59d11922423d9efe9a9}
+
+\begin{DoxyCompactList}\small\item\em Condizione utile a svegliare i worker, se c\textquotesingle{}è un nuovo job o se il threadpool entra in fase di shutdown. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Documentazione dei campi}
+\hypertarget{struct__TNCFixedThreadPool_a7b2f13485101e6bdacc4894adcce9c33}{}\index{\+\_\+\+T\+N\+C\+Fixed\+Thread\+Pool@{\+\_\+\+T\+N\+C\+Fixed\+Thread\+Pool}!jobqueue\+\_\+mutex@{jobqueue\+\_\+mutex}}
+\index{jobqueue\+\_\+mutex@{jobqueue\+\_\+mutex}!\+\_\+\+T\+N\+C\+Fixed\+Thread\+Pool@{\+\_\+\+T\+N\+C\+Fixed\+Thread\+Pool}}
+\subsubsection[{jobqueue\+\_\+mutex}]{\setlength{\rightskip}{0pt plus 5cm}pthread\+\_\+mutex\+\_\+t \+\_\+\+T\+N\+C\+Fixed\+Thread\+Pool\+::jobqueue\+\_\+mutex}\label{struct__TNCFixedThreadPool_a7b2f13485101e6bdacc4894adcce9c33}
+
+
+La coda dei job per i worker. 
+
+\hypertarget{struct__TNCFixedThreadPool_a228f1fcdc9d0d0fa0f8f895857fe18f2}{}\index{\+\_\+\+T\+N\+C\+Fixed\+Thread\+Pool@{\+\_\+\+T\+N\+C\+Fixed\+Thread\+Pool}!number\+\_\+of\+\_\+threads@{number\+\_\+of\+\_\+threads}}
+\index{number\+\_\+of\+\_\+threads@{number\+\_\+of\+\_\+threads}!\+\_\+\+T\+N\+C\+Fixed\+Thread\+Pool@{\+\_\+\+T\+N\+C\+Fixed\+Thread\+Pool}}
+\subsubsection[{number\+\_\+of\+\_\+threads}]{\setlength{\rightskip}{0pt plus 5cm}size\+\_\+t \+\_\+\+T\+N\+C\+Fixed\+Thread\+Pool\+::number\+\_\+of\+\_\+threads}\label{struct__TNCFixedThreadPool_a228f1fcdc9d0d0fa0f8f895857fe18f2}
+
+
+Un array contenente gli I\+D dei thread avviati. 
+
+\hypertarget{struct__TNCFixedThreadPool_afa711fbf4bf7739ba09bada86c75df88}{}\index{\+\_\+\+T\+N\+C\+Fixed\+Thread\+Pool@{\+\_\+\+T\+N\+C\+Fixed\+Thread\+Pool}!thread\+\_\+attr@{thread\+\_\+attr}}
+\index{thread\+\_\+attr@{thread\+\_\+attr}!\+\_\+\+T\+N\+C\+Fixed\+Thread\+Pool@{\+\_\+\+T\+N\+C\+Fixed\+Thread\+Pool}}
+\subsubsection[{thread\+\_\+attr}]{\setlength{\rightskip}{0pt plus 5cm}pthread\+\_\+attr\+\_\+t \+\_\+\+T\+N\+C\+Fixed\+Thread\+Pool\+::thread\+\_\+attr}\label{struct__TNCFixedThreadPool_afa711fbf4bf7739ba09bada86c75df88}
+
+
+Il numero di thread per il threadpool di riferimento. 
+
+\hypertarget{struct__TNCFixedThreadPool_a7eea3eb946adb606f4859199b2c6fff5}{}\index{\+\_\+\+T\+N\+C\+Fixed\+Thread\+Pool@{\+\_\+\+T\+N\+C\+Fixed\+Thread\+Pool}!wake\+\_\+thread@{wake\+\_\+thread}}
+\index{wake\+\_\+thread@{wake\+\_\+thread}!\+\_\+\+T\+N\+C\+Fixed\+Thread\+Pool@{\+\_\+\+T\+N\+C\+Fixed\+Thread\+Pool}}
+\subsubsection[{wake\+\_\+thread}]{\setlength{\rightskip}{0pt plus 5cm}pthread\+\_\+cond\+\_\+t \+\_\+\+T\+N\+C\+Fixed\+Thread\+Pool\+::wake\+\_\+thread}\label{struct__TNCFixedThreadPool_a7eea3eb946adb606f4859199b2c6fff5}
+
+
+Intero che indica se il threadpool attuale è in fase di shutdown. 
+
+
+
+La documentazione per questa struct è stata generata a partire dal seguente file\+:\begin{DoxyCompactItemize}
+\item 
+tnc/core/fixedthreadpool.\+c\end{DoxyCompactItemize}

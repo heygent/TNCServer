@@ -1,0 +1,112 @@
+\hypertarget{structHTTPRequestData}{}\section{Riferimenti per la struct H\+T\+T\+P\+Request\+Data}
+\label{structHTTPRequestData}\index{H\+T\+T\+P\+Request\+Data@{H\+T\+T\+P\+Request\+Data}}
+
+
+Contiene informazioni su di una richiesta H\+T\+T\+P.  
+
+
+
+
+{\ttfamily \#include $<$httpdata.\+h$>$}
+
+
+
+Diagramma di collaborazione per H\+T\+T\+P\+Request\+Data\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=188pt]{structHTTPRequestData__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Campi}
+\begin{DoxyCompactItemize}
+\item 
+F\+I\+L\+E $\ast$ \hyperlink{structHTTPRequestData_a52def24a4e2fefab7c723751b4ca5a7b}{file\+\_\+to\+\_\+serve}
+\begin{DoxyCompactList}\small\item\em Il file da inviare, che può essere il file richiesto, nel caso in cui l\textquotesingle{}elaborazione della richiesta sia andata a buon fine, o una pagina di errore altrimenti. \end{DoxyCompactList}\item 
+struct stat $\ast$ \hyperlink{structHTTPRequestData_acf9615119994e2784a395f3b5b80f710}{file\+\_\+to\+\_\+serve\+\_\+stat}
+\begin{DoxyCompactList}\small\item\em Un puntatore al risultato di stat() eseguito sul file richiesto. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{structHTTPRequestData_a04c7c946a943f429f2529cf220076c26}{remote\+\_\+path}
+\begin{DoxyCompactList}\small\item\em Il percorso come indicato nella richiesta. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{structHTTPRequestData_a71bcae8a8f14feb676826a6b8a76604e}{path\+\_\+to\+\_\+serve}
+\begin{DoxyCompactList}\small\item\em Il percorso locale di file\+\_\+to\+\_\+serve. \end{DoxyCompactList}\item 
+int \hyperlink{structHTTPRequestData_a47c202aa745d8a5eb2a5dc7cbc3087aa}{status\+\_\+code}
+\begin{DoxyCompactList}\small\item\em Lo status code, come da inserire nella risposta, a cui ha dato origine l\textquotesingle{}elaborazione della richiesta. \end{DoxyCompactList}\item 
+enum \hyperlink{httpheaders_8h_a837a089a977b319a11edfb8022d9e47d}{H\+T\+T\+P\+Method} \hyperlink{structHTTPRequestData_af309a4c6a758b62689eeb327b5e09737}{method}
+\begin{DoxyCompactList}\small\item\em Un valore di H\+T\+T\+P\+Method rappresentante il metodo della richiesta. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{structHTTPRequestData_ac3bd527bd3e00ce219bfa72dbaea2351}{flags}
+\begin{DoxyCompactList}\small\item\em Bitmask rappresentante diverse informazioni sulla richiesta. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}{\bf http\+\_\+version}\par
+{\em La versione di H\+T\+T\+P, come indicata nella richiesta. }\begin{DoxyCompactItemize}
+\item 
+\hypertarget{structHTTPRequestData_ae0ec4135e692b7a72a0c218f80fcbe79}{}int {\bfseries http\+\_\+version\+\_\+major}\label{structHTTPRequestData_ae0ec4135e692b7a72a0c218f80fcbe79}
+
+\item 
+\hypertarget{structHTTPRequestData_ac0ecb1c39ad0d090ba95a3f90d52b424}{}int {\bfseries http\+\_\+version\+\_\+minor}\label{structHTTPRequestData_ac0ecb1c39ad0d090ba95a3f90d52b424}
+
+\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Descrizione dettagliata}
+Contiene informazioni su di una richiesta H\+T\+T\+P. 
+
+Una volta elaborate, le informazioni su di una richiesta H\+T\+T\+P ricevuta dal server vengono raccolte in un\textquotesingle{}istanza di questa struttura. Una struttura \hyperlink{structHTTPRequestData}{H\+T\+T\+P\+Request\+Data} è restituita da \hyperlink{parse__request_8h_a7f6b46b8f33ebe0426d0d13b320f2927}{parse\+\_\+request()} dopo l\textquotesingle{}elaborazione a partire da una stringa, e può essere passata come parametro a \hyperlink{make__response_8h_adccd9b35824054b0c445e09f0731d706}{make\+\_\+response()} per elaborare la risposta del server. 
+
+\subsection{Documentazione dei campi}
+\hypertarget{structHTTPRequestData_a52def24a4e2fefab7c723751b4ca5a7b}{}\index{H\+T\+T\+P\+Request\+Data@{H\+T\+T\+P\+Request\+Data}!file\+\_\+to\+\_\+serve@{file\+\_\+to\+\_\+serve}}
+\index{file\+\_\+to\+\_\+serve@{file\+\_\+to\+\_\+serve}!H\+T\+T\+P\+Request\+Data@{H\+T\+T\+P\+Request\+Data}}
+\subsubsection[{file\+\_\+to\+\_\+serve}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+E$\ast$ H\+T\+T\+P\+Request\+Data\+::file\+\_\+to\+\_\+serve}\label{structHTTPRequestData_a52def24a4e2fefab7c723751b4ca5a7b}
+
+
+Il file da inviare, che può essere il file richiesto, nel caso in cui l\textquotesingle{}elaborazione della richiesta sia andata a buon fine, o una pagina di errore altrimenti. 
+
+\hypertarget{structHTTPRequestData_acf9615119994e2784a395f3b5b80f710}{}\index{H\+T\+T\+P\+Request\+Data@{H\+T\+T\+P\+Request\+Data}!file\+\_\+to\+\_\+serve\+\_\+stat@{file\+\_\+to\+\_\+serve\+\_\+stat}}
+\index{file\+\_\+to\+\_\+serve\+\_\+stat@{file\+\_\+to\+\_\+serve\+\_\+stat}!H\+T\+T\+P\+Request\+Data@{H\+T\+T\+P\+Request\+Data}}
+\subsubsection[{file\+\_\+to\+\_\+serve\+\_\+stat}]{\setlength{\rightskip}{0pt plus 5cm}struct stat$\ast$ H\+T\+T\+P\+Request\+Data\+::file\+\_\+to\+\_\+serve\+\_\+stat}\label{structHTTPRequestData_acf9615119994e2784a395f3b5b80f710}
+
+
+Un puntatore al risultato di stat() eseguito sul file richiesto. 
+
+\hypertarget{structHTTPRequestData_ac3bd527bd3e00ce219bfa72dbaea2351}{}\index{H\+T\+T\+P\+Request\+Data@{H\+T\+T\+P\+Request\+Data}!flags@{flags}}
+\index{flags@{flags}!H\+T\+T\+P\+Request\+Data@{H\+T\+T\+P\+Request\+Data}}
+\subsubsection[{flags}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t H\+T\+T\+P\+Request\+Data\+::flags}\label{structHTTPRequestData_ac3bd527bd3e00ce219bfa72dbaea2351}
+
+
+Bitmask rappresentante diverse informazioni sulla richiesta. 
+
+\begin{DoxySeeAlso}{Si veda anche}
+\hyperlink{httpdata_8h_a159dd434f3cab184e5fab8365ed494ec}{H\+T\+T\+P\+Request\+Data\+\_\+flags} 
+\end{DoxySeeAlso}
+\hypertarget{structHTTPRequestData_af309a4c6a758b62689eeb327b5e09737}{}\index{H\+T\+T\+P\+Request\+Data@{H\+T\+T\+P\+Request\+Data}!method@{method}}
+\index{method@{method}!H\+T\+T\+P\+Request\+Data@{H\+T\+T\+P\+Request\+Data}}
+\subsubsection[{method}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf H\+T\+T\+P\+Method} H\+T\+T\+P\+Request\+Data\+::method}\label{structHTTPRequestData_af309a4c6a758b62689eeb327b5e09737}
+
+
+Un valore di H\+T\+T\+P\+Method rappresentante il metodo della richiesta. 
+
+\hypertarget{structHTTPRequestData_a71bcae8a8f14feb676826a6b8a76604e}{}\index{H\+T\+T\+P\+Request\+Data@{H\+T\+T\+P\+Request\+Data}!path\+\_\+to\+\_\+serve@{path\+\_\+to\+\_\+serve}}
+\index{path\+\_\+to\+\_\+serve@{path\+\_\+to\+\_\+serve}!H\+T\+T\+P\+Request\+Data@{H\+T\+T\+P\+Request\+Data}}
+\subsubsection[{path\+\_\+to\+\_\+serve}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ H\+T\+T\+P\+Request\+Data\+::path\+\_\+to\+\_\+serve}\label{structHTTPRequestData_a71bcae8a8f14feb676826a6b8a76604e}
+
+
+Il percorso locale di file\+\_\+to\+\_\+serve. 
+
+\hypertarget{structHTTPRequestData_a04c7c946a943f429f2529cf220076c26}{}\index{H\+T\+T\+P\+Request\+Data@{H\+T\+T\+P\+Request\+Data}!remote\+\_\+path@{remote\+\_\+path}}
+\index{remote\+\_\+path@{remote\+\_\+path}!H\+T\+T\+P\+Request\+Data@{H\+T\+T\+P\+Request\+Data}}
+\subsubsection[{remote\+\_\+path}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ H\+T\+T\+P\+Request\+Data\+::remote\+\_\+path}\label{structHTTPRequestData_a04c7c946a943f429f2529cf220076c26}
+
+
+Il percorso come indicato nella richiesta. 
+
+\hypertarget{structHTTPRequestData_a47c202aa745d8a5eb2a5dc7cbc3087aa}{}\index{H\+T\+T\+P\+Request\+Data@{H\+T\+T\+P\+Request\+Data}!status\+\_\+code@{status\+\_\+code}}
+\index{status\+\_\+code@{status\+\_\+code}!H\+T\+T\+P\+Request\+Data@{H\+T\+T\+P\+Request\+Data}}
+\subsubsection[{status\+\_\+code}]{\setlength{\rightskip}{0pt plus 5cm}int H\+T\+T\+P\+Request\+Data\+::status\+\_\+code}\label{structHTTPRequestData_a47c202aa745d8a5eb2a5dc7cbc3087aa}
+
+
+Lo status code, come da inserire nella risposta, a cui ha dato origine l\textquotesingle{}elaborazione della richiesta. 
+
+
+
+La documentazione per questa struct è stata generata a partire dal seguente file\+:\begin{DoxyCompactItemize}
+\item 
+tnc/server/\hyperlink{httpdata_8h}{httpdata.\+h}\end{DoxyCompactItemize}

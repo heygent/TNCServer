@@ -1,0 +1,389 @@
+\hypertarget{list_8h}{}\section{Riferimenti per il file tnc/core/list.h}
+\label{list_8h}\index{tnc/core/list.\+h@{tnc/core/list.\+h}}
+
+
+Contiene l\textquotesingle{}interfaccia per le liste doppiamente concatenate.  
+
+
+{\ttfamily \#include \char`\"{}functiontypes.\+h\char`\"{}}\\*
+Grafo delle dipendenze di inclusione per list.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=163pt]{list_8h__incl}
+\end{center}
+\end{figure}
+Questo grafo mostra quali altri file includono direttamente o indirettamente questo file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{list_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+T\+N\+C\+List \hyperlink{list_8h_a348c5bc63c91ace3343370373f4328b0}{T\+N\+C\+List\+\_\+new} ()
+\begin{DoxyCompactList}\small\item\em Inizializza una lista. \end{DoxyCompactList}\item 
+T\+N\+C\+List\+Node \hyperlink{list_8h_ac5e4d9ffa5af8ceb91f384b562a9d6bf}{T\+N\+C\+List\+\_\+first} (T\+N\+C\+List list)
+\begin{DoxyCompactList}\small\item\em Restituisce il primo nodo di una lista. \end{DoxyCompactList}\item 
+T\+N\+C\+List\+Node \hyperlink{list_8h_ad81a2d6c8ef1fa5390fd0b1c59f49728}{T\+N\+C\+List\+\_\+last} (T\+N\+C\+List list)
+\begin{DoxyCompactList}\small\item\em Restituisce l\textquotesingle{}ultimo nodo di una lista. \end{DoxyCompactList}\item 
+T\+N\+C\+List\+Node \hyperlink{list_8h_ae7534b594aa3353a3f27313442ffd0ba}{T\+N\+C\+List\+\_\+next} (T\+N\+C\+List\+Node current)
+\begin{DoxyCompactList}\small\item\em Restituisce il nodo successivo in una lista rispetto a un nodo passato come parametro. \end{DoxyCompactList}\item 
+T\+N\+C\+List\+Node \hyperlink{list_8h_a1b7a902b8a8a5b78e91b07ff56591e24}{T\+N\+C\+List\+\_\+previous} (T\+N\+C\+List\+Node current)
+\begin{DoxyCompactList}\small\item\em Restituisce il nodo precedente in una lista rispetto a un nodo passato come parametro. \end{DoxyCompactList}\item 
+int \hyperlink{list_8h_af90bc4481504329ec71a3f06916e56ca}{T\+N\+C\+List\+\_\+push\+\_\+front} (T\+N\+C\+List restrict self, void $\ast$restrict val)
+\begin{DoxyCompactList}\small\item\em Inserisce un nuovo nodo come primo elemento della lista. \end{DoxyCompactList}\item 
+int \hyperlink{list_8h_aa16018ceeb34a5efff57b582c7387d89}{T\+N\+C\+List\+\_\+push\+\_\+back} (T\+N\+C\+List restrict self, void $\ast$restrict val)
+\begin{DoxyCompactList}\small\item\em Inserisce un nuovo nodo come ultimo elemento della lista. \end{DoxyCompactList}\item 
+int \hyperlink{list_8h_a5642341347cf8ceb18c96097478da28f}{T\+N\+C\+List\+\_\+insert\+\_\+before} (T\+N\+C\+List\+Node restrict ref, void $\ast$restrict val)
+\begin{DoxyCompactList}\small\item\em Inserisce un elemento prima del nodo passato come parametro. \end{DoxyCompactList}\item 
+int \hyperlink{list_8h_a1e8317df833ce5fe88a94cda4e4310b2}{T\+N\+C\+List\+\_\+insert\+\_\+after} (T\+N\+C\+List\+Node restrict ref, void $\ast$restrict val)
+\begin{DoxyCompactList}\small\item\em Inserisce un elemento dopo il nodo passato come parametro. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{list_8h_a4e2ce6ee419787d2b4a1a36a1ec38341}{T\+N\+C\+List\+\_\+pop\+\_\+front} (T\+N\+C\+List self)
+\begin{DoxyCompactList}\small\item\em Toglie il primo elemento dalla lista, e lo restituisce. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{list_8h_ae66d30798518d1a83ea84c45ad90b843}{T\+N\+C\+List\+\_\+pop\+\_\+back} (T\+N\+C\+List self)
+\begin{DoxyCompactList}\small\item\em Toglie l\textquotesingle{}ultimo elemento dalla lista, e lo restituisce. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{list_8h_aefa18bb9ec9638f5b25d0c596460ced2}{T\+N\+C\+List\+\_\+remove} (T\+N\+C\+List\+Node node)
+\begin{DoxyCompactList}\small\item\em Rimuove un elemento da una lista. \end{DoxyCompactList}\item 
+const void $\ast$ \hyperlink{list_8h_aab379437b73d4b40caff1d7e8b1cd216}{T\+N\+C\+List\+\_\+getvalue} (T\+N\+C\+List\+Node node)
+\begin{DoxyCompactList}\small\item\em Dato un nodo, restituisce un puntatore costante al suo valore. \end{DoxyCompactList}\item 
+void \hyperlink{list_8h_a366497def8fb6151756bcec9424bce95}{T\+N\+C\+List\+\_\+destroy} (T\+N\+C\+List self)
+\begin{DoxyCompactList}\small\item\em Cancella (dealloca) una lista. \end{DoxyCompactList}\item 
+void \hyperlink{list_8h_aae5c3c2385ae5018a3181151140d6841}{T\+N\+C\+List\+\_\+destroy\+\_\+and\+\_\+free} (T\+N\+C\+List self, \hyperlink{functiontypes_8h_a78b4c663dde4687b8cddd1ca6031cadb}{T\+N\+C\+Consumer} freefn)
+\begin{DoxyCompactList}\small\item\em Cancella una lista e chiama una funzione su tutti i suoi elementi. \end{DoxyCompactList}\item 
+void \hyperlink{list_8h_ac16e5d1d334f64f619605aab7834e0f3}{T\+N\+C\+List\+\_\+chain} (T\+N\+C\+List restrict list, T\+N\+C\+List restrict to\+\_\+chain)
+\begin{DoxyCompactList}\small\item\em Concatena due liste. \end{DoxyCompactList}\item 
+\hypertarget{list_8h_a841ef92f69f013a3e28a37a0cacba52f}{}int \hyperlink{list_8h_a841ef92f69f013a3e28a37a0cacba52f}{T\+N\+C\+List\+\_\+empty} (T\+N\+C\+List self)\label{list_8h_a841ef92f69f013a3e28a37a0cacba52f}
+
+\begin{DoxyCompactList}\small\item\em Restituisce un valore diverso da zero se la lista è vuota, altrimenti 0. \end{DoxyCompactList}\item 
+\hypertarget{list_8h_a062188a59982a6022f5928092b4111c1}{}size\+\_\+t \hyperlink{list_8h_a062188a59982a6022f5928092b4111c1}{T\+N\+C\+List\+\_\+length} (T\+N\+C\+List self)\label{list_8h_a062188a59982a6022f5928092b4111c1}
+
+\begin{DoxyCompactList}\small\item\em Restituisce il numero di elementi in una lista. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+Contiene l\textquotesingle{}interfaccia per le liste doppiamente concatenate. 
+
+
+
+\subsection{Documentazione delle funzioni}
+\hypertarget{list_8h_ac16e5d1d334f64f619605aab7834e0f3}{}\index{list.\+h@{list.\+h}!T\+N\+C\+List\+\_\+chain@{T\+N\+C\+List\+\_\+chain}}
+\index{T\+N\+C\+List\+\_\+chain@{T\+N\+C\+List\+\_\+chain}!list.\+h@{list.\+h}}
+\subsubsection[{T\+N\+C\+List\+\_\+chain}]{\setlength{\rightskip}{0pt plus 5cm}void T\+N\+C\+List\+\_\+chain (
+\begin{DoxyParamCaption}
+\item[{T\+N\+C\+List restrict}]{list, }
+\item[{T\+N\+C\+List restrict}]{to\+\_\+chain}
+\end{DoxyParamCaption}
+)}\label{list_8h_ac16e5d1d334f64f619605aab7834e0f3}
+
+
+Concatena due liste. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em list} & La lista con i primi elementi. Alla conclusione della funzione, questa lista conterrà le due liste concatenate. Questo parametro non deve essere N\+U\+L\+L.\\
+\hline
+{\em to\+\_\+chain} & La seconda lista da concatenare. Questa lista viene distrutta al termine della funzione. Questo parametro non deve essere N\+U\+L\+L. \\
+\hline
+\end{DoxyParams}
+\hypertarget{list_8h_a366497def8fb6151756bcec9424bce95}{}\index{list.\+h@{list.\+h}!T\+N\+C\+List\+\_\+destroy@{T\+N\+C\+List\+\_\+destroy}}
+\index{T\+N\+C\+List\+\_\+destroy@{T\+N\+C\+List\+\_\+destroy}!list.\+h@{list.\+h}}
+\subsubsection[{T\+N\+C\+List\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void T\+N\+C\+List\+\_\+destroy (
+\begin{DoxyParamCaption}
+\item[{T\+N\+C\+List}]{self}
+\end{DoxyParamCaption}
+)}\label{list_8h_a366497def8fb6151756bcec9424bce95}
+
+
+Cancella (dealloca) una lista. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em self} & La lista da cancellare \\
+\hline
+\end{DoxyParams}
+\hypertarget{list_8h_aae5c3c2385ae5018a3181151140d6841}{}\index{list.\+h@{list.\+h}!T\+N\+C\+List\+\_\+destroy\+\_\+and\+\_\+free@{T\+N\+C\+List\+\_\+destroy\+\_\+and\+\_\+free}}
+\index{T\+N\+C\+List\+\_\+destroy\+\_\+and\+\_\+free@{T\+N\+C\+List\+\_\+destroy\+\_\+and\+\_\+free}!list.\+h@{list.\+h}}
+\subsubsection[{T\+N\+C\+List\+\_\+destroy\+\_\+and\+\_\+free}]{\setlength{\rightskip}{0pt plus 5cm}void T\+N\+C\+List\+\_\+destroy\+\_\+and\+\_\+free (
+\begin{DoxyParamCaption}
+\item[{T\+N\+C\+List}]{self, }
+\item[{{\bf T\+N\+C\+Consumer}}]{freefn}
+\end{DoxyParamCaption}
+)}\label{list_8h_aae5c3c2385ae5018a3181151140d6841}
+
+
+Cancella una lista e chiama una funzione su tutti i suoi elementi. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em self} & La lista da cancellare\\
+\hline
+{\em freefn} & Un puntatore a una funzione di deallocazione da chiamare per ogni elemento nella lista. Se N\+U\+L\+L, nessuna funzione verrà chiamata e gli elementi non verranno deallocati. \\
+\hline
+\end{DoxyParams}
+\hypertarget{list_8h_ac5e4d9ffa5af8ceb91f384b562a9d6bf}{}\index{list.\+h@{list.\+h}!T\+N\+C\+List\+\_\+first@{T\+N\+C\+List\+\_\+first}}
+\index{T\+N\+C\+List\+\_\+first@{T\+N\+C\+List\+\_\+first}!list.\+h@{list.\+h}}
+\subsubsection[{T\+N\+C\+List\+\_\+first}]{\setlength{\rightskip}{0pt plus 5cm}T\+N\+C\+List\+Node T\+N\+C\+List\+\_\+first (
+\begin{DoxyParamCaption}
+\item[{T\+N\+C\+List}]{list}
+\end{DoxyParamCaption}
+)}\label{list_8h_ac5e4d9ffa5af8ceb91f384b562a9d6bf}
+
+
+Restituisce il primo nodo di una lista. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em list} & La lista su cui si vuole operare. Il comportamento della funzione non è definito se questo parametro è N\+U\+L\+L.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+Un T\+N\+C\+List\+Node corrispondente al primo nodo della lista, N\+U\+L\+L se la lista è vuota. 
+\end{DoxyReturn}
+\hypertarget{list_8h_aab379437b73d4b40caff1d7e8b1cd216}{}\index{list.\+h@{list.\+h}!T\+N\+C\+List\+\_\+getvalue@{T\+N\+C\+List\+\_\+getvalue}}
+\index{T\+N\+C\+List\+\_\+getvalue@{T\+N\+C\+List\+\_\+getvalue}!list.\+h@{list.\+h}}
+\subsubsection[{T\+N\+C\+List\+\_\+getvalue}]{\setlength{\rightskip}{0pt plus 5cm}const void$\ast$ T\+N\+C\+List\+\_\+getvalue (
+\begin{DoxyParamCaption}
+\item[{T\+N\+C\+List\+Node}]{node}
+\end{DoxyParamCaption}
+)}\label{list_8h_aab379437b73d4b40caff1d7e8b1cd216}
+
+
+Dato un nodo, restituisce un puntatore costante al suo valore. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em node} & Il nodo di cui si richiede il valore. Il comportamento della funzione è indefinito se questo parametro è N\+U\+L\+L.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+Il valore corrispondente al nodo 
+\end{DoxyReturn}
+\hypertarget{list_8h_a1e8317df833ce5fe88a94cda4e4310b2}{}\index{list.\+h@{list.\+h}!T\+N\+C\+List\+\_\+insert\+\_\+after@{T\+N\+C\+List\+\_\+insert\+\_\+after}}
+\index{T\+N\+C\+List\+\_\+insert\+\_\+after@{T\+N\+C\+List\+\_\+insert\+\_\+after}!list.\+h@{list.\+h}}
+\subsubsection[{T\+N\+C\+List\+\_\+insert\+\_\+after}]{\setlength{\rightskip}{0pt plus 5cm}int T\+N\+C\+List\+\_\+insert\+\_\+after (
+\begin{DoxyParamCaption}
+\item[{T\+N\+C\+List\+Node restrict}]{ref, }
+\item[{void $\ast$restrict}]{val}
+\end{DoxyParamCaption}
+)}\label{list_8h_a1e8317df833ce5fe88a94cda4e4310b2}
+
+
+Inserisce un elemento dopo il nodo passato come parametro. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em ref} & Il nodo di riferimento. Il comportamento della funzione non è definito se questo parametro è N\+U\+L\+L.\\
+\hline
+{\em val} & Elemento da inserire nella lista\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+0 se l\textquotesingle{}operazione va a buon fine, altrimenti uno dei seguenti codici di errore\+: -\/ T\+N\+C\+Error\+\_\+failed\+\_\+alloc se non è stato possibile allocare memoria per eseguire l\textquotesingle{}operazione. 
+\end{DoxyReturn}
+\hypertarget{list_8h_a5642341347cf8ceb18c96097478da28f}{}\index{list.\+h@{list.\+h}!T\+N\+C\+List\+\_\+insert\+\_\+before@{T\+N\+C\+List\+\_\+insert\+\_\+before}}
+\index{T\+N\+C\+List\+\_\+insert\+\_\+before@{T\+N\+C\+List\+\_\+insert\+\_\+before}!list.\+h@{list.\+h}}
+\subsubsection[{T\+N\+C\+List\+\_\+insert\+\_\+before}]{\setlength{\rightskip}{0pt plus 5cm}int T\+N\+C\+List\+\_\+insert\+\_\+before (
+\begin{DoxyParamCaption}
+\item[{T\+N\+C\+List\+Node restrict}]{ref, }
+\item[{void $\ast$restrict}]{val}
+\end{DoxyParamCaption}
+)}\label{list_8h_a5642341347cf8ceb18c96097478da28f}
+
+
+Inserisce un elemento prima del nodo passato come parametro. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em ref} & Il nodo di riferimento. Il comportamento della funzione non è definito se questo parametro è N\+U\+L\+L.\\
+\hline
+{\em val} & Elemento da inserire nella lista\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+0 se l\textquotesingle{}operazione va a buon fine, altrimenti uno dei seguenti codici di errore\+: -\/ T\+N\+C\+Error\+\_\+failed\+\_\+alloc se non è stato possibile allocare memoria per eseguire l\textquotesingle{}operazione. 
+\end{DoxyReturn}
+\hypertarget{list_8h_ad81a2d6c8ef1fa5390fd0b1c59f49728}{}\index{list.\+h@{list.\+h}!T\+N\+C\+List\+\_\+last@{T\+N\+C\+List\+\_\+last}}
+\index{T\+N\+C\+List\+\_\+last@{T\+N\+C\+List\+\_\+last}!list.\+h@{list.\+h}}
+\subsubsection[{T\+N\+C\+List\+\_\+last}]{\setlength{\rightskip}{0pt plus 5cm}T\+N\+C\+List\+Node T\+N\+C\+List\+\_\+last (
+\begin{DoxyParamCaption}
+\item[{T\+N\+C\+List}]{list}
+\end{DoxyParamCaption}
+)}\label{list_8h_ad81a2d6c8ef1fa5390fd0b1c59f49728}
+
+
+Restituisce l\textquotesingle{}ultimo nodo di una lista. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em list} & La lista su cui si vuole operare. Il\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+Un T\+N\+C\+List\+Node corrispondente all\textquotesingle{}ultimo nodo della lista, N\+U\+L\+L se la lista è vuota.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{Si veda anche}
+T\+N\+C\+List\+Node 
+\end{DoxySeeAlso}
+\hypertarget{list_8h_a348c5bc63c91ace3343370373f4328b0}{}\index{list.\+h@{list.\+h}!T\+N\+C\+List\+\_\+new@{T\+N\+C\+List\+\_\+new}}
+\index{T\+N\+C\+List\+\_\+new@{T\+N\+C\+List\+\_\+new}!list.\+h@{list.\+h}}
+\subsubsection[{T\+N\+C\+List\+\_\+new}]{\setlength{\rightskip}{0pt plus 5cm}T\+N\+C\+List T\+N\+C\+List\+\_\+new (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{list_8h_a348c5bc63c91ace3343370373f4328b0}
+
+
+Inizializza una lista. 
+
+\begin{DoxyReturn}{Restituisce}
+Un puntatore a una lista inizializzata se l\textquotesingle{}allocazione va a buon fine, N\+U\+L\+L altrimenti. 
+\end{DoxyReturn}
+\hypertarget{list_8h_ae7534b594aa3353a3f27313442ffd0ba}{}\index{list.\+h@{list.\+h}!T\+N\+C\+List\+\_\+next@{T\+N\+C\+List\+\_\+next}}
+\index{T\+N\+C\+List\+\_\+next@{T\+N\+C\+List\+\_\+next}!list.\+h@{list.\+h}}
+\subsubsection[{T\+N\+C\+List\+\_\+next}]{\setlength{\rightskip}{0pt plus 5cm}T\+N\+C\+List\+Node T\+N\+C\+List\+\_\+next (
+\begin{DoxyParamCaption}
+\item[{T\+N\+C\+List\+Node}]{current}
+\end{DoxyParamCaption}
+)}\label{list_8h_ae7534b594aa3353a3f27313442ffd0ba}
+
+
+Restituisce il nodo successivo in una lista rispetto a un nodo passato come parametro. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em current} & Il nodo di cui si vuole conoscere l\textquotesingle{}elemento successivo. Il parametro deve essere un nodo valido di una lista (non deve essere N\+U\+L\+L e non deve essere un nodo che è stato rimosso).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+Il nodo della lista successivo a quello passato come parametro. N\+U\+L\+L se current è l\textquotesingle{}ultimo nodo della lista.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{Si veda anche}
+T\+N\+C\+List\+Node 
+\end{DoxySeeAlso}
+\hypertarget{list_8h_ae66d30798518d1a83ea84c45ad90b843}{}\index{list.\+h@{list.\+h}!T\+N\+C\+List\+\_\+pop\+\_\+back@{T\+N\+C\+List\+\_\+pop\+\_\+back}}
+\index{T\+N\+C\+List\+\_\+pop\+\_\+back@{T\+N\+C\+List\+\_\+pop\+\_\+back}!list.\+h@{list.\+h}}
+\subsubsection[{T\+N\+C\+List\+\_\+pop\+\_\+back}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ T\+N\+C\+List\+\_\+pop\+\_\+back (
+\begin{DoxyParamCaption}
+\item[{T\+N\+C\+List}]{self}
+\end{DoxyParamCaption}
+)}\label{list_8h_ae66d30798518d1a83ea84c45ad90b843}
+
+
+Toglie l\textquotesingle{}ultimo elemento dalla lista, e lo restituisce. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em self} & La lista su cui si vuole operare. Il comportamento della funzione non è definito se questo parametro è N\+U\+L\+L o se la lista a cui si riferisce è vuota. \\
+\hline
+\end{DoxyParams}
+\hypertarget{list_8h_a4e2ce6ee419787d2b4a1a36a1ec38341}{}\index{list.\+h@{list.\+h}!T\+N\+C\+List\+\_\+pop\+\_\+front@{T\+N\+C\+List\+\_\+pop\+\_\+front}}
+\index{T\+N\+C\+List\+\_\+pop\+\_\+front@{T\+N\+C\+List\+\_\+pop\+\_\+front}!list.\+h@{list.\+h}}
+\subsubsection[{T\+N\+C\+List\+\_\+pop\+\_\+front}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ T\+N\+C\+List\+\_\+pop\+\_\+front (
+\begin{DoxyParamCaption}
+\item[{T\+N\+C\+List}]{self}
+\end{DoxyParamCaption}
+)}\label{list_8h_a4e2ce6ee419787d2b4a1a36a1ec38341}
+
+
+Toglie il primo elemento dalla lista, e lo restituisce. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em self} & La lista su cui si vuole operare Il comportamento della funzione non è definito se questo parametro è N\+U\+L\+L o se la lista a cui si riferisce è vuota.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+0 se l\textquotesingle{}operazione va a buon fine, altrimenti uno dei seguenti codici di errore\+: -\/ T\+N\+C\+Error\+\_\+failed\+\_\+alloc se non è stato possibile allocare memoria per eseguire l\textquotesingle{}operazione. 
+\end{DoxyReturn}
+\hypertarget{list_8h_a1b7a902b8a8a5b78e91b07ff56591e24}{}\index{list.\+h@{list.\+h}!T\+N\+C\+List\+\_\+previous@{T\+N\+C\+List\+\_\+previous}}
+\index{T\+N\+C\+List\+\_\+previous@{T\+N\+C\+List\+\_\+previous}!list.\+h@{list.\+h}}
+\subsubsection[{T\+N\+C\+List\+\_\+previous}]{\setlength{\rightskip}{0pt plus 5cm}T\+N\+C\+List\+Node T\+N\+C\+List\+\_\+previous (
+\begin{DoxyParamCaption}
+\item[{T\+N\+C\+List\+Node}]{current}
+\end{DoxyParamCaption}
+)}\label{list_8h_a1b7a902b8a8a5b78e91b07ff56591e24}
+
+
+Restituisce il nodo precedente in una lista rispetto a un nodo passato come parametro. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em current} & Il nodo di cui si vuole conoscere l\textquotesingle{}elemento precedente. Il parametro deve essere un nodo valido di una lista (non deve essere N\+U\+L\+L e non deve essere un nodo che è stato rimosso).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+Il nodo della lista successivo a quello passato come parametro. N\+U\+L\+L se current è il primo nodo della lista.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{Si veda anche}
+T\+N\+C\+List\+Node 
+\end{DoxySeeAlso}
+\hypertarget{list_8h_aa16018ceeb34a5efff57b582c7387d89}{}\index{list.\+h@{list.\+h}!T\+N\+C\+List\+\_\+push\+\_\+back@{T\+N\+C\+List\+\_\+push\+\_\+back}}
+\index{T\+N\+C\+List\+\_\+push\+\_\+back@{T\+N\+C\+List\+\_\+push\+\_\+back}!list.\+h@{list.\+h}}
+\subsubsection[{T\+N\+C\+List\+\_\+push\+\_\+back}]{\setlength{\rightskip}{0pt plus 5cm}int T\+N\+C\+List\+\_\+push\+\_\+back (
+\begin{DoxyParamCaption}
+\item[{T\+N\+C\+List restrict}]{self, }
+\item[{void $\ast$restrict}]{val}
+\end{DoxyParamCaption}
+)}\label{list_8h_aa16018ceeb34a5efff57b582c7387d89}
+
+
+Inserisce un nuovo nodo come ultimo elemento della lista. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em self} & La lista su cui si vuole operare. Il comportamento della funzione non è definito se questo parametro è N\+U\+L\+L.\\
+\hline
+{\em val} & Elemento da inserire nella lista.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+0 se l\textquotesingle{}operazione va a buon fine, altrimenti uno dei seguenti codici di errore\+: -\/ T\+N\+C\+Error\+\_\+failed\+\_\+alloc se non è stato possibile allocare memoria per eseguire l\textquotesingle{}operazione. 
+\end{DoxyReturn}
+\hypertarget{list_8h_af90bc4481504329ec71a3f06916e56ca}{}\index{list.\+h@{list.\+h}!T\+N\+C\+List\+\_\+push\+\_\+front@{T\+N\+C\+List\+\_\+push\+\_\+front}}
+\index{T\+N\+C\+List\+\_\+push\+\_\+front@{T\+N\+C\+List\+\_\+push\+\_\+front}!list.\+h@{list.\+h}}
+\subsubsection[{T\+N\+C\+List\+\_\+push\+\_\+front}]{\setlength{\rightskip}{0pt plus 5cm}int T\+N\+C\+List\+\_\+push\+\_\+front (
+\begin{DoxyParamCaption}
+\item[{T\+N\+C\+List restrict}]{self, }
+\item[{void $\ast$restrict}]{val}
+\end{DoxyParamCaption}
+)}\label{list_8h_af90bc4481504329ec71a3f06916e56ca}
+
+
+Inserisce un nuovo nodo come primo elemento della lista. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em self} & La lista su cui si vuole operare. Il comportamento della funzione non è definito se questo parametro è N\+U\+L\+L.\\
+\hline
+{\em val} & Il nuovo elemento da inserire nella lista.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+0 se l\textquotesingle{}operazione va a buon fine, altrimenti uno dei seguenti codici di errore\+: -\/ T\+N\+C\+Error\+\_\+failed\+\_\+alloc se non è stato possibile allocare memoria per eseguire l\textquotesingle{}operazione.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{Si veda anche}
+T\+N\+C\+List\+Node 
+
+error.\+h 
+\end{DoxySeeAlso}
+\hypertarget{list_8h_aefa18bb9ec9638f5b25d0c596460ced2}{}\index{list.\+h@{list.\+h}!T\+N\+C\+List\+\_\+remove@{T\+N\+C\+List\+\_\+remove}}
+\index{T\+N\+C\+List\+\_\+remove@{T\+N\+C\+List\+\_\+remove}!list.\+h@{list.\+h}}
+\subsubsection[{T\+N\+C\+List\+\_\+remove}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ T\+N\+C\+List\+\_\+remove (
+\begin{DoxyParamCaption}
+\item[{T\+N\+C\+List\+Node}]{node}
+\end{DoxyParamCaption}
+)}\label{list_8h_aefa18bb9ec9638f5b25d0c596460ced2}
+
+
+Rimuove un elemento da una lista. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em node} & Il nodo corrispondente all\textquotesingle{}elemento da togliere. Se N\+U\+L\+L, il comportamento della funzione non è definito.\\
+\hline
+{\em freefn} & Una funzione da chiamare per dellocare l\textquotesingle{}elemento. Se N\+U\+L\+L, non viene chiamata nessuna funzione sull\textquotesingle{}elemento e questo non viene deallocato. \\
+\hline
+\end{DoxyParams}

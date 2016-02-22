@@ -1,0 +1,68 @@
+\hypertarget{httpdate_8h}{}\section{Riferimenti per il file tnc/server/httpdate.h}
+\label{httpdate_8h}\index{tnc/server/httpdate.\+h@{tnc/server/httpdate.\+h}}
+
+
+Funzioni e definizioni utili alla creazione e alla manipolazione delle date nei formati supportati da H\+T\+T\+P.  
+
+
+Questo grafo mostra quali altri file includono direttamente o indirettamente questo file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{httpdate_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Definizioni}
+\begin{Indent}{\bf H\+T\+T\+P\+D\+A\+T\+E}\par
+{\em Le definizioni contengono le stringhe in formato leggibile a strptime() rappresentanti le date supportate in ricezione dal server, come indicate dalla R\+F\+C 1945. }\begin{DoxyCompactItemize}
+\item 
+\hypertarget{httpdate_8h_a619946a84b8848bc8a6e878084b6a2a1}{}\#define {\bfseries H\+T\+T\+P\+D\+A\+T\+E\+\_\+\+R\+F\+C1123}~\char`\"{}\%a, \%d \%b \%Y \%T G\+M\+T\char`\"{}\label{httpdate_8h_a619946a84b8848bc8a6e878084b6a2a1}
+
+\item 
+\hypertarget{httpdate_8h_addcfd92b8ccd23beb713242bde512623}{}\#define {\bfseries H\+T\+T\+P\+D\+A\+T\+E\+\_\+\+R\+F\+C850}~\char`\"{}\%A, \%d-\/\%b-\/\%y \%T G\+M\+T\char`\"{}\label{httpdate_8h_addcfd92b8ccd23beb713242bde512623}
+
+\item 
+\hypertarget{httpdate_8h_adf2a1b1aba1fc86ab6494bbf7bef6759}{}\#define {\bfseries H\+T\+T\+P\+D\+A\+T\+E\+\_\+\+A\+S\+C\+T\+I\+M\+E}~\char`\"{}\%a \%b \%d \%T \%Y\char`\"{}\label{httpdate_8h_adf2a1b1aba1fc86ab6494bbf7bef6759}
+
+\item 
+\hypertarget{httpdate_8h_aca28c4aecc56a5ab016a42296a0ea2ff}{}\#define {\bfseries H\+T\+T\+P\+D\+A\+T\+E}~H\+T\+T\+P\+D\+A\+T\+E\+\_\+\+R\+F\+C1123\label{httpdate_8h_aca28c4aecc56a5ab016a42296a0ea2ff}
+
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \hyperlink{httpdate_8h_a7e14419e90ce1581044f038b5cccb587}{strptime\+\_\+httpdate} (const char $\ast$date, struct tm $\ast$tm)
+\begin{DoxyCompactList}\small\item\em Riempie una struct tm a seconda delle informazioni contenute in una stringa. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+Funzioni e definizioni utili alla creazione e alla manipolazione delle date nei formati supportati da H\+T\+T\+P. 
+
+
+
+\subsection{Documentazione delle funzioni}
+\hypertarget{httpdate_8h_a7e14419e90ce1581044f038b5cccb587}{}\index{httpdate.\+h@{httpdate.\+h}!strptime\+\_\+httpdate@{strptime\+\_\+httpdate}}
+\index{strptime\+\_\+httpdate@{strptime\+\_\+httpdate}!httpdate.\+h@{httpdate.\+h}}
+\subsubsection[{strptime\+\_\+httpdate}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ strptime\+\_\+httpdate (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{date, }
+\item[{struct tm $\ast$}]{tm}
+\end{DoxyParamCaption}
+)}\label{httpdate_8h_a7e14419e90ce1581044f038b5cccb587}
+
+
+Riempie una struct tm a seconda delle informazioni contenute in una stringa. 
+
+La funzione si comporta in modo analogo alla funzione P\+O\+S\+I\+X strptime(), ma specificamente per le date H\+T\+T\+P. Il protocollo H\+T\+T\+P/1.\+0 accetta tre diversi formati per la data; la funzione si occupa di scegliere il formato appropriato per la stringa ricevuta come parametro, di eseguire strptime() su di questa e di restituirne il risultato.
+
+
+\begin{DoxyParams}{Parametri}
+{\em date} & La stringa contentente la data di cui fare il parsing.\\
+\hline
+{\em tm} & La struttura da riempire con le informazioni sulla data.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{Si veda anche}
+strptime() 
+\end{DoxySeeAlso}

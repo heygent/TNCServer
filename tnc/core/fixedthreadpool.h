@@ -1,7 +1,8 @@
 #ifndef TNC_FIXEDTHREADPOOL_H
 #define TNC_FIXEDTHREADPOOL_H
 
-#include "typedefs.h"
+#include <stdlib.h>
+#include "functiontypes.h"
 
 struct TNCJob
 {
@@ -32,41 +33,39 @@ enum TNCFixedThreadPool_wait
     TNCThreadPool_wait_yes = 1, TNCThreadPool_wait_no
 };
 
-/**
- * Crea un threadpool.
+/** Crea un threadpool.
  *
  * @param threads Il numero di worker nel pool.
  *
- * @return Un TNCFixedThreadPool se l'operazione va a buon fine, NULL altrimenti.
- *
+ * @return Un TNCFixedThreadPool se l'operazione va a buon fine, NULL
+ * altrimenti.
  */
 TNCFixedThreadPool TNCFixedThreadPool_new(size_t threads);
 
-/**
- * Avvia un threadpool.
+/** Avvia un threadpool.
  *
  * @param self Il threadpool da avviare.
  *
- * @return Un codice di errore. I codici di errore si possono trovare nell'header error.h.
+ * @return Un codice di errore. I codici di errore si possono trovare
+ * nell'header error.h.
  *
  */
 int TNCFixedThreadPool_start(TNCFixedThreadPool self);
 
-/**
- * Termina i worker di un threadpool.
+/** Termina i worker di un threadpool.
  *
  * @param self Il threadpool su cui si vuole operare.
  *
- * @param mode Parametro che indica la modalità di spegnimento.
- *             Se settato su TNCThreadPool_shutdown_now, lo spegnimento non attenderà il termine dei job ancora nella
- *             coda.
- *             Se settato su TNCThreadPool_shutdown_finish_pending lo spegnimento avverrà al termine dei job ancora
- *             rimasti nella coda.
+ * @param mode Parametro che indica la modalità di spegnimento.  Se settato su
+ * TNCThreadPool_shutdown_now, lo spegnimento non attenderà il termine dei job
+ * ancora nella coda.  Se settato su TNCThreadPool_shutdown_finish_pending lo
+ * spegnimento avverrà al termine dei job ancora rimasti nella coda.
  *
- * @param wait Parametro che indica se la chiamata a shutdown blocca l'esecuzione.
- *             Se settato a TNCThreadPool_wait_yes, la chiamata a shutdown blocca l'esecuzione fino al termine di tutti
- *             i thread. Se settato a TNCThreadPool_wait_no, la chiamata a shutdown restituisce prima del termine
- *             dell'esecuzione dei thread rimanenti.
+ * @param wait Parametro che indica se la chiamata a shutdown blocca
+ * l'esecuzione.  Se settato a TNCThreadPool_wait_yes, la chiamata a shutdown
+ * blocca l'esecuzione fino al termine di tutti i thread. Se settato a
+ * TNCThreadPool_wait_no, la chiamata a shutdown restituisce prima del termine
+ * dell'esecuzione dei thread rimanenti.
  */
 void TNCFixedThreadPool_shutdown(TNCFixedThreadPool self,
                             enum TNCFixedThreadPool_shutdown_flags mode,

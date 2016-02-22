@@ -1,0 +1,10 @@
+<map id="tnc/core/functiontypes.h" name="tnc/core/functiontypes.h">
+<area shape="rect" id="node2" href="$fixedthreadpool_8h.html" title="Contiene l&#39;interfaccia per i threadpool. " alt="" coords="93,80,265,107"/>
+<area shape="rect" id="node5" href="$list_8h.html" title="Contiene l&#39;interfaccia per le liste doppiamente concatenate. " alt="" coords="299,80,401,107"/>
+<area shape="rect" id="node3" href="$server_8h.html" title="Contiene funzioni utili all&#39;uso del server. " alt="" coords="9,155,139,181"/>
+<area shape="rect" id="node4" href="$paths_8h.html" title="Contiene definizioni e funzioni utili nell&#39;ambito dell&#39;elaborazione dei percorsi. ..." alt="" coords="5,229,132,256"/>
+<area shape="rect" id="node6" href="$httpdata_8h.html" title="Contiene strutture dati utili al salvataggio dei dati delle richieste e delle risposte HTTP..." alt="" coords="281,155,424,181"/>
+<area shape="rect" id="node7" href="$make__response_8h.html" title="Contiene funzioni utili a generare una risposta HTTP. " alt="" coords="157,229,343,256"/>
+<area shape="rect" id="node8" href="$parse__request_8h.html" title="Contiene elementi utili al parsing della richiesta HTTP. " alt="" coords="368,229,545,256"/>
+<area shape="rect" id="node9" href="$send__response_8h.html" title="Contiene definizioni e funzioni utili all&#39;invio di risposte HTTP. " alt="" coords="569,229,752,256"/>
+</map>

@@ -1,0 +1,53 @@
+\hypertarget{send__response_8h}{}\section{Riferimenti per il file tnc/server/send\+\_\+response.h}
+\label{send__response_8h}\index{tnc/server/send\+\_\+response.\+h@{tnc/server/send\+\_\+response.\+h}}
+
+
+Contiene definizioni e funzioni utili all\textquotesingle{}invio di risposte H\+T\+T\+P.  
+
+
+{\ttfamily \#include $<$stdbool.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}httpdata.\+h\char`\"{}}\\*
+Grafo delle dipendenze di inclusione per send\+\_\+response.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{send__response_8h__incl}
+\end{center}
+\end{figure}
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{send__response_8h_aee7d986f80a17267af7a83aac0a1ed74}{send\+\_\+response} (int connection\+\_\+socket, \hyperlink{structHTTPResponseData}{H\+T\+T\+P\+Response\+Data} $\ast$data)
+\begin{DoxyCompactList}\small\item\em Invia una risposta tramite un socket. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+Contiene definizioni e funzioni utili all\textquotesingle{}invio di risposte H\+T\+T\+P. 
+
+
+
+\subsection{Documentazione delle funzioni}
+\hypertarget{send__response_8h_aee7d986f80a17267af7a83aac0a1ed74}{}\index{send\+\_\+response.\+h@{send\+\_\+response.\+h}!send\+\_\+response@{send\+\_\+response}}
+\index{send\+\_\+response@{send\+\_\+response}!send\+\_\+response.\+h@{send\+\_\+response.\+h}}
+\subsubsection[{send\+\_\+response}]{\setlength{\rightskip}{0pt plus 5cm}bool send\+\_\+response (
+\begin{DoxyParamCaption}
+\item[{int}]{connection\+\_\+socket, }
+\item[{{\bf H\+T\+T\+P\+Response\+Data} $\ast$}]{data}
+\end{DoxyParamCaption}
+)}\label{send__response_8h_aee7d986f80a17267af7a83aac0a1ed74}
+
+
+Invia una risposta tramite un socket. 
+
+La funzione invia tramite connection\+\_\+socket una risposta H\+T\+T\+P, composta dagli header e dal file contenuti in data. Per comporre il parametro data, usare \hyperlink{make__response_8h_adccd9b35824054b0c445e09f0731d706}{make\+\_\+response()}.
+
+
+\begin{DoxyParams}{Parametri}
+{\em connection\+\_\+socket} & Il socket attraverso cui inviare la risposta.\\
+\hline
+{\em data} & I dati sulla risposta da inviare.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+L\textquotesingle{}esito dell\textquotesingle{}operazione, true se è andata a buon fine, false altrimenti.$\ast$ 
+\end{DoxyReturn}

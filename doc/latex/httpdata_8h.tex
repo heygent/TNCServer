@@ -1,0 +1,100 @@
+\hypertarget{httpdata_8h}{}\section{Riferimenti per il file tnc/server/httpdata.h}
+\label{httpdata_8h}\index{tnc/server/httpdata.\+h@{tnc/server/httpdata.\+h}}
+
+
+Contiene strutture dati utili al salvataggio dei dati delle richieste e delle risposte H\+T\+T\+P.  
+
+
+{\ttfamily \#include $<$stdbool.\+h$>$}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$stdint.\+h$>$}\\*
+{\ttfamily \#include $<$time.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}httpheaders.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}tnc/core/list.\+h\char`\"{}}\\*
+Grafo delle dipendenze di inclusione per httpdata.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{httpdata_8h__incl}
+\end{center}
+\end{figure}
+Questo grafo mostra quali altri file includono direttamente o indirettamente questo file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{httpdata_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Strutture dati}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structHTTPRequestData}{H\+T\+T\+P\+Request\+Data}
+\begin{DoxyCompactList}\small\item\em Contiene informazioni su di una richiesta H\+T\+T\+P. \end{DoxyCompactList}\item 
+struct \hyperlink{structHTTPRequestHeader}{H\+T\+T\+P\+Request\+Header}
+\begin{DoxyCompactList}\small\item\em Rappresenta un header di richiesta H\+T\+T\+P. \end{DoxyCompactList}\item 
+struct \hyperlink{structHTTPResponseData}{H\+T\+T\+P\+Response\+Data}
+\end{DoxyCompactItemize}
+\subsection*{Tipi enumerati (enum)}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{httpdata_8h_a159dd434f3cab184e5fab8365ed494ec}{H\+T\+T\+P\+Request\+Data\+\_\+flags} \{ \hyperlink{httpdata_8h_a159dd434f3cab184e5fab8365ed494eca38f1b00cb61c162432d579553dfc4f98}{H\+T\+T\+P\+Request\+Data\+\_\+flags\+\_\+stop\+\_\+parsing} = 1 $<$$<$ 0, 
+\hyperlink{httpdata_8h_a159dd434f3cab184e5fab8365ed494eca9f170ca51d662124859bfd11df8f24e4}{H\+T\+T\+P\+Request\+Data\+\_\+flags\+\_\+keep\+\_\+alive} = 1 $<$$<$ 1, 
+\hyperlink{httpdata_8h_a159dd434f3cab184e5fab8365ed494ecac2cce33be3baf44d3f60e19084ae311f}{H\+T\+T\+P\+Request\+Data\+\_\+flags\+\_\+dont\+\_\+send\+\_\+payload} = 1 $<$$<$ 2, 
+\hyperlink{httpdata_8h_a159dd434f3cab184e5fab8365ed494eca0a19f89674a79292d364b01350b56657}{H\+T\+T\+P\+Request\+Data\+\_\+flags\+\_\+get\+\_\+error\+\_\+page} = 1 $<$$<$ 3
+ \}
+\begin{DoxyCompactList}\small\item\em I valori di questa enumerazione vengono usati per creare una bitmask che rappresenta informazioni e istruzioni di operazione per la richiesta H\+T\+T\+P a cui si riferiscono. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{httpdata_8h_aae80dcf2f216067f2defd6ba687a0c18}{}void {\bfseries H\+T\+T\+P\+Request\+Data\+\_\+init} (\hyperlink{structHTTPRequestData}{H\+T\+T\+P\+Request\+Data} $\ast$data)\label{httpdata_8h_aae80dcf2f216067f2defd6ba687a0c18}
+
+\item 
+\hypertarget{httpdata_8h_a4ee0b3da0116b245db6987d1cfd695f7}{}\hyperlink{structHTTPRequestData}{H\+T\+T\+P\+Request\+Data} $\ast$ {\bfseries H\+T\+T\+P\+Request\+Data\+\_\+new} ()\label{httpdata_8h_a4ee0b3da0116b245db6987d1cfd695f7}
+
+\item 
+\hypertarget{httpdata_8h_a8ded1ce540f51d34b8176a5208eca79e}{}void {\bfseries H\+T\+T\+P\+Request\+Data\+\_\+destroy} (\hyperlink{structHTTPRequestData}{H\+T\+T\+P\+Request\+Data} $\ast$data)\label{httpdata_8h_a8ded1ce540f51d34b8176a5208eca79e}
+
+\item 
+\hypertarget{httpdata_8h_a04b45ca7a5a8659fa67f69dba491f59b}{}void {\bfseries H\+T\+T\+P\+Request\+Data\+\_\+destroy\+\_\+members} (\hyperlink{structHTTPRequestData}{H\+T\+T\+P\+Request\+Data} $\ast$data)\label{httpdata_8h_a04b45ca7a5a8659fa67f69dba491f59b}
+
+\item 
+\hypertarget{httpdata_8h_a8e53a6d56cd9f61acfc49634df3329e1}{}void {\bfseries H\+T\+T\+P\+Response\+Data\+\_\+init} (\hyperlink{structHTTPResponseData}{H\+T\+T\+P\+Response\+Data} $\ast$data, const \hyperlink{structHTTPRequestData}{H\+T\+T\+P\+Request\+Data} $\ast$rd)\label{httpdata_8h_a8e53a6d56cd9f61acfc49634df3329e1}
+
+\item 
+\hypertarget{httpdata_8h_a6fc63e6c5d9c544f28d1100408aeba52}{}\hyperlink{structHTTPResponseData}{H\+T\+T\+P\+Response\+Data} $\ast$ {\bfseries H\+T\+T\+P\+Response\+Data\+\_\+new} (const \hyperlink{structHTTPRequestData}{H\+T\+T\+P\+Request\+Data} $\ast$rd)\label{httpdata_8h_a6fc63e6c5d9c544f28d1100408aeba52}
+
+\item 
+\hypertarget{httpdata_8h_a90c71470f9fc0b9bb34995b6a4674576}{}void {\bfseries H\+T\+T\+P\+Response\+Data\+\_\+destroy\+\_\+members} (\hyperlink{structHTTPResponseData}{H\+T\+T\+P\+Response\+Data} $\ast$data)\label{httpdata_8h_a90c71470f9fc0b9bb34995b6a4674576}
+
+\item 
+\hypertarget{httpdata_8h_afacc001d2a2a5dd0f60b7301025ae111}{}void {\bfseries H\+T\+T\+P\+Response\+Data\+\_\+destroy} (\hyperlink{structHTTPResponseData}{H\+T\+T\+P\+Response\+Data} $\ast$data)\label{httpdata_8h_afacc001d2a2a5dd0f60b7301025ae111}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+Contiene strutture dati utili al salvataggio dei dati delle richieste e delle risposte H\+T\+T\+P. 
+
+
+
+\subsection{Documentazione dei tipi enumerati}
+\hypertarget{httpdata_8h_a159dd434f3cab184e5fab8365ed494ec}{}\index{httpdata.\+h@{httpdata.\+h}!H\+T\+T\+P\+Request\+Data\+\_\+flags@{H\+T\+T\+P\+Request\+Data\+\_\+flags}}
+\index{H\+T\+T\+P\+Request\+Data\+\_\+flags@{H\+T\+T\+P\+Request\+Data\+\_\+flags}!httpdata.\+h@{httpdata.\+h}}
+\subsubsection[{H\+T\+T\+P\+Request\+Data\+\_\+flags}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf H\+T\+T\+P\+Request\+Data\+\_\+flags}}\label{httpdata_8h_a159dd434f3cab184e5fab8365ed494ec}
+
+
+I valori di questa enumerazione vengono usati per creare una bitmask che rappresenta informazioni e istruzioni di operazione per la richiesta H\+T\+T\+P a cui si riferiscono. 
+
+\begin{Desc}
+\item[Valori del tipo enumerato]\par
+\begin{description}
+\index{H\+T\+T\+P\+Request\+Data\+\_\+flags\+\_\+stop\+\_\+parsing@{H\+T\+T\+P\+Request\+Data\+\_\+flags\+\_\+stop\+\_\+parsing}!httpdata.\+h@{httpdata.\+h}}\index{httpdata.\+h@{httpdata.\+h}!H\+T\+T\+P\+Request\+Data\+\_\+flags\+\_\+stop\+\_\+parsing@{H\+T\+T\+P\+Request\+Data\+\_\+flags\+\_\+stop\+\_\+parsing}}\item[{\em 
+\hypertarget{httpdata_8h_a159dd434f3cab184e5fab8365ed494eca38f1b00cb61c162432d579553dfc4f98}{}H\+T\+T\+P\+Request\+Data\+\_\+flags\+\_\+stop\+\_\+parsing\label{httpdata_8h_a159dd434f3cab184e5fab8365ed494eca38f1b00cb61c162432d579553dfc4f98}
+}]Se questa opzione è settata, l\textquotesingle{}elaborazione della richiesta deve terminare. \index{H\+T\+T\+P\+Request\+Data\+\_\+flags\+\_\+keep\+\_\+alive@{H\+T\+T\+P\+Request\+Data\+\_\+flags\+\_\+keep\+\_\+alive}!httpdata.\+h@{httpdata.\+h}}\index{httpdata.\+h@{httpdata.\+h}!H\+T\+T\+P\+Request\+Data\+\_\+flags\+\_\+keep\+\_\+alive@{H\+T\+T\+P\+Request\+Data\+\_\+flags\+\_\+keep\+\_\+alive}}\item[{\em 
+\hypertarget{httpdata_8h_a159dd434f3cab184e5fab8365ed494eca9f170ca51d662124859bfd11df8f24e4}{}H\+T\+T\+P\+Request\+Data\+\_\+flags\+\_\+keep\+\_\+alive\label{httpdata_8h_a159dd434f3cab184e5fab8365ed494eca9f170ca51d662124859bfd11df8f24e4}
+}]Se questa opzione è settata, la connessione non deve terminare dopo l\textquotesingle{}invio della risposta. \index{H\+T\+T\+P\+Request\+Data\+\_\+flags\+\_\+dont\+\_\+send\+\_\+payload@{H\+T\+T\+P\+Request\+Data\+\_\+flags\+\_\+dont\+\_\+send\+\_\+payload}!httpdata.\+h@{httpdata.\+h}}\index{httpdata.\+h@{httpdata.\+h}!H\+T\+T\+P\+Request\+Data\+\_\+flags\+\_\+dont\+\_\+send\+\_\+payload@{H\+T\+T\+P\+Request\+Data\+\_\+flags\+\_\+dont\+\_\+send\+\_\+payload}}\item[{\em 
+\hypertarget{httpdata_8h_a159dd434f3cab184e5fab8365ed494ecac2cce33be3baf44d3f60e19084ae311f}{}H\+T\+T\+P\+Request\+Data\+\_\+flags\+\_\+dont\+\_\+send\+\_\+payload\label{httpdata_8h_a159dd434f3cab184e5fab8365ed494ecac2cce33be3baf44d3f60e19084ae311f}
+}]Se questa opzione è settata, devono essere inviati solo gli header della risposta. \index{H\+T\+T\+P\+Request\+Data\+\_\+flags\+\_\+get\+\_\+error\+\_\+page@{H\+T\+T\+P\+Request\+Data\+\_\+flags\+\_\+get\+\_\+error\+\_\+page}!httpdata.\+h@{httpdata.\+h}}\index{httpdata.\+h@{httpdata.\+h}!H\+T\+T\+P\+Request\+Data\+\_\+flags\+\_\+get\+\_\+error\+\_\+page@{H\+T\+T\+P\+Request\+Data\+\_\+flags\+\_\+get\+\_\+error\+\_\+page}}\item[{\em 
+\hypertarget{httpdata_8h_a159dd434f3cab184e5fab8365ed494eca0a19f89674a79292d364b01350b56657}{}H\+T\+T\+P\+Request\+Data\+\_\+flags\+\_\+get\+\_\+error\+\_\+page\label{httpdata_8h_a159dd434f3cab184e5fab8365ed494eca0a19f89674a79292d364b01350b56657}
+}]Se questa opzione è settata, al posto del file richiesto il server deve inviare una pagina di errore. \end{description}
+\end{Desc}

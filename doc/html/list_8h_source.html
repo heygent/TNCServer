@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.9.1"/>
+<title>TNC:  File sorgente tnc/core/list.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">TNC
+   </div>
+   <div id="projectbrief">Server HTTP</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generato da Doxygen 1.8.9.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Cerca');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Pagina&#160;Principale</span></a></li>
+      <li><a href="annotated.html"><span>Strutture&#160;dati</span></a></li>
+      <li class="current"><a href="files.html"><span>File</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Cerca" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Elenco&#160;dei&#160;file</span></a></li>
+      <li><a href="globals.html"><span>Elementi&#160;globali</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b54529e4b61657d44e5273f28d950520.html">tnc</a></li><li class="navelem"><a class="el" href="dir_e1650f422b5948c44e85f6c2e5bc484f.html">core</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">list.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="list_8h.html">Vai alla documentazione di questo file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef TNC_LIST_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define TNC_LIST_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="functiontypes_8h.html">functiontypes.h</a>&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>_TNCList *TNCList;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>_TNCListNode *TNCListNode;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;TNCList <a class="code" href="list_8h.html#a348c5bc63c91ace3343370373f4328b0">TNCList_new</a>();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;TNCListNode <a class="code" href="list_8h.html#ac5e4d9ffa5af8ceb91f384b562a9d6bf">TNCList_first</a>(TNCList list);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;TNCListNode <a class="code" href="list_8h.html#ad81a2d6c8ef1fa5390fd0b1c59f49728">TNCList_last</a>(TNCList list);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;TNCListNode <a class="code" href="list_8h.html#ae7534b594aa3353a3f27313442ffd0ba">TNCList_next</a>(TNCListNode current);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;TNCListNode <a class="code" href="list_8h.html#a1b7a902b8a8a5b78e91b07ff56591e24">TNCList_previous</a>(TNCListNode current);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="keywordtype">int</span> <a class="code" href="list_8h.html#af90bc4481504329ec71a3f06916e56ca">TNCList_push_front</a>(TNCList restrict <span class="keyword">self</span>, <span class="keywordtype">void</span> *restrict val);</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="keywordtype">int</span> <a class="code" href="list_8h.html#aa16018ceeb34a5efff57b582c7387d89">TNCList_push_back</a>(TNCList restrict <span class="keyword">self</span>, <span class="keywordtype">void</span> *restrict val);</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="keywordtype">int</span> <a class="code" href="list_8h.html#a5642341347cf8ceb18c96097478da28f">TNCList_insert_before</a>(TNCListNode restrict ref, <span class="keywordtype">void</span> *restrict val);</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="keywordtype">int</span> <a class="code" href="list_8h.html#a1e8317df833ce5fe88a94cda4e4310b2">TNCList_insert_after</a>(TNCListNode restrict ref, <span class="keywordtype">void</span> *restrict val);</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="keywordtype">void</span> *<a class="code" href="list_8h.html#a4e2ce6ee419787d2b4a1a36a1ec38341">TNCList_pop_front</a>(TNCList <span class="keyword">self</span>);</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="keywordtype">void</span> *<a class="code" href="list_8h.html#ae66d30798518d1a83ea84c45ad90b843">TNCList_pop_back</a>(TNCList <span class="keyword">self</span>);</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;<span class="keywordtype">void</span> *<a class="code" href="list_8h.html#aefa18bb9ec9638f5b25d0c596460ced2">TNCList_remove</a>(TNCListNode node);</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="keyword">const</span> <span class="keywordtype">void</span> *<a class="code" href="list_8h.html#aab379437b73d4b40caff1d7e8b1cd216">TNCList_getvalue</a>(TNCListNode node);</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="keywordtype">void</span> <a class="code" href="list_8h.html#a366497def8fb6151756bcec9424bce95">TNCList_destroy</a>(TNCList <span class="keyword">self</span>);</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;<span class="keywordtype">void</span> <a class="code" href="list_8h.html#aae5c3c2385ae5018a3181151140d6841">TNCList_destroy_and_free</a>(TNCList <span class="keyword">self</span>, <a class="code" href="functiontypes_8h.html#a78b4c663dde4687b8cddd1ca6031cadb">TNCConsumer</a> freefn);</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;<span class="keywordtype">void</span> <a class="code" href="list_8h.html#ac16e5d1d334f64f619605aab7834e0f3">TNCList_chain</a>(TNCList restrict list, TNCList restrict to_chain);</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;<span class="keywordtype">int</span> <a class="code" href="list_8h.html#a841ef92f69f013a3e28a37a0cacba52f">TNCList_empty</a>(TNCList <span class="keyword">self</span>);</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;<span class="keywordtype">size_t</span> <a class="code" href="list_8h.html#a062188a59982a6022f5928092b4111c1">TNCList_length</a>(TNCList <span class="keyword">self</span>);</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;<span class="preprocessor">#endif //TNC_LIST_H</span></div>
+<div class="ttc" id="list_8h_html_a348c5bc63c91ace3343370373f4328b0"><div class="ttname"><a href="list_8h.html#a348c5bc63c91ace3343370373f4328b0">TNCList_new</a></div><div class="ttdeci">TNCList TNCList_new()</div><div class="ttdoc">Inizializza una lista. </div><div class="ttdef"><b>Definition:</b> list.c:38</div></div>
+<div class="ttc" id="list_8h_html_a062188a59982a6022f5928092b4111c1"><div class="ttname"><a href="list_8h.html#a062188a59982a6022f5928092b4111c1">TNCList_length</a></div><div class="ttdeci">size_t TNCList_length(TNCList self)</div><div class="ttdoc">Restituisce il numero di elementi in una lista. </div><div class="ttdef"><b>Definition:</b> list.c:266</div></div>
+<div class="ttc" id="list_8h_html_ac16e5d1d334f64f619605aab7834e0f3"><div class="ttname"><a href="list_8h.html#ac16e5d1d334f64f619605aab7834e0f3">TNCList_chain</a></div><div class="ttdeci">void TNCList_chain(TNCList restrict list, TNCList restrict to_chain)</div><div class="ttdoc">Concatena due liste. </div></div>
+<div class="ttc" id="list_8h_html_aefa18bb9ec9638f5b25d0c596460ced2"><div class="ttname"><a href="list_8h.html#aefa18bb9ec9638f5b25d0c596460ced2">TNCList_remove</a></div><div class="ttdeci">void * TNCList_remove(TNCListNode node)</div><div class="ttdoc">Rimuove un elemento da una lista. </div><div class="ttdef"><b>Definition:</b> list.c:133</div></div>
+<div class="ttc" id="list_8h_html_a4e2ce6ee419787d2b4a1a36a1ec38341"><div class="ttname"><a href="list_8h.html#a4e2ce6ee419787d2b4a1a36a1ec38341">TNCList_pop_front</a></div><div class="ttdeci">void * TNCList_pop_front(TNCList self)</div><div class="ttdoc">Toglie il primo elemento dalla lista, e lo restituisce. </div><div class="ttdef"><b>Definition:</b> list.c:206</div></div>
+<div class="ttc" id="list_8h_html_ae66d30798518d1a83ea84c45ad90b843"><div class="ttname"><a href="list_8h.html#ae66d30798518d1a83ea84c45ad90b843">TNCList_pop_back</a></div><div class="ttdeci">void * TNCList_pop_back(TNCList self)</div><div class="ttdoc">Toglie l&#39;ultimo elemento dalla lista, e lo restituisce. </div><div class="ttdef"><b>Definition:</b> list.c:211</div></div>
+<div class="ttc" id="list_8h_html_aa16018ceeb34a5efff57b582c7387d89"><div class="ttname"><a href="list_8h.html#aa16018ceeb34a5efff57b582c7387d89">TNCList_push_back</a></div><div class="ttdeci">int TNCList_push_back(TNCList restrict self, void *restrict val)</div><div class="ttdoc">Inserisce un nuovo nodo come ultimo elemento della lista. </div><div class="ttdef"><b>Definition:</b> list.c:186</div></div>
+<div class="ttc" id="list_8h_html_af90bc4481504329ec71a3f06916e56ca"><div class="ttname"><a href="list_8h.html#af90bc4481504329ec71a3f06916e56ca">TNCList_push_front</a></div><div class="ttdeci">int TNCList_push_front(TNCList restrict self, void *restrict val)</div><div class="ttdoc">Inserisce un nuovo nodo come primo elemento della lista. </div><div class="ttdef"><b>Definition:</b> list.c:165</div></div>
+<div class="ttc" id="list_8h_html_a1e8317df833ce5fe88a94cda4e4310b2"><div class="ttname"><a href="list_8h.html#a1e8317df833ce5fe88a94cda4e4310b2">TNCList_insert_after</a></div><div class="ttdeci">int TNCList_insert_after(TNCListNode restrict ref, void *restrict val)</div><div class="ttdoc">Inserisce un elemento dopo il nodo passato come parametro. </div><div class="ttdef"><b>Definition:</b> list.c:110</div></div>
+<div class="ttc" id="list_8h_html_aab379437b73d4b40caff1d7e8b1cd216"><div class="ttname"><a href="list_8h.html#aab379437b73d4b40caff1d7e8b1cd216">TNCList_getvalue</a></div><div class="ttdeci">const void * TNCList_getvalue(TNCListNode node)</div><div class="ttdoc">Dato un nodo, restituisce un puntatore costante al suo valore. </div><div class="ttdef"><b>Definition:</b> list.c:255</div></div>
+<div class="ttc" id="list_8h_html_a1b7a902b8a8a5b78e91b07ff56591e24"><div class="ttname"><a href="list_8h.html#a1b7a902b8a8a5b78e91b07ff56591e24">TNCList_previous</a></div><div class="ttdeci">TNCListNode TNCList_previous(TNCListNode current)</div><div class="ttdoc">Restituisce il nodo precedente in una lista rispetto a un nodo passato come parametro. </div><div class="ttdef"><b>Definition:</b> list.c:249</div></div>
+<div class="ttc" id="list_8h_html_ac5e4d9ffa5af8ceb91f384b562a9d6bf"><div class="ttname"><a href="list_8h.html#ac5e4d9ffa5af8ceb91f384b562a9d6bf">TNCList_first</a></div><div class="ttdeci">TNCListNode TNCList_first(TNCList list)</div><div class="ttdoc">Restituisce il primo nodo di una lista. </div><div class="ttdef"><b>Definition:</b> list.c:231</div></div>
+<div class="ttc" id="list_8h_html_aae5c3c2385ae5018a3181151140d6841"><div class="ttname"><a href="list_8h.html#aae5c3c2385ae5018a3181151140d6841">TNCList_destroy_and_free</a></div><div class="ttdeci">void TNCList_destroy_and_free(TNCList self, TNCConsumer freefn)</div><div class="ttdoc">Cancella una lista e chiama una funzione su tutti i suoi elementi. </div><div class="ttdef"><b>Definition:</b> list.c:53</div></div>
+<div class="ttc" id="list_8h_html_ad81a2d6c8ef1fa5390fd0b1c59f49728"><div class="ttname"><a href="list_8h.html#ad81a2d6c8ef1fa5390fd0b1c59f49728">TNCList_last</a></div><div class="ttdeci">TNCListNode TNCList_last(TNCList list)</div><div class="ttdoc">Restituisce l&#39;ultimo nodo di una lista. </div><div class="ttdef"><b>Definition:</b> list.c:237</div></div>
+<div class="ttc" id="list_8h_html_a366497def8fb6151756bcec9424bce95"><div class="ttname"><a href="list_8h.html#a366497def8fb6151756bcec9424bce95">TNCList_destroy</a></div><div class="ttdeci">void TNCList_destroy(TNCList self)</div><div class="ttdoc">Cancella (dealloca) una lista. </div><div class="ttdef"><b>Definition:</b> list.c:71</div></div>
+<div class="ttc" id="list_8h_html_a5642341347cf8ceb18c96097478da28f"><div class="ttname"><a href="list_8h.html#a5642341347cf8ceb18c96097478da28f">TNCList_insert_before</a></div><div class="ttdeci">int TNCList_insert_before(TNCListNode restrict ref, void *restrict val)</div><div class="ttdoc">Inserisce un elemento prima del nodo passato come parametro. </div><div class="ttdef"><b>Definition:</b> list.c:88</div></div>
+<div class="ttc" id="list_8h_html_a841ef92f69f013a3e28a37a0cacba52f"><div class="ttname"><a href="list_8h.html#a841ef92f69f013a3e28a37a0cacba52f">TNCList_empty</a></div><div class="ttdeci">int TNCList_empty(TNCList self)</div><div class="ttdoc">Restituisce un valore diverso da zero se la lista è vuota, altrimenti 0. </div><div class="ttdef"><b>Definition:</b> list.c:261</div></div>
+<div class="ttc" id="functiontypes_8h_html"><div class="ttname"><a href="functiontypes_8h.html">functiontypes.h</a></div><div class="ttdoc">Contiene alias a tipo di puntatore a funzione. </div></div>
+<div class="ttc" id="list_8h_html_ae7534b594aa3353a3f27313442ffd0ba"><div class="ttname"><a href="list_8h.html#ae7534b594aa3353a3f27313442ffd0ba">TNCList_next</a></div><div class="ttdeci">TNCListNode TNCList_next(TNCListNode current)</div><div class="ttdoc">Restituisce il nodo successivo in una lista rispetto a un nodo passato come parametro. </div><div class="ttdef"><b>Definition:</b> list.c:243</div></div>
+<div class="ttc" id="functiontypes_8h_html_a78b4c663dde4687b8cddd1ca6031cadb"><div class="ttname"><a href="functiontypes_8h.html#a78b4c663dde4687b8cddd1ca6031cadb">TNCConsumer</a></div><div class="ttdeci">void(* TNCConsumer)(void *)</div><div class="ttdoc">Alias a puntatore di funzione void(void*). </div><div class="ttdef"><b>Definition:</b> functiontypes.h:10</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generato da &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.9.1
+</small></address>
+</body>
+</html>

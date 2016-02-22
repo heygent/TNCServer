@@ -89,8 +89,8 @@ static void parse_request_line(
     // Leggi il metodo HTTP
 
     if (!current_token) goto bad_request;
-    else if (strcasecmp(current_token, GETSTR) == 0) method = HTTPMethod_GET;
-    else if (strcasecmp(current_token, HEADSTR) == 0) method = HTTPMethod_HEAD;
+    else if (strcasecmp(current_token, "GET") == 0) method = HTTPMethod_GET;
+    else if (strcasecmp(current_token, "HEAD") == 0) method = HTTPMethod_HEAD;
     else method = HTTPMethod_unrecognized;
 
 

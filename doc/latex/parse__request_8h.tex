@@ -1,0 +1,53 @@
+\hypertarget{parse__request_8h}{}\section{Riferimenti per il file tnc/server/parse\+\_\+request.h}
+\label{parse__request_8h}\index{tnc/server/parse\+\_\+request.\+h@{tnc/server/parse\+\_\+request.\+h}}
+
+
+Contiene elementi utili al parsing della richiesta H\+T\+T\+P.  
+
+
+{\ttfamily \#include \char`\"{}httpdata.\+h\char`\"{}}\\*
+Grafo delle dipendenze di inclusione per parse\+\_\+request.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{parse__request_8h__incl}
+\end{center}
+\end{figure}
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structHTTPRequestData}{H\+T\+T\+P\+Request\+Data} $\ast$ \hyperlink{parse__request_8h_a7f6b46b8f33ebe0426d0d13b320f2927}{parse\+\_\+request} (T\+N\+C\+Server self, char $\ast$request)
+\begin{DoxyCompactList}\small\item\em Data una richiesta e il server che la riceve, restituisce un puntatore a un \hyperlink{structHTTPRequestData}{H\+T\+T\+P\+Request\+Data} contenente informazioni su di questa. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+Contiene elementi utili al parsing della richiesta H\+T\+T\+P. 
+
+
+
+\subsection{Documentazione delle funzioni}
+\hypertarget{parse__request_8h_a7f6b46b8f33ebe0426d0d13b320f2927}{}\index{parse\+\_\+request.\+h@{parse\+\_\+request.\+h}!parse\+\_\+request@{parse\+\_\+request}}
+\index{parse\+\_\+request@{parse\+\_\+request}!parse\+\_\+request.\+h@{parse\+\_\+request.\+h}}
+\subsubsection[{parse\+\_\+request}]{\setlength{\rightskip}{0pt plus 5cm}{\bf H\+T\+T\+P\+Request\+Data}$\ast$ parse\+\_\+request (
+\begin{DoxyParamCaption}
+\item[{T\+N\+C\+Server}]{self, }
+\item[{char $\ast$}]{request}
+\end{DoxyParamCaption}
+)}\label{parse__request_8h_a7f6b46b8f33ebe0426d0d13b320f2927}
+
+
+Data una richiesta e il server che la riceve, restituisce un puntatore a un \hyperlink{structHTTPRequestData}{H\+T\+T\+P\+Request\+Data} contenente informazioni su di questa. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em request} & La stringa contenente la richiesta H\+T\+T\+P.\\
+\hline
+{\em self} & Il server su cui si sta operando.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+Un puntatore a un \hyperlink{structHTTPRequestData}{H\+T\+T\+P\+Request\+Data} contenente informazioni sulla richiesta.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{Si veda anche}
+\hyperlink{structHTTPRequestData}{H\+T\+T\+P\+Request\+Data} 
+\end{DoxySeeAlso}

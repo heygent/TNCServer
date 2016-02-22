@@ -1,0 +1,7 @@
+<map id="tnc/server/httpdate.h" name="tnc/server/httpdate.h">
+<area shape="rect" id="node2" href="$httpheaders_8h.html" title="Contiene string literal corrispondenti a header di richiesta e risposta. " alt="" coords="224,80,387,107"/>
+<area shape="rect" id="node3" href="$httpdata_8h.html" title="Contiene strutture dati utili al salvataggio dei dati delle richieste e delle risposte HTTP..." alt="" coords="234,155,377,181"/>
+<area shape="rect" id="node4" href="$make__response_8h.html" title="Contiene funzioni utili a generare una risposta HTTP. " alt="" coords="5,229,192,256"/>
+<area shape="rect" id="node5" href="$parse__request_8h.html" title="Contiene elementi utili al parsing della richiesta HTTP. " alt="" coords="217,229,394,256"/>
+<area shape="rect" id="node6" href="$send__response_8h.html" title="Contiene definizioni e funzioni utili all&#39;invio di risposte HTTP. " alt="" coords="418,229,601,256"/>
+</map>

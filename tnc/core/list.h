@@ -1,9 +1,10 @@
 #ifndef TNC_LIST_H
 #define TNC_LIST_H
 
-#include "typedefs.h"
+#include "functiontypes.h"
 
-/** @file @brief Contiene l'interfaccia per le liste doppiamente concatenate.
+/** @file 
+ *  @brief Contiene l'interfaccia per le liste doppiamente concatenate.
  */
 
 /** Lista doppiamente concatenata.

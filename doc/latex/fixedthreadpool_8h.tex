@@ -1,0 +1,160 @@
+\hypertarget{fixedthreadpool_8h}{}\section{Riferimenti per il file tnc/core/fixedthreadpool.h}
+\label{fixedthreadpool_8h}\index{tnc/core/fixedthreadpool.\+h@{tnc/core/fixedthreadpool.\+h}}
+
+
+Contiene l\textquotesingle{}interfaccia per i threadpool.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}functiontypes.\+h\char`\"{}}\\*
+Grafo delle dipendenze di inclusione per fixedthreadpool.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{fixedthreadpool_8h__incl}
+\end{center}
+\end{figure}
+Questo grafo mostra quali altri file includono direttamente o indirettamente questo file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=209pt]{fixedthreadpool_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Strutture dati}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structTNCJob}{T\+N\+C\+Job}
+\end{DoxyCompactItemize}
+\subsection*{Tipi enumerati (enum)}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{fixedthreadpool_8h_a07df799d1391cfaf2f15dd1fb76d1580}{}enum {\bfseries T\+N\+C\+Fixed\+Thread\+Pool\+\_\+shutdown\+\_\+flags} \{ {\bfseries T\+N\+C\+Thread\+Pool\+\_\+shutdown\+\_\+now} = 1, 
+{\bfseries T\+N\+C\+Thread\+Pool\+\_\+shutdown\+\_\+finish\+\_\+pending}
+ \}\label{fixedthreadpool_8h_a07df799d1391cfaf2f15dd1fb76d1580}
+
+\item 
+\hypertarget{fixedthreadpool_8h_aa98f20da9b8b04c23f65df0ad4938cbd}{}enum {\bfseries T\+N\+C\+Fixed\+Thread\+Pool\+\_\+wait} \{ {\bfseries T\+N\+C\+Thread\+Pool\+\_\+wait\+\_\+yes} = 1, 
+{\bfseries T\+N\+C\+Thread\+Pool\+\_\+wait\+\_\+no}
+ \}\label{fixedthreadpool_8h_aa98f20da9b8b04c23f65df0ad4938cbd}
+
+\end{DoxyCompactItemize}
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+T\+N\+C\+Fixed\+Thread\+Pool \hyperlink{fixedthreadpool_8h_a1c95e2e20301036bd8fe65c716c83022}{T\+N\+C\+Fixed\+Thread\+Pool\+\_\+new} (size\+\_\+t threads)
+\begin{DoxyCompactList}\small\item\em Crea un threadpool. \end{DoxyCompactList}\item 
+int \hyperlink{fixedthreadpool_8h_a47a491dfca90579d121f8412f20d58c0}{T\+N\+C\+Fixed\+Thread\+Pool\+\_\+start} (T\+N\+C\+Fixed\+Thread\+Pool self)
+\begin{DoxyCompactList}\small\item\em Avvia un threadpool. \end{DoxyCompactList}\item 
+void \hyperlink{fixedthreadpool_8h_acfe0d05944c3845441419ec2ad1eb61f}{T\+N\+C\+Fixed\+Thread\+Pool\+\_\+shutdown} (T\+N\+C\+Fixed\+Thread\+Pool self, enum T\+N\+C\+Fixed\+Thread\+Pool\+\_\+shutdown\+\_\+flags mode, enum T\+N\+C\+Fixed\+Thread\+Pool\+\_\+wait wait)
+\begin{DoxyCompactList}\small\item\em Termina i worker di un threadpool. \end{DoxyCompactList}\item 
+int \hyperlink{fixedthreadpool_8h_a06aa0b55a7af15a28e611b67121f6947}{T\+N\+C\+Fixed\+Thread\+Pool\+\_\+enqueue} (T\+N\+C\+Fixed\+Thread\+Pool self, \hyperlink{structTNCJob}{T\+N\+C\+Job} $\ast$job)
+\begin{DoxyCompactList}\small\item\em Accoda un nuovo job alla coda. \end{DoxyCompactList}\item 
+int \hyperlink{fixedthreadpool_8h_af2dbf489ca7d90b5e4074b15799a28ab}{T\+N\+C\+Fixed\+Thread\+Pool\+\_\+do\+\_\+next} (T\+N\+C\+Fixed\+Thread\+Pool self, \hyperlink{structTNCJob}{T\+N\+C\+Job} $\ast$job)
+\begin{DoxyCompactList}\small\item\em Mette un nuovo job di fronte coda. \end{DoxyCompactList}\item 
+void \hyperlink{fixedthreadpool_8h_a51de2e4133de8f60bcfe680b8ac3c4a9}{T\+N\+C\+Fixed\+Thread\+Pool\+\_\+destroy} (T\+N\+C\+Fixed\+Thread\+Pool self)
+\begin{DoxyCompactList}\small\item\em Distrugge (dealloca) un T\+N\+C\+Fixed\+Thread\+Pool. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+Contiene l\textquotesingle{}interfaccia per i threadpool. 
+
+
+
+\subsection{Documentazione delle funzioni}
+\hypertarget{fixedthreadpool_8h_a51de2e4133de8f60bcfe680b8ac3c4a9}{}\index{fixedthreadpool.\+h@{fixedthreadpool.\+h}!T\+N\+C\+Fixed\+Thread\+Pool\+\_\+destroy@{T\+N\+C\+Fixed\+Thread\+Pool\+\_\+destroy}}
+\index{T\+N\+C\+Fixed\+Thread\+Pool\+\_\+destroy@{T\+N\+C\+Fixed\+Thread\+Pool\+\_\+destroy}!fixedthreadpool.\+h@{fixedthreadpool.\+h}}
+\subsubsection[{T\+N\+C\+Fixed\+Thread\+Pool\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void T\+N\+C\+Fixed\+Thread\+Pool\+\_\+destroy (
+\begin{DoxyParamCaption}
+\item[{T\+N\+C\+Fixed\+Thread\+Pool}]{self}
+\end{DoxyParamCaption}
+)}\label{fixedthreadpool_8h_a51de2e4133de8f60bcfe680b8ac3c4a9}
+
+
+Distrugge (dealloca) un T\+N\+C\+Fixed\+Thread\+Pool. 
+
+\hypertarget{fixedthreadpool_8h_af2dbf489ca7d90b5e4074b15799a28ab}{}\index{fixedthreadpool.\+h@{fixedthreadpool.\+h}!T\+N\+C\+Fixed\+Thread\+Pool\+\_\+do\+\_\+next@{T\+N\+C\+Fixed\+Thread\+Pool\+\_\+do\+\_\+next}}
+\index{T\+N\+C\+Fixed\+Thread\+Pool\+\_\+do\+\_\+next@{T\+N\+C\+Fixed\+Thread\+Pool\+\_\+do\+\_\+next}!fixedthreadpool.\+h@{fixedthreadpool.\+h}}
+\subsubsection[{T\+N\+C\+Fixed\+Thread\+Pool\+\_\+do\+\_\+next}]{\setlength{\rightskip}{0pt plus 5cm}int T\+N\+C\+Fixed\+Thread\+Pool\+\_\+do\+\_\+next (
+\begin{DoxyParamCaption}
+\item[{T\+N\+C\+Fixed\+Thread\+Pool}]{self, }
+\item[{{\bf T\+N\+C\+Job} $\ast$}]{job}
+\end{DoxyParamCaption}
+)}\label{fixedthreadpool_8h_af2dbf489ca7d90b5e4074b15799a28ab}
+
+
+Mette un nuovo job di fronte coda. 
+
+\hypertarget{fixedthreadpool_8h_a06aa0b55a7af15a28e611b67121f6947}{}\index{fixedthreadpool.\+h@{fixedthreadpool.\+h}!T\+N\+C\+Fixed\+Thread\+Pool\+\_\+enqueue@{T\+N\+C\+Fixed\+Thread\+Pool\+\_\+enqueue}}
+\index{T\+N\+C\+Fixed\+Thread\+Pool\+\_\+enqueue@{T\+N\+C\+Fixed\+Thread\+Pool\+\_\+enqueue}!fixedthreadpool.\+h@{fixedthreadpool.\+h}}
+\subsubsection[{T\+N\+C\+Fixed\+Thread\+Pool\+\_\+enqueue}]{\setlength{\rightskip}{0pt plus 5cm}int T\+N\+C\+Fixed\+Thread\+Pool\+\_\+enqueue (
+\begin{DoxyParamCaption}
+\item[{T\+N\+C\+Fixed\+Thread\+Pool}]{self, }
+\item[{{\bf T\+N\+C\+Job} $\ast$}]{job}
+\end{DoxyParamCaption}
+)}\label{fixedthreadpool_8h_a06aa0b55a7af15a28e611b67121f6947}
+
+
+Accoda un nuovo job alla coda. 
+
+\hypertarget{fixedthreadpool_8h_a1c95e2e20301036bd8fe65c716c83022}{}\index{fixedthreadpool.\+h@{fixedthreadpool.\+h}!T\+N\+C\+Fixed\+Thread\+Pool\+\_\+new@{T\+N\+C\+Fixed\+Thread\+Pool\+\_\+new}}
+\index{T\+N\+C\+Fixed\+Thread\+Pool\+\_\+new@{T\+N\+C\+Fixed\+Thread\+Pool\+\_\+new}!fixedthreadpool.\+h@{fixedthreadpool.\+h}}
+\subsubsection[{T\+N\+C\+Fixed\+Thread\+Pool\+\_\+new}]{\setlength{\rightskip}{0pt plus 5cm}T\+N\+C\+Fixed\+Thread\+Pool T\+N\+C\+Fixed\+Thread\+Pool\+\_\+new (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+t}]{threads}
+\end{DoxyParamCaption}
+)}\label{fixedthreadpool_8h_a1c95e2e20301036bd8fe65c716c83022}
+
+
+Crea un threadpool. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em threads} & Il numero di worker nel pool.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+Un T\+N\+C\+Fixed\+Thread\+Pool se l\textquotesingle{}operazione va a buon fine, N\+U\+L\+L altrimenti. 
+\end{DoxyReturn}
+\hypertarget{fixedthreadpool_8h_acfe0d05944c3845441419ec2ad1eb61f}{}\index{fixedthreadpool.\+h@{fixedthreadpool.\+h}!T\+N\+C\+Fixed\+Thread\+Pool\+\_\+shutdown@{T\+N\+C\+Fixed\+Thread\+Pool\+\_\+shutdown}}
+\index{T\+N\+C\+Fixed\+Thread\+Pool\+\_\+shutdown@{T\+N\+C\+Fixed\+Thread\+Pool\+\_\+shutdown}!fixedthreadpool.\+h@{fixedthreadpool.\+h}}
+\subsubsection[{T\+N\+C\+Fixed\+Thread\+Pool\+\_\+shutdown}]{\setlength{\rightskip}{0pt plus 5cm}void T\+N\+C\+Fixed\+Thread\+Pool\+\_\+shutdown (
+\begin{DoxyParamCaption}
+\item[{T\+N\+C\+Fixed\+Thread\+Pool}]{self, }
+\item[{enum T\+N\+C\+Fixed\+Thread\+Pool\+\_\+shutdown\+\_\+flags}]{mode, }
+\item[{enum T\+N\+C\+Fixed\+Thread\+Pool\+\_\+wait}]{wait}
+\end{DoxyParamCaption}
+)}\label{fixedthreadpool_8h_acfe0d05944c3845441419ec2ad1eb61f}
+
+
+Termina i worker di un threadpool. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em self} & Il threadpool su cui si vuole operare.\\
+\hline
+{\em mode} & Parametro che indica la modalità di spegnimento. Se settato su T\+N\+C\+Thread\+Pool\+\_\+shutdown\+\_\+now, lo spegnimento non attenderà il termine dei job ancora nella coda. Se settato su T\+N\+C\+Thread\+Pool\+\_\+shutdown\+\_\+finish\+\_\+pending lo spegnimento avverrà al termine dei job ancora rimasti nella coda.\\
+\hline
+{\em wait} & Parametro che indica se la chiamata a shutdown blocca l\textquotesingle{}esecuzione. Se settato a T\+N\+C\+Thread\+Pool\+\_\+wait\+\_\+yes, la chiamata a shutdown blocca l\textquotesingle{}esecuzione fino al termine di tutti i thread. Se settato a T\+N\+C\+Thread\+Pool\+\_\+wait\+\_\+no, la chiamata a shutdown restituisce prima del termine dell\textquotesingle{}esecuzione dei thread rimanenti. \\
+\hline
+\end{DoxyParams}
+\hypertarget{fixedthreadpool_8h_a47a491dfca90579d121f8412f20d58c0}{}\index{fixedthreadpool.\+h@{fixedthreadpool.\+h}!T\+N\+C\+Fixed\+Thread\+Pool\+\_\+start@{T\+N\+C\+Fixed\+Thread\+Pool\+\_\+start}}
+\index{T\+N\+C\+Fixed\+Thread\+Pool\+\_\+start@{T\+N\+C\+Fixed\+Thread\+Pool\+\_\+start}!fixedthreadpool.\+h@{fixedthreadpool.\+h}}
+\subsubsection[{T\+N\+C\+Fixed\+Thread\+Pool\+\_\+start}]{\setlength{\rightskip}{0pt plus 5cm}int T\+N\+C\+Fixed\+Thread\+Pool\+\_\+start (
+\begin{DoxyParamCaption}
+\item[{T\+N\+C\+Fixed\+Thread\+Pool}]{self}
+\end{DoxyParamCaption}
+)}\label{fixedthreadpool_8h_a47a491dfca90579d121f8412f20d58c0}
+
+
+Avvia un threadpool. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em self} & Il threadpool da avviare.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+Un codice di errore. I codici di errore si possono trovare nell\textquotesingle{}header error.\+h. 
+\end{DoxyReturn}

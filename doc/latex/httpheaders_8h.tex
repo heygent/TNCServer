@@ -1,0 +1,119 @@
+\hypertarget{httpheaders_8h}{}\section{Riferimenti per il file tnc/server/httpheaders.h}
+\label{httpheaders_8h}\index{tnc/server/httpheaders.\+h@{tnc/server/httpheaders.\+h}}
+
+
+Contiene string literal corrispondenti a header di richiesta e risposta.  
+
+
+{\ttfamily \#include \char`\"{}httpdate.\+h\char`\"{}}\\*
+Grafo delle dipendenze di inclusione per httpheaders.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{httpheaders_8h__incl}
+\end{center}
+\end{figure}
+Questo grafo mostra quali altri file includono direttamente o indirettamente questo file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{httpheaders_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Definizioni}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{httpheaders_8h_aed732fc470f974350bb2b3e6acc81885}{}\#define {\bfseries H\+E\+A\+D\+E\+R\+S\+I\+Z\+E}~8096\label{httpheaders_8h_aed732fc470f974350bb2b3e6acc81885}
+
+\item 
+\hypertarget{httpheaders_8h_a6cb23a858b0a21bdaa644b9181dc415f}{}\#define {\bfseries C\+R\+L\+F}~\char`\"{}\textbackslash{}r\textbackslash{}n\char`\"{}\label{httpheaders_8h_a6cb23a858b0a21bdaa644b9181dc415f}
+
+\item 
+\hypertarget{httpheaders_8h_a08b924eaac7bce59891b3fbff0eae0c6}{}\#define {\bfseries H\+T\+T\+P10}~\char`\"{}H\+T\+T\+P/1.\+0\char`\"{}\label{httpheaders_8h_a08b924eaac7bce59891b3fbff0eae0c6}
+
+\item 
+\hypertarget{httpheaders_8h_aa8e0efb4b744aea5a1a7fcf19949bc34}{}\#define {\bfseries H\+T\+T\+P11}~\char`\"{}H\+T\+T\+P/1.\+1\char`\"{}\label{httpheaders_8h_aa8e0efb4b744aea5a1a7fcf19949bc34}
+
+\item 
+\#define \hyperlink{httpheaders_8h_a8d62a6a7cbf8a0a1aa7d13eb0cce2b3a}{C\+O\+M\+M\+A\+N\+D\+\_\+\+M\+I\+M\+E\+T\+Y\+P\+E}~\char`\"{}xdg-\/mime query filetype \%s $\vert$ tr \textquotesingle{}\textbackslash{}\textbackslash{}n\textquotesingle{} \textquotesingle{}\textbackslash{}\textbackslash{}0\textquotesingle{}\char`\"{}
+\begin{DoxyCompactList}\small\item\em Comando che viene eseguito per ottenere una stringa contenente il mimetype di un file. \end{DoxyCompactList}\item 
+\#define \hyperlink{httpheaders_8h_a5c54332f23fe80ac945f6431b6ca763f}{C\+O\+M\+M\+A\+N\+D\+\_\+\+E\+N\+C\+O\+D\+I\+N\+G}~\char`\"{}file -\/b -\/-\/mime-\/encoding \%s $\vert$ tr \textquotesingle{}\textbackslash{}\textbackslash{}n\textquotesingle{} \textquotesingle{}\textbackslash{}\textbackslash{}0\textquotesingle{}\char`\"{}
+\begin{DoxyCompactList}\small\item\em Comando che viene eseguito per ottenere una stringa contenente la codifica di un file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}{\bf Statusline di risposta}\par
+{\em Definizioni di stringhe che rappresentano la statusline di una risposta H\+T\+T\+P. }\begin{DoxyCompactItemize}
+\item 
+\hypertarget{httpheaders_8h_a52ab6e7e662b67329fe3570d298a09dd}{}\#define {\bfseries R\+H\+D\+R\+\_\+\+S\+T\+A\+T\+U\+S\+L\+I\+N\+E\+\_\+\+O\+K}~\char`\"{}200 O\+K\char`\"{}\label{httpheaders_8h_a52ab6e7e662b67329fe3570d298a09dd}
+
+\item 
+\hypertarget{httpheaders_8h_aca5230fd091f852c85521cecf20a7913}{}\#define {\bfseries R\+H\+D\+R\+\_\+\+S\+T\+A\+T\+U\+S\+L\+I\+N\+E\+\_\+\+N\+O\+T\+M\+O\+D\+I\+F\+I\+E\+D}~\char`\"{}304 Not Modified\char`\"{}\label{httpheaders_8h_aca5230fd091f852c85521cecf20a7913}
+
+\item 
+\hypertarget{httpheaders_8h_a6870f96252e7a41f53a796fedaf9982f}{}\#define {\bfseries R\+H\+D\+R\+\_\+\+S\+T\+A\+T\+U\+S\+L\+I\+N\+E\+\_\+\+B\+A\+D\+R\+E\+Q\+U\+E\+S\+T}~\char`\"{}400 Bad Request\char`\"{}\label{httpheaders_8h_a6870f96252e7a41f53a796fedaf9982f}
+
+\item 
+\hypertarget{httpheaders_8h_a2bfd669aa059c40e7bcb61402462eb84}{}\#define {\bfseries R\+H\+D\+R\+\_\+\+S\+T\+A\+T\+U\+S\+L\+I\+N\+E\+\_\+\+N\+O\+T\+F\+O\+U\+N\+D}~\char`\"{}404 Not Found\char`\"{}\label{httpheaders_8h_a2bfd669aa059c40e7bcb61402462eb84}
+
+\item 
+\hypertarget{httpheaders_8h_ae1d88db08dad245759c37ff151ff0f22}{}\#define {\bfseries R\+H\+D\+R\+\_\+\+S\+T\+A\+T\+U\+S\+L\+I\+N\+E\+\_\+\+N\+O\+T\+I\+M\+P\+L\+E\+M\+E\+N\+T\+E\+D}~\char`\"{}501 Not Implemented\char`\"{}\label{httpheaders_8h_ae1d88db08dad245759c37ff151ff0f22}
+
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Response header}\par
+{\em String literal formattabili con printf() o strfdate() utili alla creazione di una risposta H\+T\+T\+P. }\begin{DoxyCompactItemize}
+\item 
+\hypertarget{httpheaders_8h_acc0efd1b928f57223437c48dd2407a0f}{}\#define {\bfseries R\+H\+D\+R\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N}~\char`\"{}Connection\+: \%s\char`\"{}\label{httpheaders_8h_acc0efd1b928f57223437c48dd2407a0f}
+
+\item 
+\hypertarget{httpheaders_8h_a4c9c30f434da8422e1df4e496738d623}{}\#define {\bfseries R\+H\+D\+R\+\_\+\+C\+O\+N\+T\+E\+N\+T\+\_\+\+T\+Y\+P\+E}~\char`\"{}Content-\/Type\+: \%s; charset=\%s\char`\"{}\label{httpheaders_8h_a4c9c30f434da8422e1df4e496738d623}
+
+\item 
+\hypertarget{httpheaders_8h_affac7b401e575c62b6ad921e58aeddbe}{}\#define {\bfseries R\+H\+D\+R\+\_\+\+C\+O\+N\+T\+E\+N\+T\+\_\+\+L\+E\+N\+G\+T\+H}~\char`\"{}Content-\/Length\+: \%s\char`\"{}\label{httpheaders_8h_affac7b401e575c62b6ad921e58aeddbe}
+
+\item 
+\hypertarget{httpheaders_8h_a753afe5dd87cbac07c208ca6687d037f}{}\#define {\bfseries R\+H\+D\+R\+\_\+\+L\+A\+S\+T\+\_\+\+M\+O\+D\+I\+F\+I\+E\+D}~\char`\"{}Last-\/Modified\+: \char`\"{} H\+T\+T\+P\+D\+A\+T\+E\label{httpheaders_8h_a753afe5dd87cbac07c208ca6687d037f}
+
+\item 
+\hypertarget{httpheaders_8h_ad59b950287aa9c35c83da4db4e475e99}{}\#define {\bfseries R\+H\+D\+R\+\_\+\+D\+A\+T\+E}~\char`\"{}Date\+: \char`\"{} H\+T\+T\+P\+D\+A\+T\+E\label{httpheaders_8h_ad59b950287aa9c35c83da4db4e475e99}
+
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Tipi enumerati (enum)}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{httpheaders_8h_a837a089a977b319a11edfb8022d9e47d}{H\+T\+T\+P\+Method} \{ {\bfseries H\+T\+T\+P\+Method\+\_\+unrecognized}, 
+{\bfseries H\+T\+T\+P\+Method\+\_\+\+G\+E\+T}, 
+{\bfseries H\+T\+T\+P\+Method\+\_\+\+H\+E\+A\+D}
+ \}
+\begin{DoxyCompactList}\small\item\em Rappresenta i metodi H\+T\+T\+P riconoscibili ricevuti in ingresso. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+Contiene string literal corrispondenti a header di richiesta e risposta. 
+
+
+
+\subsection{Documentazione delle definizioni}
+\hypertarget{httpheaders_8h_a5c54332f23fe80ac945f6431b6ca763f}{}\index{httpheaders.\+h@{httpheaders.\+h}!C\+O\+M\+M\+A\+N\+D\+\_\+\+E\+N\+C\+O\+D\+I\+N\+G@{C\+O\+M\+M\+A\+N\+D\+\_\+\+E\+N\+C\+O\+D\+I\+N\+G}}
+\index{C\+O\+M\+M\+A\+N\+D\+\_\+\+E\+N\+C\+O\+D\+I\+N\+G@{C\+O\+M\+M\+A\+N\+D\+\_\+\+E\+N\+C\+O\+D\+I\+N\+G}!httpheaders.\+h@{httpheaders.\+h}}
+\subsubsection[{C\+O\+M\+M\+A\+N\+D\+\_\+\+E\+N\+C\+O\+D\+I\+N\+G}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+O\+M\+M\+A\+N\+D\+\_\+\+E\+N\+C\+O\+D\+I\+N\+G~\char`\"{}file -\/b -\/-\/mime-\/encoding \%s $\vert$ tr \textquotesingle{}\textbackslash{}\textbackslash{}n\textquotesingle{} \textquotesingle{}\textbackslash{}\textbackslash{}0\textquotesingle{}\char`\"{}}\label{httpheaders_8h_a5c54332f23fe80ac945f6431b6ca763f}
+
+
+Comando che viene eseguito per ottenere una stringa contenente la codifica di un file. 
+
+\hypertarget{httpheaders_8h_a8d62a6a7cbf8a0a1aa7d13eb0cce2b3a}{}\index{httpheaders.\+h@{httpheaders.\+h}!C\+O\+M\+M\+A\+N\+D\+\_\+\+M\+I\+M\+E\+T\+Y\+P\+E@{C\+O\+M\+M\+A\+N\+D\+\_\+\+M\+I\+M\+E\+T\+Y\+P\+E}}
+\index{C\+O\+M\+M\+A\+N\+D\+\_\+\+M\+I\+M\+E\+T\+Y\+P\+E@{C\+O\+M\+M\+A\+N\+D\+\_\+\+M\+I\+M\+E\+T\+Y\+P\+E}!httpheaders.\+h@{httpheaders.\+h}}
+\subsubsection[{C\+O\+M\+M\+A\+N\+D\+\_\+\+M\+I\+M\+E\+T\+Y\+P\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+O\+M\+M\+A\+N\+D\+\_\+\+M\+I\+M\+E\+T\+Y\+P\+E~\char`\"{}xdg-\/mime query filetype \%s $\vert$ tr \textquotesingle{}\textbackslash{}\textbackslash{}n\textquotesingle{} \textquotesingle{}\textbackslash{}\textbackslash{}0\textquotesingle{}\char`\"{}}\label{httpheaders_8h_a8d62a6a7cbf8a0a1aa7d13eb0cce2b3a}
+
+
+Comando che viene eseguito per ottenere una stringa contenente il mimetype di un file. 
+
+
+
+\subsection{Documentazione dei tipi enumerati}
+\hypertarget{httpheaders_8h_a837a089a977b319a11edfb8022d9e47d}{}\index{httpheaders.\+h@{httpheaders.\+h}!H\+T\+T\+P\+Method@{H\+T\+T\+P\+Method}}
+\index{H\+T\+T\+P\+Method@{H\+T\+T\+P\+Method}!httpheaders.\+h@{httpheaders.\+h}}
+\subsubsection[{H\+T\+T\+P\+Method}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf H\+T\+T\+P\+Method}}\label{httpheaders_8h_a837a089a977b319a11edfb8022d9e47d}
+
+
+Rappresenta i metodi H\+T\+T\+P riconoscibili ricevuti in ingresso. 
+

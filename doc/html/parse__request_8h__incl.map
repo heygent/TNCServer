@@ -1,0 +1,7 @@
+<map id="tnc/server/parse_request.h" name="tnc/server/parse_request.h">
+<area shape="rect" id="node2" href="$httpdata_8h.html" title="Contiene strutture dati utili al salvataggio dei dati delle richieste e delle risposte HTTP..." alt="" coords="225,80,305,107"/>
+<area shape="rect" id="node7" href="$httpheaders_8h.html" title="Contiene string literal corrispondenti a header di richiesta e risposta. " alt="" coords="363,155,464,181"/>
+<area shape="rect" id="node9" href="$list_8h.html" title="Contiene l&#39;interfaccia per le liste doppiamente concatenate. " alt="" coords="488,155,589,181"/>
+<area shape="rect" id="node8" href="$httpdate_8h.html" title="Funzioni e definizioni utili alla creazione e alla manipolazione delle date nei formati supportati da..." alt="" coords="373,229,453,256"/>
+<area shape="rect" id="node10" href="$functiontypes_8h.html" title="Contiene alias a tipo di puntatore a funzione. " alt="" coords="483,229,594,256"/>
+</map>

@@ -1,0 +1,139 @@
+\hypertarget{server_8h}{}\section{Riferimenti per il file tnc/server/server.h}
+\label{server_8h}\index{tnc/server/server.\+h@{tnc/server/server.\+h}}
+
+
+Contiene funzioni utili all\textquotesingle{}uso del server.  
+
+
+{\ttfamily \#include $<$inttypes.\+h$>$}\\*
+{\ttfamily \#include $<$pthread.\+h$>$}\\*
+{\ttfamily \#include $<$stdatomic.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}tnc/core/fixedthreadpool.\+h\char`\"{}}\\*
+Grafo delle dipendenze di inclusione per server.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{server_8h__incl}
+\end{center}
+\end{figure}
+Questo grafo mostra quali altri file includono direttamente o indirettamente questo file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=178pt]{server_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Tipi enumerati (enum)}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{server_8h_a0249264e0c8e46746c777adca61d5947}{}enum {\bfseries T\+N\+C\+Server\+\_\+shutdown} \{ {\bfseries T\+N\+C\+Server\+\_\+shutdown\+\_\+now} = T\+N\+C\+Thread\+Pool\+\_\+shutdown\+\_\+now, 
+{\bfseries T\+N\+C\+Server\+\_\+shutdown\+\_\+finish\+\_\+pending} = T\+N\+C\+Thread\+Pool\+\_\+shutdown\+\_\+finish\+\_\+pending
+ \}\label{server_8h_a0249264e0c8e46746c777adca61d5947}
+
+\item 
+\hypertarget{server_8h_acef63214d9d61a268fa7b96ce5b353da}{}enum {\bfseries T\+N\+C\+Server\+\_\+wait} \{ {\bfseries T\+N\+C\+Server\+\_\+wait\+\_\+yes} = T\+N\+C\+Thread\+Pool\+\_\+wait\+\_\+yes, 
+{\bfseries T\+N\+C\+Server\+\_\+wait\+\_\+no} = T\+N\+C\+Thread\+Pool\+\_\+wait\+\_\+no
+ \}\label{server_8h_acef63214d9d61a268fa7b96ce5b353da}
+
+\end{DoxyCompactItemize}
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+T\+N\+C\+Server \hyperlink{server_8h_aae87182289b15731e1abbe5469d2e90a}{T\+N\+C\+Server\+\_\+new} (const char $\ast$localpath, uint16\+\_\+t door, size\+\_\+t max\+\_\+threads)
+\begin{DoxyCompactList}\small\item\em Crea un nuovo T\+N\+C\+Server. \end{DoxyCompactList}\item 
+int \hyperlink{server_8h_ada04abafbddbfd9bc5e02c50334ecc55}{T\+N\+C\+Server\+\_\+start} (T\+N\+C\+Server self)
+\begin{DoxyCompactList}\small\item\em Avvia il T\+N\+C\+Server passato come parametro, ovvero inizia ad ascoltare e a rispondere alle richieste che riceve. \end{DoxyCompactList}\item 
+void \hyperlink{server_8h_a54908b6bb01370749a3105d45d5bad90}{T\+N\+C\+Server\+\_\+shutdown} (T\+N\+C\+Server self, enum T\+N\+C\+Server\+\_\+shutdown shutdown, enum T\+N\+C\+Server\+\_\+wait wait)
+\begin{DoxyCompactList}\small\item\em Termina il T\+N\+C\+Server passato come parametro. \end{DoxyCompactList}\item 
+void \hyperlink{server_8h_ab67b044525ad306fe48ae6974e2cd74c}{T\+N\+C\+Server\+\_\+destroy} (T\+N\+C\+Server self)
+\begin{DoxyCompactList}\small\item\em Elimina (dealloca) un T\+N\+C\+Server. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+Contiene funzioni utili all\textquotesingle{}uso del server. 
+
+
+
+\subsection{Documentazione delle funzioni}
+\hypertarget{server_8h_ab67b044525ad306fe48ae6974e2cd74c}{}\index{server.\+h@{server.\+h}!T\+N\+C\+Server\+\_\+destroy@{T\+N\+C\+Server\+\_\+destroy}}
+\index{T\+N\+C\+Server\+\_\+destroy@{T\+N\+C\+Server\+\_\+destroy}!server.\+h@{server.\+h}}
+\subsubsection[{T\+N\+C\+Server\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void T\+N\+C\+Server\+\_\+destroy (
+\begin{DoxyParamCaption}
+\item[{T\+N\+C\+Server}]{self}
+\end{DoxyParamCaption}
+)}\label{server_8h_ab67b044525ad306fe48ae6974e2cd74c}
+
+
+Elimina (dealloca) un T\+N\+C\+Server. 
+
+\hypertarget{server_8h_aae87182289b15731e1abbe5469d2e90a}{}\index{server.\+h@{server.\+h}!T\+N\+C\+Server\+\_\+new@{T\+N\+C\+Server\+\_\+new}}
+\index{T\+N\+C\+Server\+\_\+new@{T\+N\+C\+Server\+\_\+new}!server.\+h@{server.\+h}}
+\subsubsection[{T\+N\+C\+Server\+\_\+new}]{\setlength{\rightskip}{0pt plus 5cm}T\+N\+C\+Server T\+N\+C\+Server\+\_\+new (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{localpath, }
+\item[{uint16\+\_\+t}]{door, }
+\item[{size\+\_\+t}]{max\+\_\+threads}
+\end{DoxyParamCaption}
+)}\label{server_8h_aae87182289b15731e1abbe5469d2e90a}
+
+
+Crea un nuovo T\+N\+C\+Server. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em localpath} & Il percorso locale da servire.\\
+\hline
+{\em door} & La porta su cui il server deve operare.\\
+\hline
+{\em max\+\_\+threads} & Il numero massimo di thread che il server può usare.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+Un puntatore opaco a un T\+N\+C\+Server. 
+\end{DoxyReturn}
+\hypertarget{server_8h_a54908b6bb01370749a3105d45d5bad90}{}\index{server.\+h@{server.\+h}!T\+N\+C\+Server\+\_\+shutdown@{T\+N\+C\+Server\+\_\+shutdown}}
+\index{T\+N\+C\+Server\+\_\+shutdown@{T\+N\+C\+Server\+\_\+shutdown}!server.\+h@{server.\+h}}
+\subsubsection[{T\+N\+C\+Server\+\_\+shutdown}]{\setlength{\rightskip}{0pt plus 5cm}void T\+N\+C\+Server\+\_\+shutdown (
+\begin{DoxyParamCaption}
+\item[{T\+N\+C\+Server}]{self, }
+\item[{enum T\+N\+C\+Server\+\_\+shutdown}]{shutdown, }
+\item[{enum T\+N\+C\+Server\+\_\+wait}]{wait}
+\end{DoxyParamCaption}
+)}\label{server_8h_a54908b6bb01370749a3105d45d5bad90}
+
+
+Termina il T\+N\+C\+Server passato come parametro. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em self} & Il server su cui si vuole operare.\\
+\hline
+{\em shutdown} & Se settato su T\+N\+C\+Server\+\_\+shutdown\+\_\+finish\+\_\+pending, viene attesa l\textquotesingle{}elaborazione delle richieste già ricevute dal server prima di terminarlo. Se settato su T\+N\+C\+Server\+\_\+shutdown\+\_\+now, il server esegue l\textquotesingle{}elaborazione delle sole richieste su cui ha già iniziato ad operare prima di terminare.\\
+\hline
+{\em wait} & Se settato su T\+N\+C\+Server\+\_\+wait\+\_\+yes, la funzione attende la terminazione del server prima di terminare. Se settato su T\+N\+C\+Server\+\_\+wait\+\_\+no, la chiamata a T\+N\+C\+Server\+\_\+shutdown termina immediatamente. \\
+\hline
+\end{DoxyParams}
+\hypertarget{server_8h_ada04abafbddbfd9bc5e02c50334ecc55}{}\index{server.\+h@{server.\+h}!T\+N\+C\+Server\+\_\+start@{T\+N\+C\+Server\+\_\+start}}
+\index{T\+N\+C\+Server\+\_\+start@{T\+N\+C\+Server\+\_\+start}!server.\+h@{server.\+h}}
+\subsubsection[{T\+N\+C\+Server\+\_\+start}]{\setlength{\rightskip}{0pt plus 5cm}int T\+N\+C\+Server\+\_\+start (
+\begin{DoxyParamCaption}
+\item[{T\+N\+C\+Server}]{self}
+\end{DoxyParamCaption}
+)}\label{server_8h_ada04abafbddbfd9bc5e02c50334ecc55}
+
+
+Avvia il T\+N\+C\+Server passato come parametro, ovvero inizia ad ascoltare e a rispondere alle richieste che riceve. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em self} & Il server da avviare.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+0 se va a buon fine, un codice di errore altrimenti. I codici di errore relativi al server possono essere consultati nell\textquotesingle{}header \hyperlink{server_2error_8h}{tnc/server/error.\+h}
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{Si veda anche}
+error.\+h 
+\end{DoxySeeAlso}

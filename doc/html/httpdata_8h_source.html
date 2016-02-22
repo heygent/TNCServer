@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.9.1"/>
+<title>TNC:  File sorgente tnc/server/httpdata.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">TNC
+   </div>
+   <div id="projectbrief">Server HTTP</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generato da Doxygen 1.8.9.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Cerca');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Pagina&#160;Principale</span></a></li>
+      <li><a href="annotated.html"><span>Strutture&#160;dati</span></a></li>
+      <li class="current"><a href="files.html"><span>File</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Cerca" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Elenco&#160;dei&#160;file</span></a></li>
+      <li><a href="globals.html"><span>Elementi&#160;globali</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b54529e4b61657d44e5273f28d950520.html">tnc</a></li><li class="navelem"><a class="el" href="dir_040ce5ebbeabcab1d2cd382211e2566c.html">server</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">httpdata.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="httpdata_8h.html">Vai alla documentazione di questo file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef TNC_HTTPDATA_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define TNC_HTTPDATA_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;time.h&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="httpheaders_8h.html">httpheaders.h</a>&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="list_8h.html">tnc/core/list.h</a>&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structHTTPRequestData.html">HTTPRequestData</a> <a class="code" href="structHTTPRequestData.html">HTTPRequestData</a>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="structHTTPRequestData.html">   26</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structHTTPRequestData.html">HTTPRequestData</a></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;{</div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="structHTTPRequestData.html#a52def24a4e2fefab7c723751b4ca5a7b">   31</a></span>&#160;    FILE                *<a class="code" href="structHTTPRequestData.html#a52def24a4e2fefab7c723751b4ca5a7b">file_to_serve</a>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="structHTTPRequestData.html#acf9615119994e2784a395f3b5b80f710">   34</a></span>&#160;    <span class="keyword">struct </span>stat         *<a class="code" href="structHTTPRequestData.html#acf9615119994e2784a395f3b5b80f710">file_to_serve_stat</a>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="structHTTPRequestData.html#a04c7c946a943f429f2529cf220076c26">   37</a></span>&#160;    <span class="keywordtype">char</span>                *<a class="code" href="structHTTPRequestData.html#a04c7c946a943f429f2529cf220076c26">remote_path</a>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="structHTTPRequestData.html#a71bcae8a8f14feb676826a6b8a76604e">   40</a></span>&#160;    <span class="keywordtype">char</span>                *<a class="code" href="structHTTPRequestData.html#a71bcae8a8f14feb676826a6b8a76604e">path_to_serve</a>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="structHTTPRequestData.html#a47c202aa745d8a5eb2a5dc7cbc3087aa">   44</a></span>&#160;    <span class="keywordtype">int</span>                 <a class="code" href="structHTTPRequestData.html#a47c202aa745d8a5eb2a5dc7cbc3087aa">status_code</a>;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">int</span>                 http_version_major;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">int</span>                 http_version_minor;</div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="structHTTPRequestData.html#af309a4c6a758b62689eeb327b5e09737">   55</a></span>&#160;    <span class="keyword">enum</span> <a class="code" href="httpheaders_8h.html#a837a089a977b319a11edfb8022d9e47d">HTTPMethod</a>     <a class="code" href="structHTTPRequestData.html#af309a4c6a758b62689eeb327b5e09737">method</a>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="structHTTPRequestData.html#ac3bd527bd3e00ce219bfa72dbaea2351">   60</a></span>&#160;    uint8_t             <a class="code" href="structHTTPRequestData.html#ac3bd527bd3e00ce219bfa72dbaea2351">flags</a>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;};</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structHTTPRequestHeader.html">HTTPRequestHeader</a> <a class="code" href="structHTTPRequestHeader.html">HTTPRequestHeader</a>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="httpdata_8h.html#a159dd434f3cab184e5fab8365ed494ec">   68</a></span>&#160;<span class="keyword">enum</span> <a class="code" href="httpdata_8h.html#a159dd434f3cab184e5fab8365ed494ec">HTTPRequestData_flags</a></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;{</div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="httpdata_8h.html#a159dd434f3cab184e5fab8365ed494eca38f1b00cb61c162432d579553dfc4f98">   72</a></span>&#160;    <a class="code" href="httpdata_8h.html#a159dd434f3cab184e5fab8365ed494eca38f1b00cb61c162432d579553dfc4f98">HTTPRequestData_flags_stop_parsing</a>      = 1 &lt;&lt; 0,</div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="httpdata_8h.html#a159dd434f3cab184e5fab8365ed494eca9f170ca51d662124859bfd11df8f24e4">   75</a></span>&#160;    <a class="code" href="httpdata_8h.html#a159dd434f3cab184e5fab8365ed494eca9f170ca51d662124859bfd11df8f24e4">HTTPRequestData_flags_keep_alive</a>        = 1 &lt;&lt; 1,</div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="httpdata_8h.html#a159dd434f3cab184e5fab8365ed494ecac2cce33be3baf44d3f60e19084ae311f">   78</a></span>&#160;    <a class="code" href="httpdata_8h.html#a159dd434f3cab184e5fab8365ed494ecac2cce33be3baf44d3f60e19084ae311f">HTTPRequestData_flags_dont_send_payload</a> = 1 &lt;&lt; 2,</div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="httpdata_8h.html#a159dd434f3cab184e5fab8365ed494eca0a19f89674a79292d364b01350b56657">   81</a></span>&#160;    <a class="code" href="httpdata_8h.html#a159dd434f3cab184e5fab8365ed494eca0a19f89674a79292d364b01350b56657">HTTPRequestData_flags_get_error_page</a>    = 1 &lt;&lt; 3</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;};</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="structHTTPRequestHeader.html">   85</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structHTTPRequestHeader.html">HTTPRequestHeader</a></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;{</div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="structHTTPRequestHeader.html#a9455709e6aff8eb48c42866a1a674094">   88</a></span>&#160;    <span class="keywordtype">char</span> *<a class="code" href="structHTTPRequestHeader.html#a9455709e6aff8eb48c42866a1a674094">field_name</a>;</div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="structHTTPRequestHeader.html#a89cbb9f9651b0866bc4f0dbd37b5e435">   90</a></span>&#160;    <span class="keywordtype">char</span> *<a class="code" href="structHTTPRequestHeader.html#a89cbb9f9651b0866bc4f0dbd37b5e435">field_content</a>;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;};</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structHTTPResponseData.html">HTTPResponseData</a> <a class="code" href="structHTTPResponseData.html">HTTPResponseData</a>;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="structHTTPResponseData.html">   95</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structHTTPResponseData.html">HTTPResponseData</a></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;{</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keyword">const</span> <a class="code" href="structHTTPRequestData.html">HTTPRequestData</a>    *request_data;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    TNCList headers;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;};</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="keywordtype">void</span> HTTPRequestData_init(<a class="code" href="structHTTPRequestData.html">HTTPRequestData</a> *data);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<a class="code" href="structHTTPRequestData.html">HTTPRequestData</a> *HTTPRequestData_new();</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="keywordtype">void</span> HTTPRequestData_destroy(<a class="code" href="structHTTPRequestData.html">HTTPRequestData</a> *data);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="keywordtype">void</span> HTTPRequestData_destroy_members(<a class="code" href="structHTTPRequestData.html">HTTPRequestData</a> *data);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="keywordtype">void</span> HTTPResponseData_init(<a class="code" href="structHTTPResponseData.html">HTTPResponseData</a> *data, <span class="keyword">const</span> <a class="code" href="structHTTPRequestData.html">HTTPRequestData</a> *rd);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<a class="code" href="structHTTPResponseData.html">HTTPResponseData</a> *HTTPResponseData_new(<span class="keyword">const</span> <a class="code" href="structHTTPRequestData.html">HTTPRequestData</a> *rd);</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="keywordtype">void</span> HTTPResponseData_destroy_members(<a class="code" href="structHTTPResponseData.html">HTTPResponseData</a> *data);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="keywordtype">void</span> HTTPResponseData_destroy(<a class="code" href="structHTTPResponseData.html">HTTPResponseData</a> *data);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="preprocessor">#endif //TNC_HTTPDATA_H</span></div>
+<div class="ttc" id="httpdata_8h_html_a159dd434f3cab184e5fab8365ed494eca0a19f89674a79292d364b01350b56657"><div class="ttname"><a href="httpdata_8h.html#a159dd434f3cab184e5fab8365ed494eca0a19f89674a79292d364b01350b56657">HTTPRequestData_flags_get_error_page</a></div><div class="ttdoc">Se questa opzione è settata, al posto del file richiesto il server deve inviare una pagina di errore...</div><div class="ttdef"><b>Definition:</b> httpdata.h:81</div></div>
+<div class="ttc" id="httpdata_8h_html_a159dd434f3cab184e5fab8365ed494ec"><div class="ttname"><a href="httpdata_8h.html#a159dd434f3cab184e5fab8365ed494ec">HTTPRequestData_flags</a></div><div class="ttdeci">HTTPRequestData_flags</div><div class="ttdoc">I valori di questa enumerazione vengono usati per creare una bitmask che rappresenta informazioni e i...</div><div class="ttdef"><b>Definition:</b> httpdata.h:68</div></div>
+<div class="ttc" id="httpdata_8h_html_a159dd434f3cab184e5fab8365ed494eca9f170ca51d662124859bfd11df8f24e4"><div class="ttname"><a href="httpdata_8h.html#a159dd434f3cab184e5fab8365ed494eca9f170ca51d662124859bfd11df8f24e4">HTTPRequestData_flags_keep_alive</a></div><div class="ttdoc">Se questa opzione è settata, la connessione non deve terminare dopo l&#39;invio della risposta...</div><div class="ttdef"><b>Definition:</b> httpdata.h:75</div></div>
+<div class="ttc" id="structHTTPRequestData_html_ac3bd527bd3e00ce219bfa72dbaea2351"><div class="ttname"><a href="structHTTPRequestData.html#ac3bd527bd3e00ce219bfa72dbaea2351">HTTPRequestData::flags</a></div><div class="ttdeci">uint8_t flags</div><div class="ttdoc">Bitmask rappresentante diverse informazioni sulla richiesta. </div><div class="ttdef"><b>Definition:</b> httpdata.h:60</div></div>
+<div class="ttc" id="structHTTPRequestHeader_html"><div class="ttname"><a href="structHTTPRequestHeader.html">HTTPRequestHeader</a></div><div class="ttdoc">Rappresenta un header di richiesta HTTP. </div><div class="ttdef"><b>Definition:</b> httpdata.h:85</div></div>
+<div class="ttc" id="structHTTPRequestData_html_af309a4c6a758b62689eeb327b5e09737"><div class="ttname"><a href="structHTTPRequestData.html#af309a4c6a758b62689eeb327b5e09737">HTTPRequestData::method</a></div><div class="ttdeci">enum HTTPMethod method</div><div class="ttdoc">Un valore di HTTPMethod rappresentante il metodo della richiesta. </div><div class="ttdef"><b>Definition:</b> httpdata.h:55</div></div>
+<div class="ttc" id="list_8h_html"><div class="ttname"><a href="list_8h.html">list.h</a></div><div class="ttdoc">Contiene l&#39;interfaccia per le liste doppiamente concatenate. </div></div>
+<div class="ttc" id="structHTTPRequestHeader_html_a89cbb9f9651b0866bc4f0dbd37b5e435"><div class="ttname"><a href="structHTTPRequestHeader.html#a89cbb9f9651b0866bc4f0dbd37b5e435">HTTPRequestHeader::field_content</a></div><div class="ttdeci">char * field_content</div><div class="ttdoc">Il valore dell&#39;header. </div><div class="ttdef"><b>Definition:</b> httpdata.h:90</div></div>
+<div class="ttc" id="structHTTPRequestData_html_a47c202aa745d8a5eb2a5dc7cbc3087aa"><div class="ttname"><a href="structHTTPRequestData.html#a47c202aa745d8a5eb2a5dc7cbc3087aa">HTTPRequestData::status_code</a></div><div class="ttdeci">int status_code</div><div class="ttdoc">Lo status code, come da inserire nella risposta, a cui ha dato origine l&#39;elaborazione della richiesta...</div><div class="ttdef"><b>Definition:</b> httpdata.h:44</div></div>
+<div class="ttc" id="structHTTPResponseData_html"><div class="ttname"><a href="structHTTPResponseData.html">HTTPResponseData</a></div><div class="ttdef"><b>Definition:</b> httpdata.h:95</div></div>
+<div class="ttc" id="structHTTPRequestData_html_a04c7c946a943f429f2529cf220076c26"><div class="ttname"><a href="structHTTPRequestData.html#a04c7c946a943f429f2529cf220076c26">HTTPRequestData::remote_path</a></div><div class="ttdeci">char * remote_path</div><div class="ttdoc">Il percorso come indicato nella richiesta. </div><div class="ttdef"><b>Definition:</b> httpdata.h:37</div></div>
+<div class="ttc" id="httpdata_8h_html_a159dd434f3cab184e5fab8365ed494ecac2cce33be3baf44d3f60e19084ae311f"><div class="ttname"><a href="httpdata_8h.html#a159dd434f3cab184e5fab8365ed494ecac2cce33be3baf44d3f60e19084ae311f">HTTPRequestData_flags_dont_send_payload</a></div><div class="ttdoc">Se questa opzione è settata, devono essere inviati solo gli header della risposta. </div><div class="ttdef"><b>Definition:</b> httpdata.h:78</div></div>
+<div class="ttc" id="httpdata_8h_html_a159dd434f3cab184e5fab8365ed494eca38f1b00cb61c162432d579553dfc4f98"><div class="ttname"><a href="httpdata_8h.html#a159dd434f3cab184e5fab8365ed494eca38f1b00cb61c162432d579553dfc4f98">HTTPRequestData_flags_stop_parsing</a></div><div class="ttdoc">Se questa opzione è settata, l&#39;elaborazione della richiesta deve terminare. </div><div class="ttdef"><b>Definition:</b> httpdata.h:72</div></div>
+<div class="ttc" id="httpheaders_8h_html_a837a089a977b319a11edfb8022d9e47d"><div class="ttname"><a href="httpheaders_8h.html#a837a089a977b319a11edfb8022d9e47d">HTTPMethod</a></div><div class="ttdeci">HTTPMethod</div><div class="ttdoc">Rappresenta i metodi HTTP riconoscibili ricevuti in ingresso. </div><div class="ttdef"><b>Definition:</b> httpheaders.h:51</div></div>
+<div class="ttc" id="structHTTPRequestData_html_acf9615119994e2784a395f3b5b80f710"><div class="ttname"><a href="structHTTPRequestData.html#acf9615119994e2784a395f3b5b80f710">HTTPRequestData::file_to_serve_stat</a></div><div class="ttdeci">struct stat * file_to_serve_stat</div><div class="ttdoc">Un puntatore al risultato di stat() eseguito sul file richiesto. </div><div class="ttdef"><b>Definition:</b> httpdata.h:34</div></div>
+<div class="ttc" id="structHTTPRequestData_html_a52def24a4e2fefab7c723751b4ca5a7b"><div class="ttname"><a href="structHTTPRequestData.html#a52def24a4e2fefab7c723751b4ca5a7b">HTTPRequestData::file_to_serve</a></div><div class="ttdeci">FILE * file_to_serve</div><div class="ttdoc">Il file da inviare, che può essere il file richiesto, nel caso in cui l&#39;elaborazione della richiesta ...</div><div class="ttdef"><b>Definition:</b> httpdata.h:31</div></div>
+<div class="ttc" id="structHTTPRequestHeader_html_a9455709e6aff8eb48c42866a1a674094"><div class="ttname"><a href="structHTTPRequestHeader.html#a9455709e6aff8eb48c42866a1a674094">HTTPRequestHeader::field_name</a></div><div class="ttdeci">char * field_name</div><div class="ttdoc">Il nome dell&#39;header. </div><div class="ttdef"><b>Definition:</b> httpdata.h:88</div></div>
+<div class="ttc" id="httpheaders_8h_html"><div class="ttname"><a href="httpheaders_8h.html">httpheaders.h</a></div><div class="ttdoc">Contiene string literal corrispondenti a header di richiesta e risposta. </div></div>
+<div class="ttc" id="structHTTPRequestData_html"><div class="ttname"><a href="structHTTPRequestData.html">HTTPRequestData</a></div><div class="ttdoc">Contiene informazioni su di una richiesta HTTP. </div><div class="ttdef"><b>Definition:</b> httpdata.h:26</div></div>
+<div class="ttc" id="structHTTPRequestData_html_a71bcae8a8f14feb676826a6b8a76604e"><div class="ttname"><a href="structHTTPRequestData.html#a71bcae8a8f14feb676826a6b8a76604e">HTTPRequestData::path_to_serve</a></div><div class="ttdeci">char * path_to_serve</div><div class="ttdoc">Il percorso locale di file_to_serve. </div><div class="ttdef"><b>Definition:</b> httpdata.h:40</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generato da &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.9.1
+</small></address>
+</body>
+</html>

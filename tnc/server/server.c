@@ -13,10 +13,17 @@
 #include "make_response.h"
 #include "tnc/core/debugutils.h"
 
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "CannotResolve"
-
 const static int default_max_threads = 8;
+
+struct _TNCServer
+{
+    char *local_path;
+    uint16_t door;
+    void *threadpool;
+    size_t max_threads;
+
+    atomic_int shutdown;
+};
 
 int TNCServer_start(TNCServer self);
 void TNCServer_shutdown(TNCServer self,
@@ -79,6 +86,7 @@ void TNCServer_destroy(TNCServer self)
     free(self);
 }
 
+
 int TNCServer_start(TNCServer self)
 {
 
@@ -136,7 +144,7 @@ void TNCServer_shutdown(TNCServer self,
                         enum TNCServer_wait wait)
 {
     atomic_store(&self->shutdown, shutdown);
-    TNCFixedThreadPool_shutdown(self->threadpool, shutdown, wait);
+    TNCFixedThreadPool_shutdown(self->threadpool, (int) shutdown, (int) wait);
 }
 
 static void connection_listener(TNCServer self, int listen_socket)
@@ -222,7 +230,7 @@ static int get_listen_socket(TNCServer self, int *listen_socket_ret)
 
     int optval = 1;
 
-    for (; server_address; server_address = server_address->ai_next)
+    while ((server_address = server_address->ai_next))
     {
 
         listen_socket = socket(server_address->ai_family,
@@ -348,4 +356,3 @@ static int connection_handler(TNCServer self, int connection_socket)
 
 }
 
-#pragma clang diagnostic pop

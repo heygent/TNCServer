@@ -1,0 +1,50 @@
+\hypertarget{make__response_8h}{}\section{Riferimenti per il file tnc/server/make\+\_\+response.h}
+\label{make__response_8h}\index{tnc/server/make\+\_\+response.\+h@{tnc/server/make\+\_\+response.\+h}}
+
+
+Contiene funzioni utili a generare una risposta H\+T\+T\+P.  
+
+
+{\ttfamily \#include \char`\"{}httpdata.\+h\char`\"{}}\\*
+Grafo delle dipendenze di inclusione per make\+\_\+response.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{make__response_8h__incl}
+\end{center}
+\end{figure}
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structHTTPResponseData}{H\+T\+T\+P\+Response\+Data} $\ast$ \hyperlink{make__response_8h_adccd9b35824054b0c445e09f0731d706}{make\+\_\+response} (const \hyperlink{structHTTPRequestData}{H\+T\+T\+P\+Request\+Data} $\ast$request\+\_\+data)
+\begin{DoxyCompactList}\small\item\em Data una richiesta, restituisce un \hyperlink{structHTTPResponseData}{H\+T\+T\+P\+Response\+Data} contenente gli elementi necessari a generare una risposta. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+Contiene funzioni utili a generare una risposta H\+T\+T\+P. 
+
+
+
+\subsection{Documentazione delle funzioni}
+\hypertarget{make__response_8h_adccd9b35824054b0c445e09f0731d706}{}\index{make\+\_\+response.\+h@{make\+\_\+response.\+h}!make\+\_\+response@{make\+\_\+response}}
+\index{make\+\_\+response@{make\+\_\+response}!make\+\_\+response.\+h@{make\+\_\+response.\+h}}
+\subsubsection[{make\+\_\+response}]{\setlength{\rightskip}{0pt plus 5cm}{\bf H\+T\+T\+P\+Response\+Data}$\ast$ make\+\_\+response (
+\begin{DoxyParamCaption}
+\item[{const {\bf H\+T\+T\+P\+Request\+Data} $\ast$}]{request\+\_\+data}
+\end{DoxyParamCaption}
+)}\label{make__response_8h_adccd9b35824054b0c445e09f0731d706}
+
+
+Data una richiesta, restituisce un \hyperlink{structHTTPResponseData}{H\+T\+T\+P\+Response\+Data} contenente gli elementi necessari a generare una risposta. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em request\+\_\+data} & L\textquotesingle{}\hyperlink{structHTTPRequestData}{H\+T\+T\+P\+Request\+Data} per cui si vuole generare una risposta.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+Un \hyperlink{structHTTPResponseData}{H\+T\+T\+P\+Response\+Data} contenente gli header e i file descriptor utili all\textquotesingle{}invio della risposta.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{Si veda anche}
+\hyperlink{structHTTPResponseData}{H\+T\+T\+P\+Response\+Data} 
+\end{DoxySeeAlso}

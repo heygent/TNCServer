@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.9.1"/>
+<title>TNC:  File sorgente tnc/server/server.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">TNC
+   </div>
+   <div id="projectbrief">Server HTTP</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generato da Doxygen 1.8.9.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Cerca');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Pagina&#160;Principale</span></a></li>
+      <li><a href="annotated.html"><span>Strutture&#160;dati</span></a></li>
+      <li class="current"><a href="files.html"><span>File</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Cerca" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Elenco&#160;dei&#160;file</span></a></li>
+      <li><a href="globals.html"><span>Elementi&#160;globali</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b54529e4b61657d44e5273f28d950520.html">tnc</a></li><li class="navelem"><a class="el" href="dir_040ce5ebbeabcab1d2cd382211e2566c.html">server</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">server.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="server_8h.html">Vai alla documentazione di questo file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef TNC_SERVER_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define TNC_SERVER_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;inttypes.h&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;pthread.h&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;stdatomic.h&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="fixedthreadpool_8h.html">tnc/core/fixedthreadpool.h</a>&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">enum</span> TNCServer_shutdown</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    TNCServer_shutdown_now              = TNCThreadPool_shutdown_now,</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    TNCServer_shutdown_finish_pending   = TNCThreadPool_shutdown_finish_pending,</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;};</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">enum</span> TNCServer_wait</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    TNCServer_wait_yes = TNCThreadPool_wait_yes,</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    TNCServer_wait_no  = TNCThreadPool_wait_no</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;};</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>_TNCServer *TNCServer;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;TNCServer <a class="code" href="server_8h.html#aae87182289b15731e1abbe5469d2e90a">TNCServer_new</a>(</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">char</span> *localpath, </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    uint16_t door,</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">size_t</span> max_threads</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keywordtype">int</span> <a class="code" href="server_8h.html#ada04abafbddbfd9bc5e02c50334ecc55">TNCServer_start</a>(TNCServer <span class="keyword">self</span>);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keywordtype">void</span> <a class="code" href="server_8h.html#a54908b6bb01370749a3105d45d5bad90">TNCServer_shutdown</a>(</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    TNCServer <span class="keyword">self</span>,</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keyword">enum</span> TNCServer_shutdown shutdown,</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keyword">enum</span> TNCServer_wait wait</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keywordtype">void</span> <a class="code" href="server_8h.html#ab67b044525ad306fe48ae6974e2cd74c">TNCServer_destroy</a>(TNCServer <span class="keyword">self</span>);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#endif //TNC_SERVER_H</span></div>
+<div class="ttc" id="fixedthreadpool_8h_html"><div class="ttname"><a href="fixedthreadpool_8h.html">fixedthreadpool.h</a></div><div class="ttdoc">Contiene l&#39;interfaccia per i threadpool. </div></div>
+<div class="ttc" id="server_8h_html_ab67b044525ad306fe48ae6974e2cd74c"><div class="ttname"><a href="server_8h.html#ab67b044525ad306fe48ae6974e2cd74c">TNCServer_destroy</a></div><div class="ttdeci">void TNCServer_destroy(TNCServer self)</div><div class="ttdoc">Elimina (dealloca) un TNCServer. </div><div class="ttdef"><b>Definition:</b> server.c:80</div></div>
+<div class="ttc" id="server_8h_html_a54908b6bb01370749a3105d45d5bad90"><div class="ttname"><a href="server_8h.html#a54908b6bb01370749a3105d45d5bad90">TNCServer_shutdown</a></div><div class="ttdeci">void TNCServer_shutdown(TNCServer self, enum TNCServer_shutdown shutdown, enum TNCServer_wait wait)</div><div class="ttdoc">Termina il TNCServer passato come parametro. </div><div class="ttdef"><b>Definition:</b> server.c:142</div></div>
+<div class="ttc" id="server_8h_html_ada04abafbddbfd9bc5e02c50334ecc55"><div class="ttname"><a href="server_8h.html#ada04abafbddbfd9bc5e02c50334ecc55">TNCServer_start</a></div><div class="ttdeci">int TNCServer_start(TNCServer self)</div><div class="ttdoc">Avvia il TNCServer passato come parametro, ovvero inizia ad ascoltare e a rispondere alle richieste c...</div><div class="ttdef"><b>Definition:</b> server.c:90</div></div>
+<div class="ttc" id="server_8h_html_aae87182289b15731e1abbe5469d2e90a"><div class="ttname"><a href="server_8h.html#aae87182289b15731e1abbe5469d2e90a">TNCServer_new</a></div><div class="ttdeci">TNCServer TNCServer_new(const char *localpath, uint16_t door, size_t max_threads)</div><div class="ttdoc">Crea un nuovo TNCServer. </div><div class="ttdef"><b>Definition:</b> server.c:52</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generato da &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.9.1
+</small></address>
+</body>
+</html>
