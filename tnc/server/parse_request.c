@@ -80,8 +80,11 @@ static void parse_request_line(
 
     char *current_token, *saveptr_space;
     char *path_to_serve;
+    const char *localpath;
     enum HTTPMethod method;
     uint8_t *flags = &request_data->flags;
+
+    localpath = TNCServer_getlocalpath(self);
 
     *flags = 0;
     current_token = strtok_r(header, " ", &saveptr_space);
@@ -155,10 +158,10 @@ static void parse_request_line(
     }
     else
     {
-        path_to_serve = malloc(strlen(self->local_path) + 
+        path_to_serve = malloc(strlen(localpath) + 
             strlen(request_data->remote_path) + 1);
         
-        strcpy(path_to_serve, self->local_path);
+        strcpy(path_to_serve, localpath);
         strcat(path_to_serve, request_data->remote_path);
     }
 

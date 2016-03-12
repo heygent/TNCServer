@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# TNC Server
+
+## Un server HTTP/1.0
+
+### Emanuele Gentiletti
+
+---
+
+class: center, middle
+
+# Obiettivi
+
+* Conformità alla RFC 1945
+* Capacità di gestire richieste GET e HEAD
+* File server
+
+---
+
+# Convenzioni
+
+* CMake è il sistema di build scelto.
+
+* Le informazioni sugli oggetti che contengono comportamenti oltre che
+informazioni vengono incapsulate tramite puntatori opachi.
+
+* Elementi generali applicabili ad altri contesti oltre che a quello del server
+(liste, threadpool) vengono compilati in una libreria statica, chiamata TNCCore
+(target CMake tnccore).
+
+* Ciò che è di competenza esclusiva del webserver è inserito nel target
+TNCServer, ovvero l'eseguibile finale.
+
+* L'applicazione è stata scritta con la modularità in mente, per cui sarebbe
+facile rifattorizzare il server in una libreria e riutilizzarne parte
+dell'interfaccia per eseguire azioni inerenti al protocollo HTTP singolarmente.
+
+---
+
+# Interfaccia principale
+
+Questo è il puntatore alla struttura contenente le impostazioni del server, tra
+cui la cartella da servire, la porta usata e il massimo numero di thread che il
+server può usare.
+
+```c
+typedef struct _TNCServer *TNCServer;
+```
+
+La funzione `TNCServer_new()` crea una struttura di questo tipo e la configura
+in base ai parametri passati:
+
+```c
+TNCServer TNCServer_new(
+    const char *localpath, uint16_t door, size_t max_threads
+);
+```
+
+---
+
+# Interfaccia principale
+
+Una volta ottenuta un'istanza di TNCServer, si può far iniziare a servire
+richieste al server tramite `TNCServer_start()`
+
+```c
+int TNCServer_start(TNCServer self);
+```
+
+    </textarea>
+    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>

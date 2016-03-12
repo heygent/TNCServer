@@ -22,7 +22,9 @@ enum TNCServerError
     /** La funzione setsockopt() ha restituito un errore. */
     TNCServerError_fn_setsockopt_failed,
     /** La funzione bind() ha restituito un errore. */
-    TNCServerError_fn_bind_failed
+    TNCServerError_fn_bind_failed,
+    /** L'invio della risposta non è riuscito. */
+    TNCServerError_sending_failed
 };
 
 #endif //TNCSERVER_ERROR_H

@@ -10,22 +10,15 @@
  * Contiene funzioni utili all'uso del server.
  */
 
-enum TNCServer_shutdown
+enum TNCServer_shutdown_flags
 {
-    TNCServer_shutdown_now              = TNCThreadPool_shutdown_now,
+    TNCServer_shutdown_async              = TNCThreadPool_shutdown_async,
     TNCServer_shutdown_finish_pending   = TNCThreadPool_shutdown_finish_pending,
 };
 
-enum TNCServer_wait
-{
-    TNCServer_wait_yes = TNCThreadPool_wait_yes,
-    TNCServer_wait_no  = TNCThreadPool_wait_no
-};
-
-
 typedef struct _TNCServer *TNCServer;
 
-/** Crea un nuovo TNCServer. 
+/** Crea un nuovo TNCServer.
  *
  * @param localpath Il percorso locale da servire.
  *
@@ -33,11 +26,11 @@ typedef struct _TNCServer *TNCServer;
  *
  * @param max_threads Il numero massimo di thread che il server può usare.
  *
- * @returns Un puntatore opaco a un TNCServer. 
+ * @returns Un puntatore opaco a un TNCServer.
  */
 
 TNCServer TNCServer_new(
-    const char *localpath, 
+    const char *localpath,
     uint16_t door,
     size_t max_threads
 );
@@ -71,14 +64,12 @@ int TNCServer_start(TNCServer self);
  * la chiamata a TNCServer_shutdown termina immediatamente.
  *
  */
-void TNCServer_shutdown(
-    TNCServer self,
-    enum TNCServer_shutdown shutdown,
-    enum TNCServer_wait wait
-);
+void TNCServer_shutdown(TNCServer self, int shutdown_flags);
 
 /** Elimina (dealloca) un TNCServer. */
 void TNCServer_destroy(TNCServer self);
 
+/** Restituisce il path che il server è impostato per servire. */
+const char *TNCServer_getlocalpath(TNCServer self);
 
 #endif //TNC_SERVER_H

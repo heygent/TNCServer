@@ -6,9 +6,6 @@
 #include "list.h"
 #include "error.h"
 
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "CannotResolve"
-
 struct _TNCFixedThreadPool
 {
 
@@ -51,7 +48,7 @@ int TNCFixedThreadPool_enqueue(TNCFixedThreadPool self, TNCJob *job)
 int TNCFixedThreadPool_do_next(TNCFixedThreadPool self, TNCJob *job)
 {
     int ret;
-    
+
 
     pthread_mutex_lock(&self->jobqueue_mutex);
 
@@ -112,7 +109,6 @@ TNCFixedThreadPool TNCFixedThreadPool_new(size_t threads)
 
 void TNCFixedThreadPool_destroy(TNCFixedThreadPool self)
 {
-    
 
     free(self->threads);
     pthread_mutex_destroy(&self->wake_thread_mutex);
@@ -125,17 +121,19 @@ static void *_TNCFixedThreadPool_executor(void *threadpoolptr)
 {
     TNCFixedThreadPool threadpool = threadpoolptr;
 
-    while(atomic_load(&threadpool->shutdown) != TNCThreadPool_shutdown_now)
+    while(1)
     {
+        int shutdown_flags = atomic_load(&threadpool->shutdown);
+        if(shutdown_flags & TNCThreadPool_shutdown_do_shutdown &&
+           ! (shutdown_flags & TNCThreadPool_shutdown_finish_pending))
+           break;
 
         pthread_mutex_lock(&threadpool->jobqueue_mutex);
 
         if(!TNCList_empty(threadpool->jobqueue))
         {
             TNCJob *job = TNCList_pop_front(threadpool->jobqueue);
-
             pthread_mutex_unlock(&threadpool->jobqueue_mutex);
-
 
             void *result = job->toexec(job->arg);
             if(job->result_callback) job->result_callback(result);
@@ -145,17 +143,17 @@ static void *_TNCFixedThreadPool_executor(void *threadpoolptr)
         else
         {
             pthread_mutex_unlock(&threadpool->jobqueue_mutex);
+            shutdown_flags = atomic_load(&threadpool->shutdown);
 
-            if(atomic_load(&threadpool->shutdown) == TNCThreadPool_shutdown_finish_pending)
-                break;
+            if(shutdown_flags & TNCThreadPool_shutdown_do_shutdown &&
+               shutdown_flags & TNCThreadPool_shutdown_finish_pending)
+               break;
 
             pthread_mutex_lock(&threadpool->wake_thread_mutex);
             pthread_cond_wait(&threadpool->wake_thread, &threadpool->wake_thread_mutex);
             pthread_mutex_unlock(&threadpool->wake_thread_mutex);
         }
-
     }
-
 
     return NULL;
 
@@ -164,18 +162,17 @@ static void *_TNCFixedThreadPool_executor(void *threadpoolptr)
 int TNCFixedThreadPool_start(TNCFixedThreadPool self)
 {
     int error;
-    
 
     pthread_mutex_lock(&self->jobqueue_mutex);
 
     for(size_t i = 0; i < self->number_of_threads; ++i)
     {
         error = pthread_create(self->threads + i, &self->thread_attr, _TNCFixedThreadPool_executor, self);
-        
+
         if(error)
         {
 
-            atomic_store(&self->shutdown, TNCThreadPool_shutdown_now);
+            atomic_store(&self->shutdown, TNCThreadPool_shutdown_do_shutdown);
 
             pthread_mutex_lock(&self->wake_thread_mutex);
             pthread_cond_broadcast(&self->wake_thread);
@@ -188,8 +185,6 @@ int TNCFixedThreadPool_start(TNCFixedThreadPool self)
 
             pthread_mutex_unlock(&self->jobqueue_mutex);
 
-
-
             return TNCError_thread_start_failed;
         }
     }
@@ -200,15 +195,11 @@ int TNCFixedThreadPool_start(TNCFixedThreadPool self)
 
 }
 
-
-
-void TNCFixedThreadPool_shutdown(TNCFixedThreadPool self,
-                  enum TNCFixedThreadPool_shutdown_flags mode,
-                  enum TNCFixedThreadPool_wait wait)
+void TNCFixedThreadPool_shutdown(TNCFixedThreadPool self, int shutdown_flags)
 {
-    
+    shutdown_flags |= TNCThreadPool_shutdown_do_shutdown;
 
-    atomic_store(&self->shutdown, mode);
+    atomic_store(&self->shutdown, shutdown_flags);
 
     pthread_mutex_lock(&self->wake_thread_mutex);
     pthread_cond_broadcast(&self->wake_thread);
@@ -216,14 +207,12 @@ void TNCFixedThreadPool_shutdown(TNCFixedThreadPool self,
 
     for(size_t i = 0; i < self->number_of_threads; ++i)
     {
-        if(wait == TNCThreadPool_wait_yes)
-            pthread_join(self->threads[i], NULL);
+        if(shutdown_flags & TNCThreadPool_shutdown_async)
+          pthread_detach(self->threads[i]);
         else
-            pthread_detach(self->threads[i]);
+          pthread_join(self->threads[i], NULL);
+
     }
 
 
 }
-
-
-#pragma clang diagnostic pop

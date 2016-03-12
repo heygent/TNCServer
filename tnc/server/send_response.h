@@ -1,7 +1,6 @@
 #ifndef TNC_SEND_RESPONSE_H
 #define TNC_SEND_RESPONSE_H
 
-#include <stdbool.h>
 #include "httpdata.h"
 
 /** @file
@@ -22,6 +21,6 @@
  * altrimenti.*
  *
  */
-bool send_response(int connection_socket, HTTPResponseData *data);
+int send_response(int connection_socket, HTTPResponseData *data);
 
 #endif // TNC_SEND_RESPONSE_H

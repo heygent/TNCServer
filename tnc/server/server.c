@@ -21,14 +21,12 @@ struct _TNCServer
     uint16_t door;
     void *threadpool;
     size_t max_threads;
+    int listen_socket;
 
     atomic_int shutdown;
 };
 
 int TNCServer_start(TNCServer self);
-void TNCServer_shutdown(TNCServer self,
-                        enum TNCServer_shutdown shutdown,
-                        enum TNCServer_wait wait);
 
 static int get_listen_socket(TNCServer self, int *listen_socket_ret);
 static void connection_listener(TNCServer self, int connection_socket);
@@ -80,7 +78,7 @@ TNCServer TNCServer_new(
 void TNCServer_destroy(TNCServer self)
 {
     if(self->shutdown == 0)
-        TNCServer_shutdown(self, TNCServer_shutdown_now, TNCServer_wait_yes);
+        TNCServer_shutdown(self, 0);
 
     free(self->local_path);
     free(self);
@@ -90,7 +88,6 @@ void TNCServer_destroy(TNCServer self)
 int TNCServer_start(TNCServer self)
 {
 
-    int listen_socket;
     int error_code;
 
     sigset_t sigpipe;
@@ -103,18 +100,18 @@ int TNCServer_start(TNCServer self)
     if(!self->local_path || access(self->local_path, R_OK) != 0)
         return TNCServerError_invalid_path;
 
-    error_code = get_listen_socket(self, &listen_socket);
+    error_code = get_listen_socket(self, &self->listen_socket);
 
     if(error_code != TNCError_good)
         return error_code;
 
     TNC_dbgprint(
-        "Server in ascolto, vai su http://localhost:%" PRIu16 
+        "Server in ascolto, vai su http://localhost:%" PRIu16
         " per inviare una richiesta\n",
         self->door
     );
 
-    listen(listen_socket, 5);
+    listen(self->listen_socket, 5);
 
     self->threadpool = TNCFixedThreadPool_new(self->max_threads);
     if(!self->threadpool) return TNCError_failed_alloc;
@@ -123,7 +120,7 @@ int TNCServer_start(TNCServer self)
 
     struct connection_listener_param *arg = malloc(sizeof *arg);
 
-    arg->listening_socket = listen_socket;
+    arg->listening_socket = self->listen_socket;
     arg->self = self;
 
     TNCJob job =
@@ -139,12 +136,12 @@ int TNCServer_start(TNCServer self)
 
 }
 
-void TNCServer_shutdown(TNCServer self,
-                        enum TNCServer_shutdown shutdown,
-                        enum TNCServer_wait wait)
+void TNCServer_shutdown(TNCServer self, int shutdown_flags)
 {
-    atomic_store(&self->shutdown, shutdown);
-    TNCFixedThreadPool_shutdown(self->threadpool, (int) shutdown, (int) wait);
+    atomic_store(&self->shutdown, shutdown_flags);
+    shutdown(self->listen_socket, SHUT_RDWR);
+    close(self->listen_socket);
+    TNCFixedThreadPool_shutdown(self->threadpool, shutdown_flags);
 }
 
 static void connection_listener(TNCServer self, int listen_socket)
@@ -169,13 +166,18 @@ static void connection_listener(TNCServer self, int listen_socket)
 
         client_address_len = sizeof client_address;
 
-        while (connection_socket == -1 && attempts++ < 3)
-            connection_socket = accept(listen_socket,
+        while(
+          connection_socket == -1 &&
+          attempts++ < 3 &&
+          atomic_load(&self->shutdown) == 0
+        )
+        {
+            connection_socket = accept(self->listen_socket,
                                        (struct sockaddr *) &client_address,
                                        &client_address_len);
-
-        if(connection_socket == -1) continue;
-
+        }
+        if(connection_socket == -1)
+          continue;
 
 
         connection_handler_param = malloc(sizeof *connection_handler_param);
@@ -188,8 +190,6 @@ static void connection_listener(TNCServer self, int listen_socket)
         TNCFixedThreadPool_enqueue(self->threadpool, &job);
 
     }
-
-    close(listen_socket);
 }
 
 static int get_listen_socket(TNCServer self, int *listen_socket_ret)
@@ -230,7 +230,7 @@ static int get_listen_socket(TNCServer self, int *listen_socket_ret)
 
     int optval = 1;
 
-    while ((server_address = server_address->ai_next))
+    do
     {
 
         listen_socket = socket(server_address->ai_family,
@@ -259,6 +259,7 @@ static int get_listen_socket(TNCServer self, int *listen_socket_ret)
 
         close(listen_socket);
     }
+    while ((server_address = server_address->ai_next));
 
     int has_binded = server_address != NULL;
 
@@ -288,7 +289,7 @@ static void *connection_handler_tr(void *_param)
 {
     struct connection_handler_param *param =
       (struct connection_handler_param *) _param;
-    
+
     connection_handler(param->self, param->connection_socket);
     free(param);
     return NULL;
@@ -321,14 +322,11 @@ static int connection_handler(TNCServer self, int connection_socket)
             request_size += recv_ret;
 
             stop_receiving =
-              strcmp((request + request_size - 2), "\n\n") == 0;
-            
+              strcmp((request + request_size - 2), "\n\n") == 0 ||
+              strcmp((request + request_size - 4), CRLF CRLF) == 0;
+
             if(stop_receiving) break;
 
-            stop_receiving = 
-              strcmp((request + request_size - 4), CRLF CRLF) == 0;
-            
-            if(stop_receiving) break;
         }
         while(1);
 
@@ -351,8 +349,13 @@ static int connection_handler(TNCServer self, int connection_socket)
     connection_loop_end:
 
     close(connection_socket);
-    
+
     return TNCError_good;
 
 }
 
+
+const char *TNCServer_getlocalpath(TNCServer self)
+{
+  return self->local_path;
+}

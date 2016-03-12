@@ -24,14 +24,17 @@ typedef struct _TNCFixedThreadPool *TNCFixedThreadPool;
 
 enum TNCFixedThreadPool_shutdown_flags
 {
-    TNCThreadPool_shutdown_now = 1,
-    TNCThreadPool_shutdown_finish_pending
+    TNCThreadPool_shutdown_do_shutdown = 1 << 0,
+    TNCThreadPool_shutdown_finish_pending = 1 << 1,
+    TNCThreadPool_shutdown_async = 1 << 2
 };
 
+/*
 enum TNCFixedThreadPool_wait
 {
     TNCThreadPool_wait_yes = 1, TNCThreadPool_wait_no
 };
+*/
 
 /** Crea un threadpool.
  *
@@ -67,9 +70,7 @@ int TNCFixedThreadPool_start(TNCFixedThreadPool self);
  * TNCThreadPool_wait_no, la chiamata a shutdown restituisce prima del termine
  * dell'esecuzione dei thread rimanenti.
  */
-void TNCFixedThreadPool_shutdown(TNCFixedThreadPool self,
-                            enum TNCFixedThreadPool_shutdown_flags mode,
-                            enum TNCFixedThreadPool_wait wait);
+void TNCFixedThreadPool_shutdown(TNCFixedThreadPool self, int shutdown_flags);
 
 
 /** Accoda un nuovo job alla coda. */
