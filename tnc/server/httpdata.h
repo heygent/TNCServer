@@ -5,13 +5,30 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <time.h>
-#include "httpheaders.h"
 #include "tnc/core/list.h"
 
 /** @file
  * Contiene strutture dati utili al salvataggio dei dati delle richieste e
  * delle risposte HTTP.
  */
+
+#define CRLF "\r\n"
+
+/** Rappresenta i metodi HTTP riconoscibili ricevuti in ingresso. */
+enum HTTPMethod
+{
+    HTTPMethod_unrecognized, HTTPMethod_GET, HTTPMethod_HEAD
+};
+
+typedef struct TNCFileInfo TNCFileInfo;
+struct TNCFileInfo
+{
+    size_t size;
+    char *path;
+    char *mimetype;
+    char *encoding;
+    time_t last_edit;
+};
 
 typedef struct HTTPRequestData HTTPRequestData;
 
@@ -27,17 +44,14 @@ struct HTTPRequestData
 {
     /** Il file da inviare, che può essere il file richiesto, nel caso in cui
      * l'elaborazione della richiesta sia andata a buon fine, o una pagina di
-     * errore altrimenti. */ 
-    FILE                *file_to_serve;
+     * errore altrimenti. */
+    int                 file_to_serve;
 
-    /** Un puntatore al risultato di stat() eseguito sul file richiesto. */
-    struct stat         *file_to_serve_stat;
+    /** >CNG< Un puntatore al risultato di stat() eseguito sul file richiesto. */
+    TNCFileInfo         file_info;
 
     /** Il percorso come indicato nella richiesta. */
     char                *remote_path;
-
-    /** Il percorso locale di file_to_serve. */
-    char                *path_to_serve;
 
     /** Lo status code, come da inserire nella risposta, a cui ha dato origine
      * l'elaborazione della richiesta. */
@@ -55,9 +69,10 @@ struct HTTPRequestData
     enum HTTPMethod     method;
 
     /** Bitmask rappresentante diverse informazioni sulla richiesta.
-     * @see HTTPRequestData_flags 
+     * @see HTTPRequestData_flags
      */
     uint8_t             flags;
+    TNCList             cleanup_jobs;
 };
 
 typedef struct HTTPRequestHeader HTTPRequestHeader;
@@ -78,7 +93,8 @@ enum HTTPRequestData_flags
     HTTPRequestData_flags_dont_send_payload = 1 << 2,
     /** Se questa opzione è settata, al posto del file richiesto il server deve
      * inviare una pagina di errore. */
-    HTTPRequestData_flags_get_error_page    = 1 << 3
+    HTTPRequestData_flags_get_error_page    = 1 << 3,
+    HTTPRequestData_flags_bad_request       = 1 << 4
 };
 
 /** Rappresenta un header di richiesta HTTP.*/
@@ -98,14 +114,16 @@ struct HTTPResponseData
     TNCList headers;
 };
 
+
+
 void HTTPRequestData_init(HTTPRequestData *data);
 HTTPRequestData *HTTPRequestData_new();
 void HTTPRequestData_destroy(HTTPRequestData *data);
-void HTTPRequestData_destroy_members(HTTPRequestData *data);
+void HTTPRequestData_cleanup(HTTPRequestData *data);
 
 void HTTPResponseData_init(HTTPResponseData *data, const HTTPRequestData *rd);
 HTTPResponseData *HTTPResponseData_new(const HTTPRequestData *rd);
-void HTTPResponseData_destroy_members(HTTPResponseData *data);
+void HTTPResponseData_cleanup(HTTPResponseData *data);
 void HTTPResponseData_destroy(HTTPResponseData *data);
 
 #endif //TNC_HTTPDATA_H

@@ -89,6 +89,20 @@ richieste al server tramite `TNCServer_start()`
 int TNCServer_start(TNCServer self);
 ```
 
+La chiamata è asincrona, il server viene eseguito in un nuovo thread.
+Per terminare il server:
+
+```c
+void TNCServer_shutdown(TNCServer self, int flags)
+```
+
+Dove `flags` permette di scegliere se attendere che le richieste già ricevute
+debbano essere terminate (`TNCServer_shutdown_flags_finish_pending`) e se la
+chiamata a `TNCServer_shutdown` debba bloccarel
+
+
+---
+
     </textarea>
     <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
     </script>

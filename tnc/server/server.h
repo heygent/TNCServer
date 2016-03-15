@@ -12,7 +12,7 @@
 
 enum TNCServer_shutdown_flags
 {
-    TNCServer_shutdown_async              = TNCThreadPool_shutdown_async,
+    TNCServer_shutdown_async            = TNCThreadPool_shutdown_async,
     TNCServer_shutdown_finish_pending   = TNCThreadPool_shutdown_finish_pending,
 };
 
@@ -71,5 +71,9 @@ void TNCServer_destroy(TNCServer self);
 
 /** Restituisce il path che il server è impostato per servire. */
 const char *TNCServer_getlocalpath(TNCServer self);
+
+void TNCServer_cleanup_push(TNCServer self, TNCJob job);
+
+void TNCServer_cleanup_pop(TNCServer self, int execute);
 
 #endif //TNC_SERVER_H

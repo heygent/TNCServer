@@ -2,3 +2,6 @@
 build/
 .vimrc
 .ycm_*
+doc/
+.tags*
+*test*

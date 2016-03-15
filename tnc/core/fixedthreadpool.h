@@ -2,16 +2,11 @@
 #define TNC_FIXEDTHREADPOOL_H
 
 #include <stdlib.h>
+#include <unistd.h>
 #include "functiontypes.h"
+#include "job.h"
 
-struct TNCJob
-{
-    TNCFunction toexec;
-    void *arg;
-    TNCConsumer result_callback;
-};
 
-typedef struct TNCJob TNCJob;
 
 /**
  * @file

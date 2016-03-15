@@ -30,7 +30,7 @@ static TNCListNode _TNCListNode_new(void *val, TNCList owner)
     return ret;
 }
 
-static inline void _TNCListNode_destroy(TNCListNode node)
+static void _TNCListNode_destroy(TNCListNode node)
 {
     free(node);
 }
@@ -154,9 +154,9 @@ void *TNCList_remove(TNCListNode node)
         node->owner->last = node->prev;
     }
 
-    _TNCListNode_destroy(node);
-
     --node->owner->num_of_elements;
+
+    _TNCListNode_destroy(node);
 
     return val;
 
@@ -260,11 +260,16 @@ const void *TNCList_getvalue(TNCListNode node)
 
 int TNCList_empty(TNCList self)
 {
-    return self->first == NULL;
+    assert(self);
+    assert(self->num_of_elements >= 0);
+
+    return self->num_of_elements == 0;
 }
 
 size_t TNCList_length(TNCList self)
 {
     assert(self);
+    assert(self->num_of_elements >= 0);
+
     return self->num_of_elements;
 }

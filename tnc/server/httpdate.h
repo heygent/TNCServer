@@ -9,7 +9,7 @@
 /** @name HTTPDATE
  * Le definizioni contengono le stringhe in formato leggibile a strptime()
  * rappresentanti le date supportate in ricezione dal server, come indicate
- * dalla RFC 1945. 
+ * dalla RFC 1945.
  *
  * @{
  */

@@ -18,6 +18,6 @@
  * @see HTTPResponseData
  *
  */
-HTTPResponseData *make_response(const HTTPRequestData *request_data);
+void make_response(HTTPResponseData *response_data);
 
 #endif //TNC_MAKE_RESPONSE_H

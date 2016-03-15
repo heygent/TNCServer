@@ -1,17 +1,18 @@
 #include <malloc.h>
 #include <assert.h>
+#include <tnc/core/job.h>
 #include "httpdata.h"
 
 void HTTPRequestData_init(HTTPRequestData *data)
 {
     assert(NULL != data &&
-        "HTTPRequestData: Attempting to initialize null pointer");
+           "HTTPRequestData: Attempting to initialize null pointer");
 
-    data->file_to_serve = NULL;
+    data->file_to_serve = -1;
     data->remote_path = NULL;
-    data->path_to_serve = NULL;
-    data->file_to_serve_stat = NULL;
+    data->file_info.path = NULL;
     data->flags = 0;
+    data->cleanup_jobs = TNCList_new();
 }
 
 HTTPRequestData *HTTPRequestData_new()
@@ -25,32 +26,24 @@ HTTPRequestData *HTTPRequestData_new()
     return ret;
 }
 
-void HTTPRequestData_destroy_members(HTTPRequestData *data)
+void HTTPRequestData_cleanup(HTTPRequestData *data)
 {
-
     assert(data);
-
-    if(data->file_to_serve) fclose(data->file_to_serve);
-    free(data->remote_path);
-    free(data->path_to_serve);
-    free(data->file_to_serve_stat);
-
-
-}
-
-void HTTPRequestData_destroy(HTTPRequestData *data)
-{
-
-    HTTPRequestData_destroy_members(data);
-    free(data);
+    while(!TNCList_empty(data->cleanup_jobs))
+    {
+        TNCJob *current_job = TNCList_pop_back(data->cleanup_jobs);
+        TNCJob_run(current_job);
+        free(current_job);
+    }
+    TNCList_destroy(data->cleanup_jobs);
 }
 
 void HTTPResponseData_init(HTTPResponseData *data, const HTTPRequestData *rd)
 {
     assert(NULL != data &&
-        "HTTPRequestData: Attempting to initialize null pointer");
+           "HTTPRequestData: Attempting to initialize null pointer");
 
-    data->headers = NULL;
+    data->headers = TNCList_new();
     data->request_data = rd;
 
 }
@@ -66,7 +59,7 @@ HTTPResponseData *HTTPResponseData_new(const HTTPRequestData *rd)
     return ret;
 }
 
-void HTTPResponseData_destroy_members(HTTPResponseData *data)
+void HTTPResponseData_cleanup(HTTPResponseData *data)
 {
 
     assert(data);
@@ -78,6 +71,6 @@ void HTTPResponseData_destroy_members(HTTPResponseData *data)
 void HTTPResponseData_destroy(HTTPResponseData *data)
 {
 
-    HTTPResponseData_destroy_members(data);
+    HTTPResponseData_cleanup(data);
     free(data);
 }

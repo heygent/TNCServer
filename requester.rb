@@ -2,10 +2,8 @@
 
 require 'rest-client'
 
-numrequests_arg, numthreads_arg = ARGV
-
-numrequests = numrequests_arg.to_i
-numthreads = numthreads_arg.to_i
+numrequests = ARGV[0].to_i
+numthreads = ARGV[1].to_i
 
 threads = []
 

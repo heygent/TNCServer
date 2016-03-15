@@ -3,7 +3,7 @@
 
 #include "functiontypes.h"
 
-/** @file 
+/** @file
  *  @brief Contiene l'interfaccia per le liste doppiamente concatenate.
  */
 

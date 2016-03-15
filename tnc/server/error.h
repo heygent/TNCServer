@@ -10,7 +10,7 @@
 /** Codici di errore restituiti dalle funzioni relative al server. */
 enum TNCServerError
 {
-    /** Il percorso indicato come parametro non è valido. */ 
+    /** Il percorso indicato come parametro non è valido. */
     TNCServerError_invalid_path = TNCError_module_defined,
     /** La connessione non è andata a buon fine. */
     TNCServerError_connection_failed,

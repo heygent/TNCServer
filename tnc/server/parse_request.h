@@ -21,6 +21,6 @@
  *
  */
 
-HTTPRequestData *parse_request(TNCServer self, char *request);
+void parse_request(TNCServer self, char *request, HTTPRequestData *data);
 
 #endif //TNC_PARSE_REQUEST_H
