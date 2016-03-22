@@ -7,13 +7,19 @@
  * @brief Contiene funzioni utili a generare una risposta HTTP.
  */
 
-/** Data una richiesta, restituisce un HTTPResponseData contenente gli elementi
- * necessari a generare una risposta.
+/** A partire da una richiesta di cui è stato eseguito il parsing, genera gli
+ * header di risposta per questa.
  *
- * @param request_data L'HTTPRequestData per cui si vuole generare una risposta.
+ * La funzione stampa su stringhe corrispondenti agli header di risposta le
+ * informazioni ottenute nel parsing della richiesta, e le inserisce
+ * nell'ordine in cui devono essere inviate in una TNCList. La lista generata
+ * viene inserita nella struttura HTTPResponseData il cui puntatore è stato
+ * passato come argomento.
  *
- * @returns Un HTTPResponseData contenente gli header e i file descriptor utili
- * all'invio della risposta.
+ * @param request_data Un HTTPResponseData in cui verranno inseriti gli
+ * header di risposta.
+ *
+ * @returns Un HTTPResponseData contenente gli header di risposta.
  *
  * @see HTTPResponseData
  *

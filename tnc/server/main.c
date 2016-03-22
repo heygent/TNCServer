@@ -1,26 +1,48 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <tnc/core/error.h>
+#include <bits/signum.h>
+#include <signal.h>
 #include "server.h"
 #include "error.h"
-
 
 int main(int argc, char **argv)
 {
     TNCServer srv;
+    uint16_t door;
     int error;
 
-    if(argc < 2)
+    sigset_t sigpipe;
+
+    sigemptyset(&sigpipe);
+    sigaddset(&sigpipe, SIGPIPE);
+
+    pthread_sigmask(SIG_BLOCK, &sigpipe, NULL);
+
+    switch(argc)
     {
-        printf("Usage: %s DIRECTORY\n", argv[0]);
-        exit(EXIT_FAILURE);
+
+    case 2:
+        door = 8080;
+        break;
+
+    case 3:
+        error = sscanf(argv[2], "%" SCNu16, &door);
+
+        if(error != 0 && error != EOF)
+            break;
+
+    default:
+        printf("Usage: %s DIRECTORY [DOOR]\n", argv[0]);
+        return EXIT_FAILURE;
     }
 
-    srv = TNCServer_new(argv[1], 8080, 8);
+    srv = TNCServer_new();
 
-    if(!srv) return EXIT_FAILURE;
-
-    error = TNCServer_start(srv);
+    if(!srv)
+        error = TNCError_failed_alloc;
+    else
+        error = TNCServer_start(srv, argv[1], door, 8);
 
     if(error != TNCError_good)
     {
@@ -28,6 +50,10 @@ int main(int argc, char **argv)
 
         switch(error)
         {
+        case TNCError_failed_alloc:
+            exit_msg = "Could not allocate enough memory.";
+            srv = NULL;
+            break;
         case TNCServerError_invalid_path :
             exit_msg = "The path asked to serve is invalid";
             break;
@@ -40,17 +66,25 @@ int main(int argc, char **argv)
         default:
             exit_msg = "The server encountered a problem. Aborting.";
         }
+        TNCServer_destroy(srv);
 
-        fprintf(stderr, "%s\n", exit_msg);
+        fputs(exit_msg, stderr);
         return EXIT_FAILURE;
     }
 
 
-    fprintf(stderr, "Press enter to exit\n");
-    getchar();
-    fprintf(stderr, "Shutting down, please wait...\n");
+    fprintf(
+        stderr,
+        "This program is serving on http://localhost:%" PRIu16
+        ", press enter to exit.\n",
+        door
+    );
 
-    TNCServer_shutdown(srv, TNCServer_shutdown_finish_pending);
+    getchar();
+
+    fputs("Shutting down, please wait...", stderr);
+
+    TNCServer_shutdown(srv);
     TNCServer_destroy(srv);
 
     pthread_exit(EXIT_SUCCESS);

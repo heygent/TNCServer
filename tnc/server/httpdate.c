@@ -6,7 +6,7 @@
 
 char *strptime_httpdate(const char *s, struct tm *tm)
 {
-    if(strlen(s) < 4) return NULL;
+    if(!s || strlen(s) < 4) return NULL;
 
     char defining_char = *(s + 3);
 

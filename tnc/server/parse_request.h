@@ -7,8 +7,21 @@
  * @brief Contiene elementi utili al parsing della richiesta HTTP.
  */
 
-/** Data una richiesta e il server che la riceve, restituisce un puntatore a un
- * HTTPRequestData contenente informazioni su di questa.
+/** Esegue il parsing di una richiesta, e inserisce le informazioni ottenute
+ * da questa in un HTTPRequestData.
+ *
+ * La funzione esegue le seguenti operazioni:
+ *
+ * - Esegue il parsing della request line
+ * - Verifica se l'accesso alla risorsa è consentito
+ * - A seconda dell'esito di questa operazione, sceglie se rispondere con una
+ *   pagina di errore
+ * - Raccoglie le informazioni necessarie sulla risposta da inviare
+ *   (dimensione, contenuto, ecc.)
+ * - Ritorna.
+ *
+ * I dati raccolti vengono inseriti mano a mano nell'HTTPRequestData il cui
+ * puntatore viene passato come argomento.
  *
  * @param request La stringa contenente la richiesta HTTP.
  *

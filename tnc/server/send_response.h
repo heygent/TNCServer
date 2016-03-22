@@ -17,8 +17,8 @@
  *
  * @param data I dati sulla risposta da inviare.
  *
- * @return L'esito dell'operazione, true se è andata a buon fine, false
- * altrimenti.*
+ * @returns Un codice di errore. I codici di errore sono consultabili
+ * nell'header error.h.
  *
  */
 int send_response(int connection_socket, HTTPResponseData *data);

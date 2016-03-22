@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdint.h>
+#include <assert.h>
 #include "make_response.h"
 #include "httpdate.h"
 
@@ -127,6 +128,7 @@ char *make_content_type_header(const HTTPRequestData *data)
 
 char *make_content_length_header(const HTTPRequestData *data)
 {
+    assert(data);
     char filesize[32];
     char *ret;
 

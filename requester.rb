@@ -11,7 +11,7 @@ numthreads.times do |threadnum|
   threads << Thread.new do 
     numrequests.times do |requestnum|
       begin
-        RestClient.get 'http://localhost:8080'
+        RestClient.get 'http://localhost:8080/img.jpg'
         puts "Thread #{threadnum}, request #{requestnum}"
       rescue
         puts "Quitting. Thread #{threadnum}, connection error."

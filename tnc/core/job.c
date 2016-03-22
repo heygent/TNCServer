@@ -2,7 +2,7 @@
 #include <unistd.h>
 #include "job.h"
 
-void TNCJob_run(TNCJob *job)
+void TNCJob_run(const TNCJob *job)
 {
     void *result = job->toexec(job->arg);
     if(job->result_callback)

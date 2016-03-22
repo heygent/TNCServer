@@ -2,9 +2,11 @@
 #include <ctype.h>
 #include <string.h>
 #include <fcntl.h>
+#include <assert.h>
 #include "server.h"
 #include "httpdata.h"
-#include "tnc/core/job.h"
+#include "httpdate.h"
+
 
 #define BUFFERSIZE 8096
 
@@ -25,16 +27,33 @@ const static char *error_page_format =
 #define PATH_ROOT "/"
 #define PATH_INDEXHTML "/index.html"
 
-/** Comando che viene eseguito per ottenere una stringa contenente il mimetype
- * di un file. */
+/** Comando da eseguire in una shell per ottenere una stringa contenente
+ * il mimetype di un file. */
 
 #define COMMAND_MIMETYPE "xdg-mime query filetype %s | tr '\\n' '\\0'"
 
-/** Comando che viene eseguito per ottenere una stringa contenente la codifica
- * di un file. */
+/** Comando da eseguire in una shell per ottenere una stringa contenente la
+ * codifica di un file. */
 
 #define COMMAND_ENCODING "file -b --mime-encoding %s | tr '\\n' '\\0'"
 
+/** @defgroup errorpages_x_macro
+ *
+ * Macro che crea funzioni di inizializzazione e di chiusura di file
+ * temporanei in cui vengono inserite le pagine di errore utilizzate dal
+ * server.
+ * Le funzioni init_errorpage_##STATCODE, dove STATCODE è il codice di
+ * errore HTTP, sono pensate per essere chiamate una sola volta nel corso
+ * dell'esecuzione di un programma che usa il server tramite la funzione
+ * pthread_once(), e registrano, tramite la funzione atexit(), la funzione
+ * di chiusura corrispondente al file descriptor che inizializzano
+ * (dichiarata dalla stessa macro con il nome close_errorpage_##STATCODE).
+ * I file descriptor delle pagine di errore sono dichiarati staticamente
+ * all'interno di questo file con il nome errorpage_fd_##STATCODE.
+ * Le chiamate alla macro per ogni pagina di errore sono nel file
+ * `httpstatus.x.h`
+ *
+ */
 #define TNC_XM(STATCODE, STATBRIEF, STATDESC) \
 static int errorpage_fd_##STATCODE = -1; \
 static pthread_once_t once_control_##STATCODE = PTHREAD_ONCE_INIT; \
@@ -46,36 +65,46 @@ static void init_errorpage_##STATCODE() \
 { \
     char errorpage_pattern[] = "/tmp/TNC_XXXXXX"; \
     errorpage_fd_##STATCODE = mkstemp(errorpage_pattern); \
+    assert(errorpage_fd_##STATCODE != -1); \
     dprintf(errorpage_fd_##STATCODE, error_page_format, \
         #STATCODE " " STATBRIEF, \
         #STATCODE " " STATBRIEF, \
         STATDESC \
     ); \
-    if(errorpage_fd_##STATCODE == -1) \
-    { \
-        puts("Panic: could not create tempfile for errorpages. Aborting."); \
-        exit(1); \
-    } \
     atexit(close_errorpage_##STATCODE); \
 }
 
 #include "httpstatus.x.h"
-#include "httpdate.h"
 
 #undef TNC_XM
 
+/** Esegue il parsing della request line.
+ *
+ * Esegue il parsing della request line, e inserisce l'esito dell'operazione in
+ * request_data.
+ */
 static void parse_request_line(
     TNCServer self,
     HTTPRequestData *request_data,
     char *header
 );
 
+/** Esegue il parsing di un header.
+ *
+ * Esegue il parsing di un header di richiesta, e inserisce l'esito
+ * dell'operazione in request_data.
+ */
 static void parse_header(
     TNCServer self,
     HTTPRequestData *request_data,
     HTTPRequestHeader *header
 );
 
+/** Verifica l'esistenza di un file `index.html` o `index.htm` all'interno
+ * del path servito dal server. Restituisce una stringa allocata
+ * dinamicamente contente il primo di questi che trova. Se non ne trova
+ * nessuno, restituisce NULL.
+ */
 static char *get_index_path(TNCServer self)
 {
     const char *localpath = TNCServer_getlocalpath(self);
@@ -101,6 +130,19 @@ static char *get_index_path(TNCServer self)
     }
 }
 
+/** Restituisce l'output di un comando eseguito in una shell.
+ *
+ * La funzione prende in input un comando da eseguire con al suo interno un
+ * modificatore printf `%s`, che verrà sostituito con il secondo argomento,
+ * `arg`.
+ *
+ * @param command Il comando di cui si vuole conoscere l'output
+ *
+ * @param arg L'argomento da sostituire all'interno della stringa del comando.
+ *
+ * @returns L'output fornito dalla shell.
+ *
+ */
 static char *get_shell_output(const char *command, const char *arg)
 {
     FILE *command_pipe;
@@ -386,7 +428,7 @@ static void parse_header(
         {
             time_t modified_since = mktime(&if_modified_since);
 
-            /* If the date provided is more or equal than date of last edit */
+            /* If the date provided is less or equal than date of last edit */
             if(modified_since <= request_data->file_info.last_edit)
             {
                 request_data->status_code = 304;

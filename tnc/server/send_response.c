@@ -1,15 +1,20 @@
 #include <stdio.h>
 #include <string.h>
 #include <sys/socket.h>
-#include <sys/sendfile.h>
+#include <unistd.h>
 #include "send_response.h"
 #include "error.h"
 
+#ifdef linux
+#include <sys/sendfile.h>
+#endif
+
+#define CHUNKSIZE 1024
+
 int send_response(int connection_socket, HTTPResponseData *response_data)
 {
-    // TODO: Verificare errori di invio
-
-    int ret;
+    int ret = TNCError_good;
+    ssize_t last_fn_ret;
 
     const HTTPRequestData *request_data = response_data->request_data;
 
@@ -30,15 +35,38 @@ int send_response(int connection_socket, HTTPResponseData *response_data)
 
     if(! (request_data->flags & HTTPRequestData_flags_dont_send_payload))
     {
-#ifdef linux
+#ifdef other
         off_t zero = 0;
-        sendfile(connection_socket, fd, &zero, filesize);
-#endif
+        last_fn_ret = sendfile(connection_socket, fd, &zero, filesize);
+        if(last_fn_ret == -1)
+            ret = TNCServerError_sending_failed;
+#else
+        char buffer[CHUNKSIZE];
 
-    //    ret = ferror(request_data->file_to_serve) == 0 ?
-    //          TNCError_good : TNCServerError_sending_failed;
+        size_t read_bytes = 0;
+
+        while(read_bytes < filesize)
+        {
+            last_fn_ret = read(fd, buffer, CHUNKSIZE);
+            if(last_fn_ret == -1)
+            {
+                ret = TNCServerError_sending_failed;
+                break;
+            }
+            read_bytes += last_fn_ret;
+
+            last_fn_ret =
+                write(connection_socket, buffer, (size_t) last_fn_ret);
+
+            if(last_fn_ret == -1)
+            {
+                ret = TNCServerError_sending_failed;
+                break;
+            }
+            
+        }
+#endif
     }
-     ret = TNCError_good;
 
     return ret;
 }

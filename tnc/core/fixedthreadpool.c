@@ -11,22 +11,32 @@
 
 struct _TNCFixedThreadPool
 {
+    /** Un array contenente gli ID dei thread avviati. */
+    pthread_t *threads;
 
-    pthread_t *threads;             /** Un array contenente gli ID dei thread avviati. */
-    size_t number_of_threads;       /** Il numero di thread per il threadpool di riferimento. */
-    pthread_attr_t thread_attr;     /** Attributi di creazione dei thread */
+    /** Il numero di thread per il threadpool di riferimento. */
+    size_t number_of_threads;
 
-    TNCList jobqueue;               /** La coda dei job per i worker. */
-    pthread_mutex_t jobqueue_mutex; /** mutex per jobqueue */
+    /** Attributi di creazione dei thread */
+    pthread_attr_t thread_attr;     
 
-    atomic_int
-    shutdown;            /** Intero che indica se il threadpool attuale è in fase di shutdown. */
+    /** La coda dei job per i worker. */
+    TNCList jobqueue;
 
-    pthread_cond_t
-    wake_thread;     /** Condizione utile a svegliare i worker, se c'è un nuovo job o se il threadpool
-                                        entra in fase di shutdown */
+    /** mutex per jobqueue */
+    pthread_mutex_t jobqueue_mutex; 
 
-    pthread_mutex_t wake_thread_mutex; /** mutex necessario per usare wake_thread */
+
+
+    /** Intero che indica se il threadpool attuale è in fase di shutdown. */
+    atomic_int shutdown;            
+
+    /** Condizione utile a svegliare i worker quando c'è un nuovo job o se il
+     * threadpool entra in fase di shutdown */
+    pthread_cond_t wake_thread;     
+
+    /** mutex necessario per usare wake_thread */
+    pthread_mutex_t wake_thread_mutex; 
 
 };
 
@@ -114,6 +124,7 @@ TNCFixedThreadPool TNCFixedThreadPool_new(size_t threads)
 
 void TNCFixedThreadPool_destroy(TNCFixedThreadPool self)
 {
+    if(!self) return;
 
     free(self->threads);
     pthread_mutex_destroy(&self->wake_thread_mutex);

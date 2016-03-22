@@ -47,7 +47,8 @@ struct HTTPRequestData
      * errore altrimenti. */
     int                 file_to_serve;
 
-    /** >CNG< Un puntatore al risultato di stat() eseguito sul file richiesto. */
+    /** Un TNCFileInfo contenente informazioni sul file richiesto.
+     * @see TNCFileInfo */
     TNCFileInfo         file_info;
 
     /** Il percorso come indicato nella richiesta. */
@@ -72,6 +73,9 @@ struct HTTPRequestData
      * @see HTTPRequestData_flags
      */
     uint8_t             flags;
+
+    /** Lista contenente TNCJob che verranno eseguiti allo shutdown del
+     * server. */
     TNCList             cleanup_jobs;
 };
 
@@ -108,22 +112,43 @@ struct HTTPRequestHeader
 
 typedef struct HTTPResponseData HTTPResponseData;
 
+/** Contiene informazioni sulla risposta da inviare. */
 struct HTTPResponseData
 {
+    /** La struttura HTTPRequestData con i dati della richiesta a cui la
+     * risposta si riferisce. */
     const HTTPRequestData    *request_data;
+    /** Header di risposta, contenuti in una lista di stringhe. */
     TNCList headers;
 };
 
 
-
+/** Inizializza una struttura HTTPRequestData. È necessario chiamarla su di
+ * ogni nuova struttura di tipo HTTPRequestData.
+ *
+ * @param data Puntatore alla struttura da inizializzare.
+ */
 void HTTPRequestData_init(HTTPRequestData *data);
-HTTPRequestData *HTTPRequestData_new();
-void HTTPRequestData_destroy(HTTPRequestData *data);
+
+/** Esegue operazioni di pulizia al termine dell'uso di un HTTPRequestData. È
+ * necessario chiamarla al termine dell'utilizzo di ogni HTTPRequestData.
+ *
+ * @param data Puntatore alla struttura su cui eseguire cleanup.
+ */
 void HTTPRequestData_cleanup(HTTPRequestData *data);
 
+/** Inizializza una struttura HTTPResponseData. È necessario chiamarla su di
+ * ogni nuova struttura di tipo HTTPResponseData.
+ *
+ * @param data Puntatore alla struttura da inizializzare.
+ */
 void HTTPResponseData_init(HTTPResponseData *data, const HTTPRequestData *rd);
-HTTPResponseData *HTTPResponseData_new(const HTTPRequestData *rd);
+
+/** Esegue operazioni di pulizia al termine dell'uso di un HTTPResponseData. È
+ * necessario chiamarla al termine dell'utilizzo di ogni HTTPResponseData.
+ *
+ * @param data Puntatore alla struttura su cui eseguire cleanup.
+ */
 void HTTPResponseData_cleanup(HTTPResponseData *data);
-void HTTPResponseData_destroy(HTTPResponseData *data);
 
 #endif //TNC_HTTPDATA_H

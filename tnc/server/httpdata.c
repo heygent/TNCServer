@@ -15,20 +15,10 @@ void HTTPRequestData_init(HTTPRequestData *data)
     data->cleanup_jobs = TNCList_new();
 }
 
-HTTPRequestData *HTTPRequestData_new()
-{
-
-    HTTPRequestData *ret;
-    ret = malloc(sizeof *ret);
-
-    if(NULL != ret) HTTPRequestData_init(ret);
-
-    return ret;
-}
 
 void HTTPRequestData_cleanup(HTTPRequestData *data)
 {
-    assert(data);
+    if(!data) return;
     while(!TNCList_empty(data->cleanup_jobs))
     {
         TNCJob *current_job = TNCList_pop_back(data->cleanup_jobs);
@@ -48,29 +38,9 @@ void HTTPResponseData_init(HTTPResponseData *data, const HTTPRequestData *rd)
 
 }
 
-HTTPResponseData *HTTPResponseData_new(const HTTPRequestData *rd)
-{
-
-    HTTPResponseData *ret;
-    ret = malloc(sizeof *ret);
-
-    if(NULL != ret) HTTPResponseData_init(ret, rd);
-
-    return ret;
-}
-
 void HTTPResponseData_cleanup(HTTPResponseData *data)
 {
-
-    assert(data);
+    if(!data) return;
 
     if(data->headers) TNCList_destroy_and_free(data->headers, free);
-
-}
-
-void HTTPResponseData_destroy(HTTPResponseData *data)
-{
-
-    HTTPResponseData_cleanup(data);
-    free(data);
 }
